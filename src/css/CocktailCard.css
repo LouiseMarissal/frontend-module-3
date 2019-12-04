@@ -55,3 +55,13 @@
     color: white;
     transform: rotateY(180deg);
 }
+
+.heart {
+    float: right;
+    padding: 10px;
+}
+
+.cheers {
+    float: right;
+    padding: 10px;
+}
