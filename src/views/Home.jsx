@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CocktailsList from "./../components/cocktails/CocktailsList";
+import SearchBar from "./../components/Bars/SearchBar";
 import axios from "axios";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <div>
       <h1 className="title">HomePage of Mixology Loveeers</h1>
+      <SearchBar />
       <CocktailsList cocktails={cocktails} />
     </div>
   );

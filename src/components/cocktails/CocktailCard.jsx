@@ -5,7 +5,7 @@ export default function CocktailCard({ cocktail }) {
     <>
       <div>{cocktail.Name}</div>
       <div>
-        <img src={cocktail.Image}></img>
+        <img src={cocktail.Image} alt={cocktail.Name}></img>
       </div>
     </>
   );
