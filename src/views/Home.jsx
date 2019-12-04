@@ -1,5 +1,5 @@
 import React from "react";
-import CocktailsList from "./CocktailsList";
+import CocktailsList from "./../components/cocktails/CocktailsList";
 
 export default function Home() {
   return (

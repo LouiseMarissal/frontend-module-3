@@ -7,6 +7,15 @@ export default function NavBar() {
       <NavLink className="link" exact to="/">
         Home
       </NavLink>
+      <NavLink className="link" exact to="/login">
+        Login
+      </NavLink>
+      <NavLink className="link" exact to="/signup">
+        SignUp
+      </NavLink>
+      <NavLink className="link" exact to="/profile">
+        Profile
+      </NavLink>
     </nav>
   );
 }
