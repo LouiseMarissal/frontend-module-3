@@ -1,13 +1,11 @@
 import React from "react";
-import CocktailList from "../components/cocktails/CocktailsList";
-import SearchBar from "../components/Bars/SearchBar";
+import CocktailsList from "./CocktailsList";
 
 export default function Home() {
   return (
-    <div className="mainPage">
+    <div>
       <h1 className="title">HomePage of Mixology Loveeers</h1>
-      <SearchBar />
-      <CocktailList />
+      <CocktailsList />
     </div>
   );
 }
