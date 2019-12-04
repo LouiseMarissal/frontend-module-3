@@ -35,5 +35,14 @@
   "main": "index.js",
   "devDependencies": {},
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LouiseMarissal/frontend-module-3.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/LouiseMarissal/frontend-module-3/issues"
+  },
+  "homepage": "https://github.com/LouiseMarissal/frontend-module-3#readme"
 }
