@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar";
-import Home from "./views/cocktails/Home";
+import NavBar from "./components/Bars/NavBar";
+import Home from "./views/Home";
 import PageFourOhFour from "./views/PageFourOhFour";
 
 function App() {
