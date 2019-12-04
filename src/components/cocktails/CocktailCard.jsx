@@ -12,11 +12,17 @@ export default function CocktailCard({ cocktail }) {
               <img className="photo" src={cocktail.Image}></img>
             </div>
             <div className="flip-card-back">
-              <ul>
-                <li>{cocktail.Ingredient1}</li>
-                <li>{cocktail.Ingredient2}</li>
-                <li>{cocktail.Ingredient3}</li>
-              </ul>
+              <div>
+                <span>
+                  <i className="fas fa-heart"></i>
+                </span>
+                <span>{cocktail.Ingredient1}</span>
+                <span>{cocktail.Ingredient2}</span>
+                <span>{cocktail.Ingredient3}</span>
+                <span>
+                  <i className="fas fa-glass-cheers"></i>
+                </span>
+              </div>
             </div>
           </div>
         </div>
