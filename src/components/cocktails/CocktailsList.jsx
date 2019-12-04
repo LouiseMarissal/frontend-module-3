@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CocktailCard from "./CocktailCard";
+import "./../../css/CocktailList.css";
 
 const List = ({ cocktails }) => {
   const [cocktailsToMap, setCocktail] = useState([]);
@@ -8,8 +9,7 @@ const List = ({ cocktails }) => {
     setCocktail({ cocktails });
   }, []);
   return (
-    <div>
-      <h1>Cocktail Views</h1>
+    <div className="fullcocktail">
       {cocktails.map((cocktail, i) => (
         <CocktailCard key={i} cocktail={cocktail} />
       ))}

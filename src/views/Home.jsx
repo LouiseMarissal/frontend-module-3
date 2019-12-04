@@ -13,7 +13,9 @@ export default function Home() {
   return (
     <div>
       <h1 className="title">HomePage of Mixology Loveeers</h1>
-      <CocktailsList cocktails={cocktails} />
+      <div className="test">
+        <CocktailsList cocktails={cocktails} />
+      </div>
     </div>
   );
 }
