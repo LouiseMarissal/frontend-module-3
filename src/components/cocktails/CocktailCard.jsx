@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function CocktailCard() {
-  return <div></div>;
+export default function CocktailCard({ cocktail }) {
+  return <div>{cocktail.Name}</div>;
 }
