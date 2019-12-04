@@ -8,6 +8,7 @@ import PageFourOhFour from "./views/PageFourOhFour";
 import Login from "./views/account/Login";
 import Signup from "./views/account/Signup";
 import Profile from "./views/account/UserProfile";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
