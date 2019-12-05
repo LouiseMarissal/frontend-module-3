@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CocktailsList from "./../components/cocktails/CocktailsList";
-import useSearch from "./../components/Bars/SearchBar";
+import useSearch from "../components/Bars/UseSearch";
 import axios from "axios";
 import "./../css/Home.css";
-import { object } from "prop-types";
 
 export default function Home() {
   const [query, setQuery] = useState("");
