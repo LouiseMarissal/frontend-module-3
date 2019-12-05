@@ -18,21 +18,28 @@ export default function OneCocktail(props) {
       <div className="CocktailCard">
         <div className="titre">{cocktail.Name}</div>
         <div className="onecocktail">
-          <img className="OneCocktailImage" src={cocktail.Image} alt="" />
+          <div>
+            <img className="OneCocktailImage" src={cocktail.Image} alt="" />
+          </div>
+          <div className="test"></div>
           <div className="FullInstructions">
             <div className="what">What do i need ?</div> <br />
             <ul className="Ingredients">
               <li>
-                {cocktail.Ingredient1} : {cocktail.Measure1}
+                <span className="ingredient">{cocktail.Ingredient1} :</span>
+                <span className="mesure"> {cocktail.Measure1}</span>
               </li>
               <li>
-                {cocktail.Ingredient2} : {cocktail.Measure2}
+                <span className="ingredient">{cocktail.Ingredient2} :</span>
+                <span className="mesure"> {cocktail.Measure2}</span>
               </li>
               <li>
-                {cocktail.Ingredient3} : {cocktail.Measure3}
+                <span className="ingredient">{cocktail.Ingredient3} :</span>
+                <span className="mesure"> {cocktail.Measure3}</span>
               </li>
               <li>
-                {cocktail.Ingredient4} : {cocktail.Measure4}
+                <span className="ingredient">{cocktail.Ingredient4} :</span>
+                <span className="mesure"> {cocktail.Measure4}</span>
               </li>
             </ul>
             <br />
