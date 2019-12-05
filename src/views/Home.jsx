@@ -1,21 +1,36 @@
 import React, { useState, useEffect } from "react";
 import CocktailsList from "./../components/cocktails/CocktailsList";
-import SearchBar from "./../components/Bars/SearchBar";
+import useSearch from "./../components/Bars/SearchBar";
 import axios from "axios";
 import "./../css/Home.css";
+import { object } from "prop-types";
 
 export default function Home() {
-  const [cocktails, setCocktails] = useState([]);
-  useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/cocktail")
-      .then(dbRes => setCocktails(dbRes.data))
-      .catch(err => console.log(err));
-  }, []);
+  const [query, setQuery] = useState("");
+  const cocktails = useSearch(query);
+  const handleSearch = e => {
+    setQuery(e.target.value);
+    filterCocktails(cocktails, query);
+  };
+
+  // const filterCocktails = (cocktails, query) => {
+  //   cocktails.forEach((c, i) => {
+  //     Object.keys(c).forEach(key => {
+  //       if (c[key] !== query) {
+  //         // cocktails.splice(c[i]);
+  //       }
+  //     });
+  //   });
+  // };
+
   return (
     <div className="fullPage">
       <h1 className="title">HomePage of Mixology Loveeers</h1>
-      <SearchBar />
+      <input
+        onChange={handleSearch}
+        className="searchBar"
+        placeholder="Search..."
+      ></input>
       <CocktailsList cocktails={cocktails} />
     </div>
   );
