@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useSearch(query) {
@@ -13,7 +13,6 @@ export default function useSearch(query) {
       cancelToken: new axios.CancelToken(c => (cancel = c))
     })
       .then(res => {
-        console.log(queryFiltered);
         return setQueryFiltered(res.data);
       })
       .catch(err => {

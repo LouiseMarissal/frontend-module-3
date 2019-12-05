@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 import {} from "react";
 import "./../../css/CocktailList.css";
 
@@ -7,7 +7,7 @@ const List = ({ cocktails }) => {
   return (
     <div className="fullcocktail">
       {cocktails.map((cocktail, i) => (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense key={i} fallback={<div>Loading...</div>}>
           <CocktailCard key={i} cocktail={cocktail} />
         </Suspense>
       ))}

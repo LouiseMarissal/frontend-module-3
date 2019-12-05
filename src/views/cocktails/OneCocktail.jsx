@@ -25,11 +25,6 @@ export default function OneCocktail(props) {
           <div className="FullInstructions">
             <div className="what">What do i need ?</div> <br />
             <ul className="Ingredients">
-              {/* {for (var i=1; i<15; i++) {
-              if(Object.key(cocktail) === `Ingredient${i}`) {
-
-              }
-            }} */}
               <li>
                 <span className="ingredient">{cocktail.Ingredient1} :</span>
                 <span className="mesure"> {cocktail.Measure1}</span>
