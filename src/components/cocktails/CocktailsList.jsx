@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import CocktailCard from "./CocktailCard";
+import React, { useState, useEffect, Suspense, lazy } from "react";
+import {  } from "react";
 import "./../../css/CocktailList.css";
 
+const CocktailCard = React.lazy(() => import("./CocktailCard"));
 const List = ({ cocktails }) => {
-  const [cocktailsToMap, setCocktail] = useState([]);
-  useEffect(() => {
-    setCocktail({ cocktails });
-  }, []);
   return (
     <div className="fullcocktail">
       {cocktails.map((cocktail, i) => (
-        <CocktailCard key={i} cocktail={cocktail} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <CocktailCard key={i} cocktail={cocktail} />
+        </Suspense>
       ))}
     </div>
   );

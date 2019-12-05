@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./css/layout.css";
 import "./css/Bars.css";
+import "./css/signup-in.css";
 import NavBar from "./components/Bars/NavBar";
 import Home from "./views/Home";
 import PageFourOhFour from "./views/PageFourOhFour";
