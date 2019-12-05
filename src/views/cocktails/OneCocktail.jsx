@@ -13,6 +13,7 @@ export default function OneCocktail(props) {
       .then(dbRes => setCocktail(dbRes.data))
       .catch(err => console.log(err));
   }, []);
+  console.log(cocktail.Ingredients);
   return (
     <>
       <div className="CocktailCard">
@@ -26,8 +27,8 @@ export default function OneCocktail(props) {
             <div className="what">What do i need ?</div> <br />
             <ul className="Ingredients">
               <li>
-                <span className="ingredient">{cocktail.Ingredient1} :</span>
-                <span className="mesure"> {cocktail.Measure1}</span>
+                <span className="ingredient">{cocktail.Ingredients} :</span>
+                <span className="mesure"> {cocktail.Measures}</span>
               </li>
               <li>
                 <span className="ingredient">{cocktail.Ingredient2} :</span>
