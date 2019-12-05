@@ -6,6 +6,9 @@ import axios from "axios";
 import "./../css/Home.css";
 
 export default function Home() {
+
+  
+
   const [cocktails, setCocktails] = useState([]);
   useEffect(() => {
     axios
