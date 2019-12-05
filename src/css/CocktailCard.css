@@ -51,7 +51,7 @@
 
 /* Style the back side */
 .flip-card-back {
-    background-image: url(./../images/test2.jpg);
+    background-image: url(./../images/test.jpg);
     color: black(102, 102, 102);
     transform: rotateY(180deg);
 }

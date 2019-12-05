@@ -18,9 +18,7 @@ export default function CocktailCard({ cocktail }) {
                 <i className="fas fa-heart"></i>
               </span>
               <ul>
-                <li>{cocktail.Ingredient1}</li>
-                <li>{cocktail.Ingredient2}</li>
-                <li>{cocktail.Ingredient3}</li>
+                <li>{cocktail.Ingredients}</li>
               </ul>
               <span className="cheers">
                 <i className="fas fa-glass-cheers"></i>
