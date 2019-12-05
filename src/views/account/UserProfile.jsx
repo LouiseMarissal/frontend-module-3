@@ -1,5 +1,11 @@
 import React from "react";
+import "./../../css/AddCocktail.css";
+import AddCoktail from "../cocktails/AddCoktail";
 
 export default function UserProfile() {
-  return <div></div>;
+  return (
+    <div>
+      <AddCoktail />
+    </div>
+  );
 }
