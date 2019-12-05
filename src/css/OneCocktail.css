@@ -13,6 +13,12 @@
     width: 10px;
 }
 
+.titre {
+    font-weight: bolder;
+    margin-top: 20px;
+    color: rgb(138, 138, 138);
+}
+
 .FullInstructions {
     margin-left: auto;
     margin-right: auto;
