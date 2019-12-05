@@ -10,10 +10,10 @@ export default function NavBar() {
         </NavLink>
       </div>
       <div>
-        <NavLink className="link" to="/login">
+        <NavLink className="link" to="/Login">
           Login
         </NavLink>
-        <NavLink className="link" to="/signup">
+        <NavLink className="link" to="/Signup">
           SignUp
         </NavLink>
         {/* If loggedIn */}
