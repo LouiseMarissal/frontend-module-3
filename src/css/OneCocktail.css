@@ -1,0 +1,33 @@
+.onecocktail {
+    display: flex;
+    margin: 30px;
+}
+
+.OneCocktailImage {
+    width: 400px;
+    height: 400px;
+}
+
+.FullInstructions {
+    margin-left: auto;
+    margin-right: auto
+}
+
+li {
+    float: left;
+    margin-left: 20px;
+    font-style: italic;
+    font-size: 13px;
+}
+
+.Ingredients {
+    margin-left: 100px
+}
+
+.how {
+    margin-top: 50px;
+}
+
+.instructions {
+    font-style: italic;
+}
