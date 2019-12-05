@@ -11,6 +11,7 @@ import Login from "./views/account/Login";
 import Signup from "./views/account/Signup";
 import Profile from "./views/account/UserProfile";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AddCoktail from "./views/cocktails/AddCoktail";
 
 function App() {
   return (
@@ -18,10 +19,11 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/:id" component={OneCocktail} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/:id" component={OneCocktail} />
+        <Route path="/add-cocktail" component={AddCoktail} />
         <Route path="*" component={PageFourOhFour} />
       </Switch>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import {  } from "react";
+import {} from "react";
 import "./../../css/CocktailList.css";
 
 const CocktailCard = React.lazy(() => import("./CocktailCard"));
