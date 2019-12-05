@@ -6,6 +6,7 @@ import "./css/signup-in.css";
 import NavBar from "./components/Bars/NavBar";
 import Home from "./views/Home";
 import PageFourOhFour from "./views/PageFourOhFour";
+import OneCocktail from "./views/cocktails/OneCocktail";
 import Login from "./views/account/Login";
 import Signup from "./views/account/Signup";
 import Profile from "./views/account/UserProfile";
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/:id" component={OneCocktail} />
         <Route path="*" component={PageFourOhFour} />
       </Switch>
     </div>

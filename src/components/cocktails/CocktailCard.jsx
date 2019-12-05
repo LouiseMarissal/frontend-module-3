@@ -1,11 +1,13 @@
 import React from "react";
 import "./../../css/CocktailCard.css";
+import { Link } from "react-router-dom";
 
 export default function CocktailCard({ cocktail }) {
   return (
     <>
       <div className="CocktailCard">
         <div className="titre">{cocktail.Name}</div>
+        <Link to={`/${cocktail._id}`}>{cocktail.Name}</Link>
         <div className="flip-card">
           <div className="flip-card-inner">
             <div className="flip-card-front">
