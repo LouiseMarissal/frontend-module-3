@@ -8,18 +8,7 @@ export default function Home() {
   const cocktails = useSearch(query);
   const handleSearch = e => {
     setQuery(e.target.value);
-    // filterCocktails(cocktails, query);
   };
-
-  // const filterCocktails = (cocktails, query) => {
-  //   cocktails.forEach((c, i) => {
-  //     Object.keys(c).forEach(key => {
-  //       if (c[key] !== query) {
-  //         // cocktails.splice(c[i]);
-  //       }
-  //     });
-  //   });
-  // };
 
   return (
     <div className="fullPage">
