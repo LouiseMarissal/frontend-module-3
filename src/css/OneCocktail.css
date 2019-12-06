@@ -30,16 +30,9 @@
     border: solid 1px black;
 }
 
-.Measures .Ingredients {
-    float: left;
+.Ingredients {
     margin-left: 20px;
-    font-style: italic;
-    font-size: 13px;
 }
-
-/* .Ingredients {
-    margin-left: 100px
-} */
 
 .how {
     margin-top: 50px;
@@ -62,11 +55,12 @@
     margin-top: 50px;
 }
 
-/* .Measures {
-    position: absolute;
-    top: 250px;
-} */
+.Measures {
+    padding: 0;
+    font-style: italic;
+}
 
 .full-ingredients {
     display: flex;
+    justify-content: center;
 }
