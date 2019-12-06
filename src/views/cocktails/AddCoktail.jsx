@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-import React, { useState } from "react";
->>>>>>> 1876247fa55a73681291664486061ae5b9c8b239
+// import React, { useState } from "react";
 import axios from "axios";
 
 // const AddCoktail = props => {
@@ -205,6 +202,7 @@ const AddCocktail = props => {
             ))}
           </div>
         </div>
+        <button>Add!</button>
       </form>
     </div>
   );
