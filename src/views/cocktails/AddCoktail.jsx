@@ -18,6 +18,14 @@ const AddCoktail = props => {
     setIngredientsFields(copy);
   };
 
+  // Remove ingredients
+  const removeIngredients = e => {
+    e.preventDefault();
+    var array = [...ingredientsFields];
+    var index = array.indexOf(e.target.value);
+    array.splice(index, 1);
+    setIngredientsFields(array);
+  };
   // ADD measures in list
   const addMeasureInput = e => {
     e.preventDefault();
@@ -27,7 +35,13 @@ const AddCoktail = props => {
     measuresRef.current.value = "";
     setMeasuresFields(copy);
   };
-
+  const removeMeasure = e => {
+    e.preventDefault();
+    var array = [...measuresFields];
+    var index = array.indexOf(e.target.value);
+    array.splice(index, 1);
+    setMeasuresFields(array);
+  };
   const handleSubmit = e => {
     e.preventDefault();
     // console.log(formValues);
@@ -81,14 +95,15 @@ const AddCoktail = props => {
         </div>
         <div className="measure-ingredient-container">
           <div className="ingredient-container">
-            <h3>Add ingredients</h3>
+            <h4>Add ingredients</h4>
             {ingredientsFields.length === 0 ? (
               <p>No ingredients yet!</p>
             ) : (
               <ul>
                 {ingredientsFields.map((ingredient, i) => (
                   <li key={i} className="ingredients-list">
-                    {ingredient} <i className="fas fa-minus"></i>
+                    {ingredient}{" "}
+                    <i className="fas fa-minus" onClick={removeIngredients}></i>
                   </li>
                 ))}
               </ul>
@@ -104,15 +119,18 @@ const AddCoktail = props => {
           </div>
 
           <div className="measure-container">
-            <h3>Add Measures</h3>
+            <h4>Add Measures</h4>
             {measuresFields.length === 0 ? (
               <p>No Measures Yet!</p>
             ) : (
               <ul>
                 {measuresFields.map((measure, i) => (
-                  <li key={i} className="ingredients-list ">
+                  <li key={i} className="ingredients-list">
                     <span> {measure}</span>
-                    <span className="fas fa-minus"></span>
+                    <span
+                      className="fas fa-minus"
+                      onClick={removeMeasure}
+                    ></span>
                   </li>
                 ))}
               </ul>
