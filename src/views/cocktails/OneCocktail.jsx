@@ -11,6 +11,7 @@ export default function OneCocktail(props) {
   //   // let test = Array.from(cocktail.Ingredients);
   //   // console.log(test[0]);
   // }
+  console.log(cocktail.Ingredients);
 
   useEffect(() => {
     axios
@@ -34,7 +35,7 @@ export default function OneCocktail(props) {
               <div className="what">What do i need ?</div> <br />
               <ul className="Ingredients">
                 {cocktail.Ingredients.map((Ingredient, i) => {
-                  if (Ingredient !== "") {
+                  if (Ingredient !== "" && Ingredient !== null) {
                     return <li className="ingredient">{Ingredient}</li>;
                   } else return null;
                 })}
@@ -42,7 +43,7 @@ export default function OneCocktail(props) {
               <br />
               <ul className="Measures">
                 {cocktail.Measures.map((Measure, i) => {
-                  if (Measure !== "") {
+                  if (Measure !== "" && Measure !== null) {
                     return <li className="measure">({Measure})</li>;
                   } else return null;
                 })}
