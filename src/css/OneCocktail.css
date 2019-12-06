@@ -30,7 +30,7 @@
     border: solid 1px black;
 }
 
-li {
+.Measures .Ingredients {
     float: left;
     margin-left: 20px;
     font-style: italic;
@@ -62,7 +62,11 @@ li {
     margin-top: 50px;
 }
 
-.Measures {
+/* .Measures {
     position: absolute;
     top: 250px;
+} */
+
+.full-ingredients {
+    display: flex;
 }

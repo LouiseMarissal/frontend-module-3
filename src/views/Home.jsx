@@ -5,9 +5,15 @@ import "./../css/Home.css";
 
 export default function Home() {
   const [query, setQuery] = useState("");
+  const [checked, setChecked] = useState(true);
   const cocktails = useSearch(query);
   const handleSearch = e => {
     setQuery(e.target.value);
+  };
+
+  const isChecked = e => {
+    setChecked(!checked);
+    console.log(checked);
   };
 
   return (
@@ -18,6 +24,14 @@ export default function Home() {
         className="searchBar"
         placeholder="Search..."
       ></input>
+      <label htmlFor="Alcoholic">Contains Alcohol ?</label>
+      <input
+        onChange={isChecked}
+        type="checkbox"
+        name="Alcoholic"
+        id="Alcoholic"
+        className="input"
+      />
       <CocktailsList cocktails={cocktails} />
     </div>
   );

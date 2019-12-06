@@ -33,21 +33,23 @@ export default function OneCocktail(props) {
             <div className="test"></div>
             <div className="FullInstructions">
               <div className="what">What do i need ?</div> <br />
-              <ul className="Ingredients">
-                {cocktail.Ingredients.map((Ingredient, i) => {
-                  if (Ingredient !== "" && Ingredient !== null) {
-                    return <li className="ingredient">{Ingredient}</li>;
-                  } else return null;
-                })}
-              </ul>
-              <br />
-              <ul className="Measures">
-                {cocktail.Measures.map((Measure, i) => {
-                  if (Measure !== "" && Measure !== null) {
-                    return <li className="measure">({Measure})</li>;
-                  } else return null;
-                })}
-              </ul>
+              <div className="full-ingredients">
+                <ul className="Ingredients">
+                  {cocktail.Ingredients.map((Ingredient, i) => {
+                    if (Ingredient !== "" && Ingredient !== null) {
+                      return <li className="ingredient">{Ingredient}</li>;
+                    } else return null;
+                  })}
+                </ul>
+                <br />
+                <ul className="Measures">
+                  {cocktail.Measures.map((Measure, i) => {
+                    if (Measure !== "" && Measure !== null) {
+                      return <li className="measure">({Measure})</li>;
+                    } else return null;
+                  })}
+                </ul>
+              </div>
               <div className="how">How do i make it ?</div> <br />
               <div className="instructions">{cocktail.Instructions}</div>
             </div>
