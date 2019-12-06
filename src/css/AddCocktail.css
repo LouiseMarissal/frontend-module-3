@@ -3,17 +3,18 @@
   flex-direction: row;
   width: 100%;
   justify-content: center;
+  text-align: left;
 }
 .ingredient-container {
   margin: 3%;
-  display: flex;
+  /* display: flex; */
   /* flex-direction: column; */
   width: 50%;
 }
 
 .measure-container {
   margin: 3%;
-  display: flex;
+  /* display: flex; */
   /* flex-direction: column; */
   width: 50%;
 }
@@ -23,4 +24,13 @@
 }
 .fa-plus {
   padding-top: 4.5%;
+}
+.ingredients-list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 50%;
+}
+.fa-minus {
+  padding-left: 4.5%;
 }
