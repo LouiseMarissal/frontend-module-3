@@ -8,14 +8,21 @@ const AddCoktail = props => {
   const [ingredientsFields, setIngredientsFields] = useState([]);
   const [measuresFields, setMeasuresFields] = useState([]);
 
-  // ADD ingredients in list
+  // ADD ingredients & Measures in list
   const addIngredientInput = e => {
+    // take the value from ingredients inputs
     e.preventDefault();
     let ingredients = ingredientsRef.current.value;
     const copy = [...ingredientsFields];
     copy.push(ingredients);
     ingredientsRef.current.value = "";
+    //take the value from measure input
     setIngredientsFields(copy);
+    let measures = measuresRef.current.value;
+    const copy2 = [...measuresFields];
+    copy2.push(measures);
+    measuresRef.current.value = "";
+    setMeasuresFields(copy2);
   };
 
   // Remove ingredients
@@ -26,15 +33,7 @@ const AddCoktail = props => {
     array.splice(index, 1);
     setIngredientsFields(array);
   };
-  // ADD measures in list
-  const addMeasureInput = e => {
-    e.preventDefault();
-    let measures = measuresRef.current.value;
-    const copy = [...measuresFields];
-    copy.push(measures);
-    measuresRef.current.value = "";
-    setMeasuresFields(copy);
-  };
+
   const removeMeasure = e => {
     e.preventDefault();
     var array = [...measuresFields];
@@ -67,7 +66,8 @@ const AddCoktail = props => {
 
     console.log("im changing");
   };
-
+  console.log(ingredientsFields);
+  console.log(measuresFields);
   return (
     <div className="add-cocktail-form">
       <h1>Create your own Cocktail</h1>
@@ -115,7 +115,7 @@ const AddCoktail = props => {
               className="input"
               placeholder="Add Ingredient"
             />
-            <i className="fas fa-plus" onClick={addIngredientInput} />
+            {/* <i className="fas fa-plus" onClick={addIngredientInput} /> */}
           </div>
 
           <div className="measure-container">
@@ -142,7 +142,7 @@ const AddCoktail = props => {
               className="input"
               placeholder="Measure"
             />
-            <i className="fas fa-plus" onClick={addMeasureInput}></i>
+            <i className="fas fa-plus" onClick={addIngredientInput}></i>
           </div>
         </div>
         <input type="file" name="Image" className="input" />
