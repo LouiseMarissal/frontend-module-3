@@ -37,9 +37,9 @@ li {
     font-size: 13px;
 }
 
-.Ingredients {
+/* .Ingredients {
     margin-left: 100px
-}
+} */
 
 .how {
     margin-top: 50px;
@@ -49,8 +49,9 @@ li {
     font-style: italic;
 }
 
-.mesure {
-    font-weight: lighter
+.measure {
+    font-weight: lighter;
+    list-style: none;
 }
 
 .ingredient {
@@ -59,4 +60,9 @@ li {
 
 .what {
     margin-top: 50px;
+}
+
+.Measures {
+    position: absolute;
+    top: 250px;
 }
