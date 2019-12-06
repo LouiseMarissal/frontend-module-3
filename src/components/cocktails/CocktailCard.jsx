@@ -11,7 +11,7 @@ export default function CocktailCard({ cocktail }) {
           <div className="flip-card">
             <div className="flip-card-inner">
               <div className="flip-card-front">
-                <img className="photo" alt="cocktail-image" />
+                <img className="photo" /></img>
               </div>
               <div className="flip-card-back">
                 <span className="heart">
