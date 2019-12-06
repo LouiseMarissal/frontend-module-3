@@ -43,8 +43,16 @@ const AddCoktail = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
+    formValues.Ingredients = ingredientsFields;
+    formValues.Measures = measuresFields;
     const formData = new FormData();
-    for (let key in formValues) formData.append(key, formValues[key]);
+    for (let key in formValues) {
+      if (Array.isArray(formValues[key])) {
+        for (let value of formValues[key]) {
+          formData.append(key, value);
+        }
+      } else formData.append(key, formValues[key]);
+    }
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
       .then(res => {
