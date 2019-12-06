@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CocktailsList from "./../components/cocktails/CocktailsList";
 import useSearch from "../components/Bars/UseSearch";
+import filter from "../components/Bars/Filters";
 import "./../css/Home.css";
 
 export default function Home() {
@@ -15,7 +16,6 @@ export default function Home() {
     setChecked(!checked);
     console.log(checked);
   };
-
   return (
     <div className="fullPage">
       <h1 className="title">HomePage of Mixology Loveeers</h1>

@@ -28,11 +28,12 @@
     margin-right: auto;
     color: rgb(179, 178, 178);
     border: solid 1px black;
+    padding: 50px 50px 0px 40px;
 }
 
-.Ingredients {
+/* .Ingredients {
     margin-left: 20px;
-}
+} */
 
 .how {
     margin-top: 50px;
@@ -42,23 +43,17 @@
     font-style: italic;
 }
 
-.measure {
-    font-weight: lighter;
-    list-style: none;
-}
-
 .ingredient {
-    font-weight: bolder;
+    font-weight: lighter;
+    float: left;
+    margin-left: 30px;
 }
 
-.what {
-    margin-top: 50px;
-}
 
-.Measures {
+/* .Measures {
     padding: 0;
     font-style: italic;
-}
+} */
 
 .full-ingredients {
     display: flex;
