@@ -33,7 +33,7 @@ const AddCoktail = props => {
     array.splice(index, 1);
     setIngredientsFields(array);
   };
-
+  // Remove MEASURES
   const removeMeasure = e => {
     e.preventDefault();
     var array = [...measuresFields];
@@ -59,15 +59,14 @@ const AddCoktail = props => {
   };
 
   const handleChangeForm = e => {
-    e.preventDefault();
+    // e.preventDefault();
     if (e.target.type === "checkbox") {
       setFormValues({ ...formValues, [e.target.name]: e.target.checked });
     } else setFormValues({ ...formValues, [e.target.name]: e.target.value });
 
     console.log("im changing");
   };
-  console.log(ingredientsFields);
-  console.log(measuresFields);
+
   return (
     <div className="add-cocktail-form">
       <h1>Create your own Cocktail</h1>
@@ -84,15 +83,6 @@ const AddCoktail = props => {
           className="input"
           placeholder="Recipe"
         />
-        <div className="is-alcoholic">
-          <label htmlFor="Alcoholic">Contains Alcohol ?</label>
-          <input
-            type="checkbox"
-            name="Alcoholic"
-            id="Alcoholic"
-            className="input"
-          />
-        </div>
         <div className="measure-ingredient-container">
           <div className="ingredient-container">
             <h4>Add ingredients</h4>
@@ -145,9 +135,18 @@ const AddCoktail = props => {
             <i className="fas fa-plus" onClick={addIngredientInput}></i>
           </div>
         </div>
+        <div className="is-alcoholic">
+          <label htmlFor="Alcoholic">Contains Alcohol ?</label>
+          <input
+            type="checkbox"
+            name="Alcoholic"
+            id="Alcoholic"
+            className="input"
+          />
+        </div>
         <input type="file" name="Image" className="input" />
 
-        <button>Add!</button>
+        <button className="btn">Add!</button>
       </form>
     </div>
   );
