@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CocktailsList from "./../components/cocktails/CocktailsList";
 import useSearch from "../components/Bars/UseSearch";
-import axios from "axios";
 import "./../css/Home.css";
 
 export default function Home() {
