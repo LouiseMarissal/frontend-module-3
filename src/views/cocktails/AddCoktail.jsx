@@ -43,7 +43,6 @@ const AddCoktail = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log(formValues);
     const formData = new FormData();
     for (let key in formValues) formData.append(key, formValues[key]);
     axios
@@ -55,7 +54,6 @@ const AddCoktail = props => {
       .catch(err => {
         console.log(err);
       });
-    // console.log("ajouté");
   };
 
   const handleChangeForm = e => {
@@ -105,7 +103,6 @@ const AddCoktail = props => {
               className="input"
               placeholder="Add Ingredient"
             />
-            {/* <i className="fas fa-plus" onClick={addIngredientInput} /> */}
           </div>
 
           <div className="measure-container">
