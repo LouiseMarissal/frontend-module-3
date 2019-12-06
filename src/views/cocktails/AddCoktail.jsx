@@ -169,7 +169,7 @@ const AddCocktail = props => {
             className="input"
           />
         </div>
-        <div className="add-inputs-container">
+        <div className="measure-ingredient-container">
           <div className="add-ingredients">
             <h3>Add Ingredients</h3>
             <i className="fas fa-plus" onClick={() => handleAdd()}></i>
