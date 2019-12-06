@@ -1,59 +1,45 @@
-.onecocktail {
-    display: flex;
-    margin: 30px;
-}
-
 .OneCocktailImage {
-    width: 400px;
-    height: 400px;
+  width: 400px;
+  height: 400px;
 }
-
 .test {
-    height: 10px;
-    width: 10px;
+  height: 10px;
+  width: 10px;
 }
-
 .titre {
-    font-weight: bolder;
-    margin-top: 20px;
-    color: rgb(138, 138, 138);
+  font-weight: bolder;
+  margin-top: 20px;
+  color: rgb(138, 138, 138);
 }
-
 .FullInstructions {
-    margin-left: auto;
-    margin-right: auto;
-    /* background-image: url("../images/test.jpg"); */
-    color: rgb(179, 178, 178);
-    border: solid 1px black;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(179, 178, 178);
+  border: solid 1px black;
 }
 
-li {
-    float: left;
-    margin-left: 20px;
-    font-style: italic;
-    font-size: 13px;
+.Measures .Ingredients {
+  float: left;
+  margin-left: 20px;
+  font-size: 13px;
 }
 
-.Ingredients {
-    margin-left: 100px
-}
+/* .Ingredients {	
+  margin-left: 100px	
+} */
 
 .how {
-    margin-top: 50px;
+  margin-top: 50px;
 }
-
-.instructions {
-    font-style: italic;
-}
-
-.mesure {
-    font-weight: lighter
-}
-
-.ingredient {
-    font-weight: bolder;
-}
-
 .what {
-    margin-top: 50px;
+  margin-top: 50px;
+}
+/* .Measures {
+  position: absolute;
+  top: 250px;
+} */
+
+.full-ingredients {
+  display: flex;
+  justify-content: center;
 }

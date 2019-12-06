@@ -5,6 +5,7 @@ import "./../css/Home.css";
 
 export default function Home() {
   const [query, setQuery] = useState("");
+  const [checked, setChecked] = useState(true);
   const cocktails = useSearch(query);
   const [myOffset, setOffset] = useState(1);
   const [cocktailsDisplayed, setCocktailsDisplayed] = useState([]);

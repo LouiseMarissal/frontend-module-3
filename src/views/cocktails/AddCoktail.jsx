@@ -1,110 +1,58 @@
-// import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 
-// const AddCoktail = props => {
-//   const [formValues, setFormValues] = useState({});
-//   const [fields, setFields] = useState({});
-//   console.log(props);
-
-//   const addIngredientInput = e => {
-//     console.log("Clicked");
-//     e.preventDefault();
-//   };
-//   const addMeasureInput = e => {
-//     console.log("Clicked again");
-//     e.preventDefault();
-//   };
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     // console.log(formValues);
-//     const formData = new FormData();
-//     for (let key in formValues) formData.append(key, formValues[key]);
-//     axios
-//       .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
-//       .then(res => {
-//         console.log(res);
-//         // props.history.push("/cocktails");
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
-//     // console.log("ajouté");
-//   };
-
-//   const handleChangeForm = e => {
-//     e.preventDefault();
-//     if (e.target.type === "checkbox") {
-//       setFormValues({ ...formValues, [e.target.name]: e.target.checked });
-//     } else setFormValues({ ...formValues, [e.target.name]: e.target.value });
-
-//     console.log("im changing");
-//   };
-
-//   return (
-//     <div className="add-cocktail-form">
-//       <h1>Create your own Cocktail</h1>
-//       <form className="form" onSubmit={handleSubmit} onChange={handleChangeForm}>
-//         <input type="text" name="Name" className="input" placeholder="Name" />
-//         <input type="text" name="Glass" className="input" placeholder="Glass" />
-//         <input
-//           type="text"
-//           name="Instructions"
-//           className="input"
-//           placeholder="Recipe"
-//         />
-//         <div className="is-alcoholic">
-//           <label htmlFor="Alcoholic">Contains Alcohol ?</label>
-//           <input
-//             type="checkbox"
-//             name="Alcoholic"
-//             id="Alcoholic"
-//             className="input"
-//           />
-//         </div>
-//         <div className="measure-ingredient-container">
-//           <div className="ingredient-container">
-//             <input
-//               type="text"
-//               name="Ingredients"
-//               className="input"
-//               placeholder="Add Ingredient"
-//             />
-//             <i className="fas fa-plus" onClick={addIngredientInput} />
-//           </div>
-
-//           <div className="measure-container">
-//             <input
-//               type="text"
-//               name="Measures"
-//               className="input"
-//               placeholder="Measure"
-//             />
-//             <i className="fas fa-plus" onClick={addMeasureInput}></i>
-//           </div>
-//         </div>
-//         <input type="file" name="Image" className="input" />
-
-//         <button>Add!</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default AddCoktail;
-
-import React, { useState } from "react";
-
-const AddCocktail = props => {
+const AddCoktail = props => {
   const [formValues, setFormValues] = useState({});
-  const [fields, setFields] = useState([{ value: null }]);
-  console.log(props);
+  const measuresRef = useRef();
+  const ingredientsRef = useRef();
+  const [ingredientsFields, setIngredientsFields] = useState([]);
+  const [measuresFields, setMeasuresFields] = useState([]);
 
+  // ADD ingredients & Measures in list
+  const addIngredientInput = e => {
+    // take the value from ingredients inputs
+    e.preventDefault();
+    let ingredients = ingredientsRef.current.value;
+    const copy = [...ingredientsFields];
+    copy.push(ingredients);
+    ingredientsRef.current.value = "";
+    //take the value from measure input
+    setIngredientsFields(copy);
+    let measures = measuresRef.current.value;
+    const copy2 = [...measuresFields];
+    copy2.push(measures);
+    measuresRef.current.value = "";
+    setMeasuresFields(copy2);
+  };
+
+  // Remove ingredients
+  const removeIngredients = e => {
+    e.preventDefault();
+    var array = [...ingredientsFields];
+    var index = array.indexOf(e.target.value);
+    array.splice(index, 1);
+    setIngredientsFields(array);
+  };
+  // Remove MEASURES
+  const removeMeasure = e => {
+    e.preventDefault();
+    var array = [...measuresFields];
+    var index = array.indexOf(e.target.value);
+    array.splice(index, 1);
+    setMeasuresFields(array);
+  };
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log(formValues);
+    formValues.Ingredients = ingredientsFields;
+    formValues.Measures = measuresFields;
     const formData = new FormData();
-    for (let key in formValues) formData.append(key, formValues[key]);
+    for (let key in formValues) {
+      if (Array.isArray(formValues[key])) {
+        for (let value of formValues[key]) {
+          formData.append(key, value);
+        }
+      } else formData.append(key, formValues[key]);
+    }
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
       .then(res => {
@@ -114,36 +62,20 @@ const AddCocktail = props => {
       .catch(err => {
         console.log(err);
       });
-    // console.log("ajouté");
   };
+
   const handleChangeForm = e => {
-    e.preventDefault();
+    // e.preventDefault();
     if (e.target.type === "checkbox") {
       setFormValues({ ...formValues, [e.target.name]: e.target.checked });
     } else setFormValues({ ...formValues, [e.target.name]: e.target.value });
+
+    console.log("im changing");
   };
-
-  function handleChange(i, e) {
-    const values = [...fields];
-    values[i].value = e.target.value;
-    setFields(values);
-  }
-
-  function handleAdd() {
-    const values = [...fields];
-    values.push({ value: null });
-    setFields(values);
-  }
-
-  function handleRemove(i) {
-    const values = [...fields];
-    values.splice(i, 1);
-    setFields(values);
-  }
 
   return (
     <div className="add-cocktail-form">
-      <h1>Add your own cocktail</h1>
+      <h1>Create your own Cocktail</h1>
       <form
         className="form"
         onSubmit={handleSubmit}
@@ -157,6 +89,57 @@ const AddCocktail = props => {
           className="input"
           placeholder="Recipe"
         />
+        <div className="measure-ingredient-container">
+          <div className="ingredient-container">
+            <h4>Add ingredients</h4>
+            {ingredientsFields.length === 0 ? (
+              <p>No ingredients yet!</p>
+            ) : (
+              <ul>
+                {ingredientsFields.map((ingredient, i) => (
+                  <li key={i} className="ingredients-list">
+                    {ingredient}{" "}
+                    <i className="fas fa-minus" onClick={removeIngredients}></i>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <input
+              type="text"
+              ref={ingredientsRef}
+              name="Ingredients"
+              className="input"
+              placeholder="Add Ingredient"
+            />
+          </div>
+
+          <div className="measure-container">
+            <h4>Add Measures</h4>
+            {measuresFields.length === 0 ? (
+              <p>No Measures Yet!</p>
+            ) : (
+              <ul>
+                {measuresFields.map((measure, i) => (
+                  <li key={i} className="ingredients-list">
+                    <span> {measure}</span>
+                    <span
+                      className="fas fa-minus"
+                      onClick={removeMeasure}
+                    ></span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <input
+              type="text"
+              ref={measuresRef}
+              name="Measures"
+              className="input"
+              placeholder="Measure"
+            />
+            <i className="fas fa-plus" onClick={addIngredientInput}></i>
+          </div>
+        </div>
         <div className="is-alcoholic">
           <label htmlFor="Alcoholic">Contains Alcohol ?</label>
           <input
@@ -166,46 +149,12 @@ const AddCocktail = props => {
             className="input"
           />
         </div>
-        <div className="measure-ingredient-container">
-          <div className="add-ingredients">
-            <h3>Add Ingredients</h3>
-            <i className="fas fa-plus" onClick={() => handleAdd()}></i>
-            {fields.map((field, i) => (
-              <div key={`${field}-${i}`}>
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Enter text"
-                  value={field.value || ""}
-                  onChange={e => handleChange(i, e)}
-                  name="Ingredients"
-                />
-                <i onClick={() => handleRemove(i)} className="fas fa-minus"></i>
-              </div>
-            ))}
-          </div>
-          <div className="add-measures">
-            <h3>Add Measures</h3>
-            <i className="fas fa-plus" onClick={() => handleAdd()}></i>
-            {fields.map((field, i) => (
-              <div key={`${field}-${i}`}>
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Enter text"
-                  value={field.value || ""}
-                  onChange={e => handleChange(i, e)}
-                  name="Measures"
-                />
-                <i onClick={() => handleRemove(i)} className="fas fa-minus"></i>
-              </div>
-            ))}
-          </div>
-        </div>
-        <button>Add!</button>
+        <input type="file" name="Image" className="input" />
+
+        <button className="btn">Add!</button>
       </form>
     </div>
   );
 };
 
-export default AddCocktail;
+export default AddCoktail;
