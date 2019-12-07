@@ -31,7 +31,7 @@ export default function OneCocktail(props) {
               <img className="OneCocktailImage" src={cocktail.Image} alt="" />
             </div>
             <div className="FullInstructions">
-              <div className="what">What do i need ?</div> <br />
+              <div className="what">What do i need ?</div>
               <div className="full-ingredients">
                 <ul className="Ingredients">
                   {cocktail.Ingredients.map((Ingredient, i) => {
@@ -49,8 +49,8 @@ export default function OneCocktail(props) {
                   })}
                 </ul>
               </div>
-              <div className="how">How do i make it ?</div> <br />
-              <div className="instructions">{cocktail.Instructions}</div>
+              <div className="how">How do i make it ?</div>
+              <p className="instructions">{cocktail.Instructions}</p>
             </div>
           </div>
           </div> 
