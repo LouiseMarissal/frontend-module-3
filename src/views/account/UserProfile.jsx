@@ -6,7 +6,7 @@ import "./../../css/AddCocktail.scss";
 // import CocktailList from "./../../components/cocktails/CocktailsList";
 // import axios from "axios";
 
-// export default function UserProfile(id) {
+export default function UserProfile(id) {
 //   const [user, setUser] = useState({});
 
 //   const getUserCocktail = () => {
@@ -21,4 +21,4 @@ import "./../../css/AddCocktail.scss";
 //       <CocktailList cocktails={} />
 //     </div>
 //   );
-// }
+}
