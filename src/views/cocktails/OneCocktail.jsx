@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./../../css/OneCocktail.scss";
 import axios from "axios";
 import { object } from "prop-types";
-import FormComment from "../comments/FormComment";
+import FormComment from "../../components/comments/FormComment";
 
 export default function OneCocktail(props) {
   const [cocktail, setCocktail] = useState([]);
@@ -20,6 +20,7 @@ export default function OneCocktail(props) {
     return (
       <>
         <div className="cocktailView">
+          <FormComment />
           <div className="container">
             <div className="titre">{cocktail.Name}</div>
             <div className="onecocktail">
@@ -33,8 +34,13 @@ export default function OneCocktail(props) {
                     {cocktail.Ingredients.map((Ingredient, i) => {
                       if (Ingredient !== "" && Ingredient !== null) {
                         return (
-                          <li key={i} className="ingredient">
-                            {Ingredient} ({cocktail.Measures[i++]})
+                          <li>
+                            <span key={i} className="ingredient">
+                              {Ingredient}
+                            </span>
+                            {cocktail.Measures[i] ? (
+                              <span>({cocktail.Measures[i++]})</span>
+                            ) : null}
                           </li>
                         );
                       } else return null;
