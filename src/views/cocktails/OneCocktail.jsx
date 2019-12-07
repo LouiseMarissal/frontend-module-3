@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./../../css/OneCocktail.scss";
 import axios from "axios";
-<<<<<<< HEAD
 import { object } from "prop-types";
 import FormComment from "../comments/FormComment";
-=======
->>>>>>> d8e444c96c64ea029c66f0608ebcd06bcbee8e04
 
 export default function OneCocktail(props) {
   const [cocktail, setCocktail] = useState([]);
@@ -22,37 +19,40 @@ export default function OneCocktail(props) {
   if (cocktail.Ingredients !== undefined) {
     return (
       <>
-        <div className="cocktailView">  
-          <div className="container">       
-          <div className="titre">{cocktail.Name}</div>
-          <div className="onecocktail">
-            <FormComment />
-            <div>
-              <img className="OneCocktailImage" src={cocktail.Image} alt="" />
-            </div>
-            <div className="FullInstructions">
-              <div className="what">What do i need ?</div> <br />
-              <div className="full-ingredients">
-                <ul className="Ingredients">
-                  {cocktail.Ingredients.map((Ingredient, i) => {
-                    if (Ingredient !== "" && Ingredient !== null) {
-                      return <li key={i} className="ingredient">{Ingredient}</li>;
-                    } else return null;
-                  })}
-                </ul>
-                {/* <ul className="Measures">
+        <div className="cocktailView">
+          <div className="container">
+            <div className="titre">{cocktail.Name}</div>
+            <div className="onecocktail">
+              <div>
+                <img className="OneCocktailImage" src={cocktail.Image} alt="" />
+              </div>
+              <div className="FullInstructions">
+                <div className="what">What do i need ?</div> <br />
+                <div className="full-ingredients">
+                  <ul className="Ingredients">
+                    {cocktail.Ingredients.map((Ingredient, i) => {
+                      if (Ingredient !== "" && Ingredient !== null) {
+                        return (
+                          <li key={i} className="ingredient">
+                            {Ingredient} ({cocktail.Measures[i++]})
+                          </li>
+                        );
+                      } else return null;
+                    })}
+                  </ul>
+                  {/* <ul className="Measures">
                   {cocktail.Measures.map((Measure, i) => {
                     if (Measure !== "" && Measure !== null) {
                       return <li key={i} className="measure">({Measure})</li>;
                     } else return null;
                   })}
                 </ul> */}
+                </div>
+                <div className="how">How do i make it ?</div> <br />
+                <div className="instructions">{cocktail.Instructions}</div>
               </div>
-              <div className="how">How do i make it ?</div> <br />
-              <div className="instructions">{cocktail.Instructions}</div>
             </div>
           </div>
-          </div> 
         </div>
       </>
     );
