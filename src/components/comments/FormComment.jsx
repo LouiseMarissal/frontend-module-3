@@ -11,6 +11,7 @@ export default class FormComment extends Component {
 
   render() {
     const { message } = this.state;
+    console.log({ message });
 
     return (
       <form
