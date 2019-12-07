@@ -41,6 +41,7 @@ const Signup = props => {
           placeholder="******"
         />
         <input name="photo" type="file" />
+        {/* mettre un ternary ici pour afficher le reste du forme au click du "isPro" */}
         <button className="btn">Submit</button>
       </form>
     </div>
