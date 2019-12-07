@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 export default function NavBar() {
   return (
     <nav className="nav-bar">
-      <div className="home-nav">
-        <NavLink className="link" to="/">
+      <NavLink className="link" to="/">
+        <div className="home-nav">
           <span className="mixo">MIXO</span>
           <span className="lover">Lover</span>
-        </NavLink>
-      </div>
+        </div>
+      </NavLink>
       <div>
         <NavLink className="link" to="/Login">
           Login
