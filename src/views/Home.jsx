@@ -35,12 +35,15 @@ export default function Home() {
   console.log(cocktailsDisplayed.length);
   return (
     <div className="fullPage" onScroll={handleScroll}>
-      <h1 className="title">HomePage of Mixology Loveeers</h1>
-      <input
-        onChange={handleSearch}
-        className="searchBar"
-        placeholder="Search..."
-      ></input>
+      <div className="fullPageHeader">
+        <h1 className="title">HomePage of Mixology Loveeers</h1>
+        <input
+          onChange={handleSearch}
+          className="searchBar"
+          placeholder="Search..."
+        ></input>
+      </div>
+      <div className="blurEffect"></div>
       <CocktailsList
         cocktails={cocktails.length < 18 ? cocktails : cocktailsDisplayed}
       />

@@ -1,4 +1,45 @@
+body {
+    overflow: hidden;
+}
+
 .fullPage {
-    margin-left: 70px;
+    background: transparent !important;
     height: 100vh;
+    overflow: scroll;
+}
+
+.fullcocktail {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /*HEIGHT IS IMPORTANT, PLEASE INFORM ME IF YOU CHANGE IT, THANKS, PH */
+    height: 77vh;
+    width: 100vw;
+    padding: 0 10vw;
+    z-index: 1;
+}
+
+.fullPageHeader {
+    z-index: 8;
+    background: transparent;
+}
+
+.fullPageHeader,
+.blurEffect {
+    position: fixed;
+    width: 100vw;
+    height: 20vh;
+}
+
+.blurEffect {
+    z-index: 5;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 50px;
+    text-align: center;
+    line-height: 100px;
+}
+
+.searchBar {
+    margin-bottom: 2%;
 }
