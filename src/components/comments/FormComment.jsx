@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class FormComment extends Component {
   state = {
@@ -9,6 +10,20 @@ export default class FormComment extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.setState);
+    axios
+      .patch(process.env.REACT_APP_BACKEND_URL + "/user/")
+      .then(res => {
+        console.log(res);
+        // props.history.push("/cocktails");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     const { message } = this.state;
     console.log({ message });
@@ -16,11 +31,7 @@ export default class FormComment extends Component {
     return (
       <form
         className="form"
-        onSubmit={e => {
-          e.preventDefault();
-          this.props.clbk(message);
-          this.setState({ message: "" });
-        }}
+        onSubmit={this.handleSubmit}
         onChange={this.handleChange}
       >
         <div className="row">

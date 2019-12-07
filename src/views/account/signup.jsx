@@ -5,6 +5,7 @@ import axios from "axios";
 const Signup = props => {
   const [newUser, setNewUser] = useState([]);
   const [formValues, setFormValues] = useState({});
+  const [formProDisplay, setFormProDisplay] = useState(false);
 
   useEffect(() => {
     axios
@@ -17,6 +18,11 @@ const Signup = props => {
         console.log(err);
       });
   });
+
+  const handleClick = e => {
+    var isPro = e.target;
+    setFormProDisplay(isPro.checked);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -41,8 +47,17 @@ const Signup = props => {
           placeholder="******"
         />
         <input name="photo" type="file" />
+        {/* mettre un ternary ici pour afficher le reste du forme au click du "isPro" */}
         <label for="isPro">I am a real pro fullStack bartender</label>
-        <input type="checkbox" name="isPro" id="isPro" />
+        <input type="checkbox" name="isPro" id="isPro" onClick={handleClick} />
+        {formProDisplay ? (
+          <>
+            <input className="input" placeholder="Your company's name" />
+            <input className="input" placeholder="Your bar's name" />
+          </>
+        ) : (
+          ""
+        )}
         <button className="btn">Submit</button>
       </form>
     </div>
