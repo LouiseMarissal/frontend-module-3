@@ -4,8 +4,11 @@
   .titre {
     display: block;
     margin: 0 0 50px 0;
-    font-size: 27px;
+    font-size: 37px;
     color: rgb(138, 138, 138);
+    font-family: "Baloo Bhai", cursive;
+    color: #000;
+    text-transform: uppercase;
   }
 
   .onecocktail {
@@ -15,7 +18,13 @@
 
     >div {
       flex: 1;
+      width: 50%;
       padding: 0 20px;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
   }
 }
@@ -30,6 +39,31 @@
   margin-left: auto;
   margin-right: auto;
   color: rgb(179, 178, 178);
+
+  .full-ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+
+    >ul{
+      width: 50%;
+      text-align: left;
+      font-size: 13px;
+    }
+  }
+
+  .what, .how {
+    display: block;
+    margin: 0 0 10px 0;
+    color: #000;
+    font-family: "Baloo Bhai", cursive;
+    text-transform: uppercase;
+    font-size: 20px;
+  }
+
+  .instructions {
+    font-size: 13px;
+  }
 }
 
 .Measures .Ingredients {
@@ -42,18 +76,8 @@
   margin-left: 100px	
 } */
 
-.how {
-  margin-top: 50px;
-}
-.what {
-  margin-top: 50px;
-}
 /* .Measures {
   position: absolute;
   top: 250px;
 } */
 
-.full-ingredients {
-  display: flex;
-  justify-content: center;
-}

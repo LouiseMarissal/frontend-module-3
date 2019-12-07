@@ -42,6 +42,8 @@ const Signup = props => {
         />
         <input name="photo" type="file" />
         {/* mettre un ternary ici pour afficher le reste du forme au click du "isPro" */}
+        <label for="isPro">I am a real pro fullStack bartender</label>
+        <input type="checkbox" name="isPro" id="isPro" />
         <button className="btn">Submit</button>
       </form>
     </div>

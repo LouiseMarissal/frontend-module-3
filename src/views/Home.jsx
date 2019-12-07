@@ -33,6 +33,9 @@ export default function Home() {
   };
   console.log(cocktailsDisplayed.length);
   return (
+    <div className="fullpage-overflow">
+
+    
     <div className="fullPage" onScroll={handleScroll}>
       <div className="fullPageHeader">
         <h1 className="title">HomePage of Mixology Loveeers</h1>
@@ -46,6 +49,7 @@ export default function Home() {
       <CocktailsList
         cocktails={cocktails.length < 18 ? cocktails : cocktailsDisplayed}
       />
+    </div>
     </div>
   );
 }
