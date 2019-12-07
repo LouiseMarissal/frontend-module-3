@@ -41,6 +41,8 @@ const Signup = props => {
           placeholder="******"
         />
         <input name="photo" type="file" />
+        <label for="isPro">I am a real pro fullStack bartender</label>
+        <input type="checkbox" name="isPro" id="isPro" />
         <button className="btn">Submit</button>
       </form>
     </div>

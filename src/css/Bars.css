@@ -1,35 +1,33 @@
 .searchBar {
-    font-size: 2em;
-    border: none;
-    border-bottom: solid 1px gray;
-    background: none;
-    /* border-radius: 20px; */
-    padding-left: 2%;
-    /* box-shadow: 3px 3px 3px 3px gray; */
+  font-size: 2em;
+  border: none;
+  border-bottom: solid 1px gray;
+  background: none;
+  /* border-radius: 20px; */
+  padding-left: 2%;
+  /* box-shadow: 3px 3px 3px 3px gray; */
+}
+
+.link:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .home-nav {
-    display: flex;
-    align-items: center;
-    height: 20em;
-}
-
-.home-nav:hover {
-    text-decoration: none;
+  display: flex;
 }
 
 .lover {
-    margin: -10px;
-    color: red;
-    font-family: 'Niconne', cursive;
-    font-size: 2.5em;
+  text-decoration: none;
+  margin-left: -15px;
+  color: red;
+  font-family: "Niconne", cursive;
+  font-size: 2.5em;
 }
 
 .mixo {
-    font-size: 1.8em;
-    font-family: 'Baloo Bhai', cursive;
-}
-
-.mixo:hover {
-    color: white;
+  color: white;
+  text-decoration: none;
+  font-size: 2em;
+  font-family: "Baloo Bhai", cursive;
 }
