@@ -1,3 +1,7 @@
+body {
+  overflow: scroll;
+}
+
 .measure-ingredient-container {
   display: flex;
   flex-direction: row;

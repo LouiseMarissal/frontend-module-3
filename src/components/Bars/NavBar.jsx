@@ -6,7 +6,8 @@ export default function NavBar() {
     <nav className="nav-bar">
       <div className="home-nav">
         <NavLink className="link" to="/">
-          Home
+          <span className="mixo">MIXO</span>
+          <span className="lover">Lover</span>
         </NavLink>
       </div>
       <div>

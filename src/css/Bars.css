@@ -7,3 +7,29 @@
     padding-left: 2%;
     /* box-shadow: 3px 3px 3px 3px gray; */
 }
+
+.home-nav {
+    display: flex;
+    align-items: center;
+    height: 20em;
+}
+
+.home-nav:hover {
+    text-decoration: none;
+}
+
+.lover {
+    margin: -10px;
+    color: red;
+    font-family: 'Niconne', cursive;
+    font-size: 2.5em;
+}
+
+.mixo {
+    font-size: 1.8em;
+    font-family: 'Baloo Bhai', cursive;
+}
+
+.mixo:hover {
+    color: white;
+}
