@@ -8,8 +8,54 @@
   overflow: scroll;
 }
 
+.bannerHome {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+  background-image: url("/img/cocktail-homepage.jpeg");
+  background-position: center center;
+  margin-bottom: 50px;
+
+  > div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    color: #fff;
+  }
+
+  h2 {
+    color: #fff;
+    font-family: "Niconne", cursive;
+  }
+
+  .arrow {
+    padding: 20px;
+    cursor: pointer;
+    i {
+      color: #fff;
+    }
+  }
+}
+
+#cocktailContent {
+  position: relative;
+  padding-top: 40px;
+  height: 100vh;
+
+  h3 {
+    margin: 0 0 75px 0;
+    font-size: 55px;
+    color: #ffb200;
+    font-family: "Baloo Bhai", cursive;
+    text-transform: uppercase;
+  }
+}
+
 .fullcocktail {
-  padding-top: 180px;
   display: grid;
   grid-template-columns: auto auto auto;
   /*HEIGHT IS IMPORTANT, PLEASE INFORM ME IF YOU CHANGE IT, THANKS, PH */
@@ -26,7 +72,8 @@
 
 .fullPageHeader,
 .blurEffect {
-  position: fixed;
+  top: 0;
+  position: sticky;
   width: 100%;
   z-index: 5;
   backdrop-filter: blur(5px);

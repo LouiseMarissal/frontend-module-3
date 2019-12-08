@@ -33,10 +33,8 @@ export default function OneCocktail(props) {
                     {cocktail.Ingredients.map((Ingredient, i) => {
                       if (Ingredient !== "" && Ingredient !== null) {
                         return (
-                          <li>
-                            <span key={i} className="ingredient">
-                              {Ingredient}
-                            </span>
+                          <li key={i}>
+                            <span className="ingredient">{Ingredient}</span>
                             <span>
                               {cocktail.Measures[i] ? (
                                 <span>({cocktail.Measures[i++]})</span>

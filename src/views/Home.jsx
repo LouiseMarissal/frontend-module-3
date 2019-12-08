@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CocktailsList from "./../components/cocktails/CocktailsList";
 import useSearch from "../components/Bars/UseSearch";
-import filter from "../components/Bars/Filters";
-import "./../css/Home.css";
+//import filter from "../components/Bars/Filters";
+import "./../css/Home.scss";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -32,11 +33,30 @@ export default function Home() {
       setOffset(off => off + 1);
     }
   };
+
+  const smoothScrollToContent = e => {
+    e.preventDefault();
+    let anchorTarget = document.getElementById("cocktailContent");
+    anchorTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="fullpage-overflow">
       <div className="fullPage" onScroll={handleScroll}>
-        <div className="fullPageHeader">
-          <h1 className="title">HomePage of Mixology Loveeers</h1>
+        <div className="bannerHome">
+          <div>
+            <h1 className="title">HomePage of Mixology Loveeers</h1>
+            <h2>love love...</h2>
+          </div>
+          <span
+            className="arrow animated infinite bounce delay-2s slow"
+            onClick={smoothScrollToContent}
+          >
+            <i className="fas fa-chevron-down"></i>
+          </span>
+        </div>
+
+        <div className={`fullPageHeader`}>
           <input
             onChange={handleSearch}
             className="searchBarHome"
@@ -44,9 +64,12 @@ export default function Home() {
           ></input>
         </div>
         <div className="blurEffect"></div>
-        <CocktailsList
-          cocktails={cocktails.length < 18 ? cocktails : cocktailsDisplayed}
-        />
+        <section id="cocktailContent">
+          <h3>Our cocktails</h3>
+          <CocktailsList
+            cocktails={cocktails.length < 18 ? cocktails : cocktailsDisplayed}
+          />
+        </section>
       </div>
     </div>
   );
