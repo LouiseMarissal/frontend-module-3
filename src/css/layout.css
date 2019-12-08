@@ -1,49 +1,50 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 h1 {
-    font-family: "Baloo Bhai", cursive;
-    text-transform: uppercase;
-    color: #ffb200;
+  font-family: "Baloo Bhai", cursive;
+  text-transform: uppercase;
+  color: #ffb200;
 }
 
 h4 {
-    display: block;
-    font-family: "Baloo Bhai", cursive;
-    margin: 0 0 20px 0!important;
+  display: block;
+  font-family: "Baloo Bhai", cursive;
+  margin: 0 0 20px 0 !important;
 }
 
 .page-container {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 *:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .nav-bar {
-    height: 60px;
-    background-color: black;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background-color: black;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav-bar a {
-    text-decoration: none;
-    color: white;
-    padding-right: 5px;
-    margin: 2px;
+  text-decoration: none;
+  color: white;
+  padding-right: 5px;
+  margin: 2px;
 }
 
 .home-nav {
-    padding-left: 5px;
+  padding-left: 5px;
 }

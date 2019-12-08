@@ -39,7 +39,7 @@ export default function Home() {
           <h1 className="title">HomePage of Mixology Loveeers</h1>
           <input
             onChange={handleSearch}
-            className="searchBar"
+            className="searchBarHome"
             placeholder="Search..."
           ></input>
         </div>
