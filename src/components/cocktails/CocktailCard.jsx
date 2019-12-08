@@ -21,7 +21,7 @@ export default function CocktailCard({ cocktail }) {
   return (
     <>
       <div className="CocktailCard">
-        <Link className="cocktailName" to={`/cocktail/${cocktail._id}`}>
+        <Link className="cocktailName" to={`/one-cocktail/${cocktail._id}`}>
           {cocktail.Name}
         </Link>
         <div className="flip-card">

@@ -22,7 +22,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile/:id" component={Profile} />
-        <Route path="one-cocktail/:id" component={OneCocktail} />
+        <Route path="/one-cocktail/:id" component={OneCocktail} />
         <Route path="/add-cocktail" component={AddCoktail} />
 
         <Route path="*" component={PageFourOhFour} />

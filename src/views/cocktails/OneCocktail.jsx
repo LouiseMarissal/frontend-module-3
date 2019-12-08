@@ -6,6 +6,7 @@ import FormComment from "../../components/comments/FormComment";
 
 export default function OneCocktail(props) {
   const [cocktail, setCocktail] = useState([]);
+  console.log(props);
 
   useEffect(() => {
     axios
@@ -39,7 +40,7 @@ export default function OneCocktail(props) {
                             </span>
                             <span>
                               {cocktail.Measures[i] ? (
-                                <span>({cocktail.Measures[i++]})</span>
+                                <span key={i}>({cocktail.Measures[i++]})</span>
                               ) : null}
                             </span>
                           </li>
