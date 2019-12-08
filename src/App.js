@@ -22,8 +22,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile/" component={Profile} />
-        
-        <Route path="one-cocktail/:id" component={OneCocktail} />
+        <Route path="/cocktail/:id" component={OneCocktail} />
         <Route path="/add-cocktail" component={AddCoktail} />
 
         <Route path="*" component={PageFourOhFour} />
