@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./../../css/AddCocktail.css";
 
-import CocktailList from "./../../components/cocktails/CocktailsList";
+import CocktailCard from "./../../components/cocktails/CocktailCard";
 import axios from "axios";
 
-export default function UserProfile(id) {
-  const [user, setUser] = useState({});
+const UserProfile = props => {
+  const [cocktails, setCocktails] = useState({});
+  const [_userProID, setUserProID] = useState(null);
 
-  const getUserCocktail = () => {
+  // useeffect
+  // user en session
+  // setuserproid
+
+  useEffect(() => {
     axios
-      .get(process.env.REACR_APP_BACKEND_URL, "/userCocktail/" + _userProID)
-      .then()
-      .catch();
+      .get(
+        process.env.REACT_APP_BACKEND_URL + "/profile/" + props.match.params.id
+      )
+      .then(dbRes => {
+        setUserProID(dbRes.data);
+        console.log("user id", _userProID);
+        getUserCocktail(_userProID);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [_userProID, props.match.params.id]);
+
+  const getUserCocktail = id => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL, "/userCocktail/" + id)
+      .then(res => {
+        setCocktails(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
+  console.log("COCKTAILS", cocktails);
   return (
     <div>
-      <CocktailList cocktails={} />
+      <CocktailCard />
     </div>
   );
-}
+};
+export default UserProfile;
