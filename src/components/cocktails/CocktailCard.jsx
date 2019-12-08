@@ -38,7 +38,9 @@ export default function CocktailCard({ cocktail }) {
               <ul>
                 {cocktail.Ingredients.map((i, index) =>
                   i != "" && i != null && i && "/n" ? (
-                    <li className="ingredient">{i}</li>
+                    <li key={index} className="ingredient">
+                      {i}
+                    </li>
                   ) : (
                     ""
                   )

@@ -2,16 +2,16 @@ ul {
   padding: 0;
 }
 
+/* EVITER LES TAILLES FIXES */
 .CocktailCard {
-  width: 400px;
-  height: 300px;
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 0 30px 0;
 }
 
 .cocktailName {
+  margin: 0 0 10px 0;
   text-align: center;
   color: black;
   text-decoration-color: orange;
@@ -90,7 +90,7 @@ ul {
 .heart,
 .heartOrange {
   margin-left: 90%;
-  transition: all ease-in-out .3s;
+  transition: all ease-in-out 0.3s;
   display: flex;
   justify-content: flex-end;
 }
@@ -130,7 +130,7 @@ ul {
 }
 
 .is-rotating {
-  animation: .5s linear 0s rotateBox, .5s linear 0s;
+  animation: 0.5s linear 0s rotateBox, 0.5s linear 0s;
 }
 
 .cheers {
