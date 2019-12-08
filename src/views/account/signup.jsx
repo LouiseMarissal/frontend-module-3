@@ -3,57 +3,94 @@ import axios from "axios";
 
 // PRO USER
 const Signup = props => {
-  const [newUser, setNewUser] = useState([]);
   const [formValues, setFormValues] = useState({});
   const [formProDisplay, setFormProDisplay] = useState(false);
 
-  useEffect(() => {
+  const postAxios = () => {
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/auth-routes")
+      .post(
+        process.env.REACT_APP_BACKEND_URL + "/auth-routes/signup",
+        formValues
+      )
       .then(res => {
-        console.log(newUser);
-        props.history.push("/auth-routes");
+        console.log("user successfully added to database");
       })
       .catch(err => {
-        console.log(err);
+        console.log(err, "gros con");
       });
-  });
-
-  const handleClick = e => {
-    var isPro = e.target;
-    setFormProDisplay(isPro.checked);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("i have been submitted");
+    if (formProDisplay) {
+      setFormValues({ ...formValues, isPro: true, role: "pro" });
+    } else {
+      setFormValues({ ...formValues, isPro: false, role: "user" });
+    }
+    postAxios();
+  };
+
+  const handleClick = e => {
+    var isPro = e.target;
+    setFormValues({ ...formValues, isPro: true });
+    setFormProDisplay(formValues);
   };
 
   const handleChange = e => {
-    console.log("i'm changing");
+    setFormValues({ ...formValues, [e.target.name]: e.target.value });
+    console.log(formValues);
   };
-  console.log(props);
   return (
     <div>
       <form className="form" onSubmit={handleSubmit} onChange={handleChange}>
         <h1>Register</h1>
-        <input className="input" name="firstName" placeholder="First Name" />
-        <input className="input" name="name" placeholder="Name" />
-        <input className="input" name="email" placeholder="name@email.fr" />
         <input
           className="input"
+          name="firstName"
+          placeholder="First Name"
+          value="John"
+          required
+        />
+        <input
+          className="input"
+          value="Do"
+          name="name"
+          placeholder="Last name"
+          required
+        />
+        <input
+          className="input"
+          value="john@do.com"
+          name="email"
+          type="email"
+          placeholder="name@email.fr"
+          required
+        />
+        <input
+          className="input"
+          value="1234"
           name="password"
           type="password"
           placeholder="******"
+          required
         />
         <input name="photo" type="file" />
         {/* mettre un ternary ici pour afficher le reste du forme au click du "isPro" */}
-        <label for="isPro">I am a real pro fullStack bartender</label>
-        <input type="checkbox" name="isPro" id="isPro" onClick={handleClick} />
+        <label htmlFor="isPro">I am a real pro fullStack bartender</label>
+        <input type="checkbox" id="isPro" onClick={handleClick} />
         {formProDisplay ? (
           <>
-            <input className="input" placeholder="Your company's name" />
-            <input className="input" placeholder="Your bar's name" />
+            <input
+              name="companyName"
+              className="input"
+              placeholder="Your company's name"
+              required
+            />
+            <input
+              name="barName"
+              className="input"
+              placeholder="Your bar's name"
+            />
           </>
         ) : (
           ""

@@ -21,7 +21,7 @@
   text-decoration: none;
   margin-left: -15px;
   color: red;
-  font-family: "Niconne", cursive;
+  font-family: "Niconne", cursive !important;
   font-size: 2.5em;
 }
 
@@ -29,5 +29,5 @@
   color: white;
   text-decoration: none;
   font-size: 2em;
-  font-family: "Baloo Bhai", cursive;
+  font-family: "Baloo Bhai", cursive !important;
 }

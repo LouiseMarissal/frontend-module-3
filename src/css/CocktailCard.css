@@ -1,7 +1,27 @@
+ul {
+  padding: 0;
+}
+
 .CocktailCard {
   width: 400px;
   height: 300px;
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cocktailName {
+  text-align: center;
+  color: black;
+  text-decoration-color: orange;
+  font-family: "Baloo Bhai", cursive !important;
+  font-size: 1.5em;
+}
+
+.cocktailName:hover {
+  color: black;
+  text-decoration-color: orange;
 }
 
 .photo {
@@ -53,17 +73,71 @@
 
 /* Style the back side */
 .flip-card-back {
-  background-image: url(./../images/test.jpg);
+  padding: 2%;
+  background-image: url(./../images/test4.jpg);
   color: black(102, 102, 102);
   transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.heart {
-  float: right;
-  padding: 10px;
+.ingredient {
+  list-style-type: none;
+}
+
+.heart,
+.heartOrange {
+  margin-left: 90%;
+  transition: all ease-in-out .3s;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.heartOrange {
+  color: orange;
+  transform: scale(1.2);
+}
+
+.heartOrange:hover,
+.heart:hover,
+.cheers:hover,
+.cheersWhite:hover {
+  cursor: pointer;
+}
+
+@keyframes rotateBox {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-25deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(25deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.is-rotating {
+  animation: .5s linear 0s rotateBox, .5s linear 0s;
 }
 
 .cheers {
-  float: right;
-  padding: 10px;
+  z-index: 10;
+  font-size: 1.4em;
+}
+
+.likeCounter {
+  padding-left: 10px;
 }
