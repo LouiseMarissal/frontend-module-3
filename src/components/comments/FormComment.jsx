@@ -30,7 +30,7 @@ export default class FormComment extends Component {
 
     return (
       <form
-        className="form"
+        className="formComment"
         onSubmit={this.handleSubmit}
         onChange={this.handleChange}
       >
