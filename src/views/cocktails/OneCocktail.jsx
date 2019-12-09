@@ -6,7 +6,6 @@ import FormComment from "../../components/comments/FormComment";
 
 export default function OneCocktail(props) {
   const [cocktail, setCocktail] = useState([]);
-  console.log(props);
 
   useEffect(() => {
     axios
@@ -20,7 +19,7 @@ export default function OneCocktail(props) {
     return (
       <>
         <div className="cocktailView">
-          <FormComment />
+          <FormComment CocktailId={props.match.params.id} />
           <div className="container">
             <div className="titre">{cocktail.Name}</div>
             <div className="onecocktail">
