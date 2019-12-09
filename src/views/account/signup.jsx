@@ -6,6 +6,11 @@ const Signup = props => {
   const [formValues, setFormValues] = useState({});
   const [formProDisplay, setFormProDisplay] = useState(false);
 
+  const formData = new FormData();
+  for (let key in formValues) {
+    formData.append(key, formValues[key]);
+  }
+
   useEffect(() => {
     var searchBar = document.getElementById("searchBar");
     var navBar = document.getElementById("navBar");
@@ -18,14 +23,13 @@ const Signup = props => {
 
   const postAxios = () => {
     axios
-      .post(
-        process.env.REACT_APP_BACKEND_URL + "/auth-routes/signup",
-        formValues
-      )
+      .post(process.env.REACT_APP_BACKEND_URL + "/auth-routes/signup", formData)
       .then(res => {
+        console.log(formValues);
         console.log("user successfully added to database");
       })
       .catch(err => {
+        console.log(formValues);
         console.log(err);
       });
   };
@@ -48,8 +52,10 @@ const Signup = props => {
   };
 
   const handleChange = e => {
-    if (e.target.type !== "checkbox") {
+    if (e.target.type !== "checkbox" && e.target.type !== "file") {
       setFormValues({ ...formValues, [e.target.name]: e.target.value });
+    } else if (e.target.type === "file") {
+      setFormValues({ ...formValues, [e.target.name]: e.target.files[0] });
     } else return;
     console.log(formValues);
   };
@@ -78,7 +84,7 @@ const Signup = props => {
           placeholder="******"
           required
         />
-        <input name="photo" type="file" />
+        <input name="photo" id="photo" type="file" />
         {/* mettre un ternary ici pour afficher le reste du forme au click du "isPro" */}
         <label htmlFor="isPro">I am a real pro fullStack bartender</label>
         <input type="checkbox" id="isPro" onClick={handleClick} />
