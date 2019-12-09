@@ -51,7 +51,7 @@ export default function CocktailCard({ cocktail }) {
                   className="fas fa-glass-cheers cheers"
                   onClick={handleClickLike}
                 ></i>
-                <span className="likeCounter">225</span>
+                <span className="likeCounter">{cocktail.Like}</span>
               </div>
             </div>
           </div>

@@ -7,11 +7,9 @@ import axios from "axios";
 const UserProfile = props => {
   const [cocktails, setCocktails] = useState({});
   const [_userProID, setUserProID] = useState(null);
-
   // useeffect
   // user en session
   // setuserproid
-
   useEffect(() => {
     axios
       .get(
@@ -26,7 +24,6 @@ const UserProfile = props => {
         console.log(err);
       });
   }, [_userProID, props.match.params.id]);
-
   const getUserCocktail = id => {
     axios
       .get(process.env.REACT_APP_BACKEND_URL, "/userCocktail/" + id)
@@ -37,7 +34,6 @@ const UserProfile = props => {
         console.log(err);
       });
   };
-
   console.log("COCKTAILS", cocktails);
   return (
     <div>
