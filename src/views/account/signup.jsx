@@ -25,7 +25,6 @@ const Signup = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/auth-routes/signup", formData)
       .then(res => {
-        console.log(formValues);
         console.log("user successfully added to database");
       })
       .catch(err => {
@@ -46,7 +45,6 @@ const Signup = props => {
 
   const handleClick = e => {
     var isPro = e.target.checked;
-    console.log(formProDisplay);
     setFormValues({ ...formValues, isPro: isPro });
     setFormProDisplay(isPro);
   };
