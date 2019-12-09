@@ -30,9 +30,7 @@ export default function CocktailCard({ cocktail }) {
             <div className="flip-card-front">
               <div
                 style={{
-                  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${cocktail.Image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center center"
+                  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${cocktail.Image})`
                 }}
                 className="photo"
               ></div>
