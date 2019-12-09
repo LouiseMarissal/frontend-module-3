@@ -54,6 +54,7 @@ const AddCoktail = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
       .then(res => {
+        console.log(formData);
         console.log(res);
         // props.history.push("/cocktails");
       })
@@ -66,9 +67,9 @@ const AddCoktail = props => {
     // e.preventDefault();
     if (e.target.type === "checkbox") {
       setFormValues({ ...formValues, [e.target.name]: e.target.checked });
+    } else if (e.target.type === "file") {
+      setFormValues({ ...formValues, [e.target.name]: e.target.files[0] });
     } else setFormValues({ ...formValues, [e.target.name]: e.target.value });
-
-    console.log("im changing");
   };
 
   return (
