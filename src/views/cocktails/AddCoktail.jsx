@@ -34,8 +34,8 @@ const AddCoktail = props => {
     setIngredientsFields(array);
 
     var measureArray = [...measuresFields];
-    var index = measureArray.indexOf(e.target.value);
-    measureArray.splice(index, 1);
+    var index2 = measureArray.indexOf(e.target.value);
+    measureArray.splice(index2, 1);
     setMeasuresFields(measureArray);
   };
 
