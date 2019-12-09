@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./css/layout.css";
 import "./css/Bars.css";
@@ -8,12 +8,21 @@ import Home from "./views/Home";
 import PageFourOhFour from "./views/PageFourOhFour";
 import OneCocktail from "./views/cocktails/OneCocktail";
 import Login from "./views/account/Login";
-import Signup from "./views/account/signup";
+import Signup from "./views/account/Signup";
 import Profile from "./views/account/UserProfile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddCoktail from "./views/cocktails/AddCoktail";
 
 function App() {
+  useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.classNaem = "nav-bar black";
+    }
+  }, []);
   return (
     <div className="App">
       <NavBar />

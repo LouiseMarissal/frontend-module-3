@@ -27,11 +27,14 @@ export default function CocktailCard({ cocktail }) {
         <div className="flip-card">
           <div className="flip-card-inner">
             <div className="flip-card-front">
-              <img
-                src={cocktail.Image}
-                alt="cocktail-name"
+              <div
+                style={{
+                  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${cocktail.Image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center center"
+                }}
                 className="photo"
-              ></img>
+              ></div>
             </div>
             <div className="flip-card-back">
               <i className="fas fa-heart heart" onClick={handleClickFav}></i>

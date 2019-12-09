@@ -2,7 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #FAF0E1;
+  min-height: 100vh;
 }
+
+
 
 h1 {
   font-family: "Baloo Bhai", cursive;

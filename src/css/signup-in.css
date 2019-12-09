@@ -5,6 +5,8 @@
     align-items: center;
     justify-content: center;
     padding: 1em;
+    background: #FAF0E1;
+    min-height: 100vh;
 }
 
 .input {
@@ -13,6 +15,7 @@
     border: none;
     border-bottom: 1px solid gray;
     padding: 1em;
+    background: #FAF0E1;
 }
 
 .btn {
