@@ -34,7 +34,7 @@ function App() {
         <Route path="/profile/:id" component={Profile} />
         <Route path="/one-cocktail/:id" component={OneCocktail} />
         <Route path="/add-cocktail" component={AddCoktail} />
-        <Route path="/profile//edit-cocktail/:id" component={EditCocktail} />
+        <Route path="/edit-cocktail/:id" component={EditCocktail} />
 
         <Route path="*" component={PageFourOhFour} />
       </Switch>

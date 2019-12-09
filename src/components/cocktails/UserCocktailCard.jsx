@@ -1,23 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
 const UserCocktailCard = ({ userCocktails }) => {
-  // const [userCocktails, setUserCocktails] = useState({});
-  // const [userProID, setUserProID] = useState({});
-
-  // useEffect(id => {
-  //   axios
-  //     .get(process.env.REACT_APP_BACKEND_URL + "/profile/" + id, userProID)
-  //     .then(dbRes => {
-  //       setUserProID(dbRes.data);
-  //       // getUserCocktail(userProID);
-  //       console.log("ICI", dbRes.data);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
   return (
     <div className="card" style={{ width: "18rem" }}>
       <img
