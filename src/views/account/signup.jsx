@@ -61,19 +61,11 @@ const Signup = props => {
           className="input"
           name="firstName"
           placeholder="First Name"
-          value="John"
           required
         />
+        <input className="input" name="name" placeholder="Last name" required />
         <input
           className="input"
-          value="Do"
-          name="name"
-          placeholder="Last name"
-          required
-        />
-        <input
-          className="input"
-          value="john@do.com"
           name="email"
           type="email"
           placeholder="name@email.fr"
@@ -81,7 +73,6 @@ const Signup = props => {
         />
         <input
           className="input"
-          value="1234"
           name="password"
           type="password"
           placeholder="******"
