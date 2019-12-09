@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
-  const [finalMessage, setFinalMessage] = useState();
+  const [finalMessage, setFinalMessage] = useState([]);
+  console.log(props);
+
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/comment")
+      .then(dbRes => console.log(dbRes.data))
+      .catch(err => console.log(err));
+  }, []);
 
   const handleChange = e => {
     setMessage({ ...message, [e.target.name]: e.target.value });
@@ -11,16 +19,18 @@ const AddComment = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log(props);
-    setFinalMessage(message.message);
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/comment", {
         message: message.message,
         created: Date.now(),
         cocktail: `${props.CocktailId}`
+        // user: `${req.session.currentUser}`
       })
       .then(res => {
         console.log(res.data);
+        const arrayMessage = [...finalMessage];
+        setFinalMessage(message.message);
+        arrayMessage.push(finalMessage);
       })
       .catch(err => {
         console.log(err);
@@ -44,7 +54,7 @@ const AddComment = props => {
           placeholder="leave a comment here..."
         ></input>
         <button className="btn">send!</button>
-        {finalMessage == undefined ? (
+        {finalMessage === undefined ? (
           <p>No message yet</p>
         ) : (
           <p>{finalMessage}</p>

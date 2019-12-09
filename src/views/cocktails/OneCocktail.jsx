@@ -19,7 +19,10 @@ export default function OneCocktail(props) {
     return (
       <>
         <div className="cocktailView">
-          <FormComment CocktailId={props.match.params.id} />
+          <FormComment
+            CocktailId={props.match.params.id}
+            UserId={cocktail.UserProID}
+          />
           <div className="container">
             <div className="titre">{cocktail.Name}</div>
             <div className="onecocktail">
