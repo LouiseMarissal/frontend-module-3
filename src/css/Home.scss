@@ -3,7 +3,7 @@
 }
 
 .fullPage {
-  background: transparent !important;
+  background: #FAF0E1;
   height: 100vh;
   overflow: scroll;
 }
@@ -11,12 +11,12 @@
 .bannerHome {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 60px);
-  background-image: url("/img/cocktail-homepage.jpeg");
+  height: calc(100vh);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .2)), url("/img/cocktail-homepage.jpeg");
   background-position: center center;
   margin-bottom: 50px;
 
-  > div {
+  >div {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -35,6 +35,7 @@
   .arrow {
     padding: 20px;
     cursor: pointer;
+
     i {
       color: #fff;
     }
@@ -65,32 +66,36 @@
 }
 
 .fullPageHeader {
-  z-index: 8;
+  // z-index: 3;
+  margin: 0 40vw;
   background: transparent;
-  padding: 15px;
+  padding: 7px;
+  z-index: 6 !important;
+  width: 250px;
 }
 
 .fullPageHeader,
 .blurEffect {
   top: 0;
   position: sticky;
-  width: 100%;
-  z-index: 5;
-  backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.5);
+  // backdrop-filter: blur(5px);
   text-align: center;
 }
 
 .blurEffect {
-  z-index: 5;
-  backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.5);
+  z-index: 2;
+  width: 100vw;
+  margin-top: -60px;
+  height: 8vh;
+  backdrop-filter: blur(6px);
   font-size: 50px;
   text-align: center;
   line-height: 100px;
+  background: rgba(250, 240, 225, 0.3);
 }
 
 .searchBarHome {
+  color: orange;
   font-size: 22px;
   border: none;
   border-bottom: 1px solid grey;

@@ -8,6 +8,16 @@ const UserProfile = props => {
   const [cocktails, setCocktails] = useState({});
   const [_userProID, setUserProID] = useState(null);
 
+  useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar black";
+    }
+  }, []);
+
   // useeffect
   // user en session
   // setuserproid

@@ -16,16 +16,15 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log("here ?");
     const copy = [...cocktails];
     const elements = copy.splice(0, 20);
-    console.log(elements.length, "heeeere");
     setCocktailsDisplayed(elements);
   }, [cocktails]);
 
   const handleScroll = e => {
     var offset = window.innerHeight + e.target.scrollTop;
     var height = e.target.scrollHeight;
+    handleScrollSearchBar(e);
     if (offset > height - 1) {
       const copy = [...cocktails];
       const elements = copy.splice(myOffset * 20, 20);
@@ -34,15 +33,31 @@ export default function Home() {
     }
   };
 
+  const handleScrollSearchBar = e => {
+    var navBar = document.getElementById("navBar");
+    var searchBar = document.getElementById("searchBar");
+    var blurEffect = document.getElementById("blurEffect");
+    if (e.target.scrollTop <= 630 && searchBar) {
+      navBar.className = "nav-bar white";
+      blurEffect.className = "blurEffect";
+    } else {
+      navBar.className = "nav-bar black";
+      blurEffect.className = "blurEffect backgroundBlur";
+    }
+  };
+
   const smoothScrollToContent = e => {
     e.preventDefault();
-    let anchorTarget = document.getElementById("cocktailContent");
+    let anchorTarget = document.getElementById("searchBar");
     anchorTarget.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <div className="fullpage-overflow">
-      <div className="fullPage" onScroll={handleScroll}>
+      <div
+        className="fullPage"
+        onScroll={(handleScrollSearchBar, handleScroll)}
+      >
         <div className="bannerHome">
           <div>
             <h1 className="title">HomePage of Mixology Loveeers</h1>
@@ -60,10 +75,11 @@ export default function Home() {
           <input
             onChange={handleSearch}
             className="searchBarHome"
+            id="searchBar"
             placeholder="Search..."
           ></input>
         </div>
-        <div className="blurEffect"></div>
+        <div className="blurEffect" id="blurEffect"></div>
         <section id="cocktailContent">
           <h3>Our cocktails</h3>
           <CocktailsList

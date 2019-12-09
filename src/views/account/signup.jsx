@@ -6,6 +6,16 @@ const Signup = props => {
   const [formValues, setFormValues] = useState({});
   const [formProDisplay, setFormProDisplay] = useState(false);
 
+  useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar black";
+    }
+  }, []);
+
   const postAxios = () => {
     axios
       .post(
@@ -16,7 +26,7 @@ const Signup = props => {
         console.log("user successfully added to database");
       })
       .catch(err => {
-        console.log(err, "gros con");
+        console.log(err);
       });
   };
 
@@ -31,13 +41,16 @@ const Signup = props => {
   };
 
   const handleClick = e => {
-    var isPro = e.target;
-    setFormValues({ ...formValues, isPro: true });
-    setFormProDisplay(formValues);
+    var isPro = e.target.checked;
+    console.log(formProDisplay);
+    setFormValues({ ...formValues, isPro: { isPro } });
+    setFormProDisplay(isPro);
   };
 
   const handleChange = e => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
+    if (e.target.type !== "checkbox") {
+      setFormValues({ ...formValues, [e.target.name]: e.target.value });
+    } else return;
     console.log(formValues);
   };
   return (
