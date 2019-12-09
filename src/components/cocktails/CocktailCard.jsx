@@ -6,15 +6,16 @@ export default function CocktailCard({ cocktail }) {
   const [favorite, setFavorite] = useState([]);
   const [like, setLike] = useState([]);
 
-  const handleClickFav = e => {
-    if (e.target.className === "fas fa-heart heart")
-      e.target.className = "fas fa-heart heartOrange";
-    else e.target.className = "fas fa-heart heart";
-  };
+  // const handleClickFav = e => {
+  //   if (e.target.className === "fas fa-heart heart")
+  //     e.target.className = "fas fa-heart heartOrange";
+  //   else e.target.className = "fas fa-heart heart";
+  // };
 
   const handleClickLike = e => {
     if (e.target.className === "fas fa-glass-cheers cheers")
-      e.target.className = "fas fa-glass-cheers is-rotating cheers";
+      e.target.className =
+        "fas fa-glass-cheers is-rotating cheers cheersOrange";
     else e.target.className = "fas fa-glass-cheers cheers";
   };
 
@@ -37,7 +38,7 @@ export default function CocktailCard({ cocktail }) {
               ></div>
             </div>
             <div className="flip-card-back">
-              <i className="fas fa-heart heart" onClick={handleClickFav}></i>
+              {/* <i className="fas fa-heart heart" onClick={handleClickFav}></i> */}
               <ul>
                 {cocktail.Ingredients.map((i, index) =>
                   i != "" && i != null && i && "/n" ? (
