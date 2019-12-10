@@ -71,7 +71,7 @@ export default function Home() {
         <div className="bannerHome">
           <div>
             <h1 className="title">HomePage of Mixology Loveeers</h1>
-            <h2>love love...</h2>
+            <h2>The cocktail interface dedicated to Mixology Lovers..</h2>
           </div>
           <span
             className="arrow animated infinite bounce delay-2s slow"

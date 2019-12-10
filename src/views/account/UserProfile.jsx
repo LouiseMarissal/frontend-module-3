@@ -61,7 +61,6 @@ const UserProfile = props => {
       )
       .then(res => {
         setUser(res.data);
-        console.log(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -78,24 +77,24 @@ const UserProfile = props => {
             className="UserPhotoProfile"
           />
         </div>
-        <h3>Hello{user.firstName} !</h3>
+        <h3>Hello {user.firstName}!</h3>
         <h6>
           {user.companyName}: {user.barName}
         </h6>
+        <div>
+          <h5>Add Cocktails</h5>
+          <Link
+            rel="stylesheet"
+            to="/add-cocktail"
+            className="fas fa-plus"
+          ></Link>
+        </div>
       </div>
 
       <div className="user-cocktail-list">
         {userCocktails.map((cocktail, i) => (
           <UserCocktailCard key={i} userCocktails={cocktail} />
         ))}
-      </div>
-
-      <div>
-        <Link
-          rel="stylesheet"
-          to="/add-cocktail"
-          className="fas fa-plus"
-        ></Link>
       </div>
     </div>
   );
