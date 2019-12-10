@@ -68,7 +68,7 @@ const UserProfile = props => {
             className="UserPhotoProfile"
           />
         </div>
-        <h3>Hello {user.firstName} !</h3>
+        <h3>Hello{user.firstName} !</h3>
         <h6>
           {user.companyName}: {user.barName}
         </h6>
