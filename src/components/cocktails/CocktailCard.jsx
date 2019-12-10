@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from "react";
 import "./../../css/CocktailCard.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default function CocktailCard({ cocktail }) {
+export default function CocktailCard(props) {
   const [favorite, setFavorite] = useState([]);
   const [like, setLike] = useState([]);
 
-  // const handleClickFav = e => {
-  //   if (e.target.className === "fas fa-heart heart")
-  //     e.target.className = "fas fa-heart heartOrange";
-  //   else e.target.className = "fas fa-heart heart";
-  // };
-
   const handleClickLike = e => {
+    console.log(props.match);
     if (e.target.className === "fas fa-glass-cheers cheers")
       e.target.className =
         "fas fa-glass-cheers is-rotating cheers cheersOrange";
     else e.target.className = "fas fa-glass-cheers cheers";
   };
 
+  useEffect(() => {
+    setLike(props.cocktail.Like);
+  }, []);
+
   return (
     <>
       <div className="CocktailCard">
-        <Link className="cocktailName" to={`/one-cocktail/${cocktail._id}`}>
-          {cocktail.Name}
+        <Link
+          className="cocktailName"
+          to={`/one-cocktail/${props.cocktail._id}`}
+        >
+          {props.cocktail.Name}
         </Link>
         <div className="flip-card">
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <div
                 style={{
-                  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${cocktail.Image})`
+                  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${props.cocktail.Image})`
                 }}
                 className="photo"
               ></div>
@@ -38,7 +41,7 @@ export default function CocktailCard({ cocktail }) {
             <div className="flip-card-back">
               {/* <i className="fas fa-heart heart" onClick={handleClickFav}></i> */}
               <ul>
-                {cocktail.Ingredients.map((i, index) =>
+                {props.cocktail.Ingredients.map((i, index) =>
                   i != "" && i != null && i && "/n" ? (
                     <li key={index} className="ingredient">
                       {i}
@@ -51,9 +54,10 @@ export default function CocktailCard({ cocktail }) {
               <div className="likeContainer">
                 <i
                   className="fas fa-glass-cheers cheers"
+                  id={props.cocktail._id}
                   onClick={handleClickLike}
                 ></i>
-                <span className="likeCounter">{cocktail.Like}</span>
+                <span className="likeCounter">{like}</span>
               </div>
             </div>
           </div>
