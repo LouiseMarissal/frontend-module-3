@@ -8,6 +8,22 @@ const EditCocktail = props => {
   const [measuresFields, setMeasuresFields] = useState([]);
   const ingredientsRef = useRef();
   const measuresRef = useRef();
+
+  useEffect(() => {
+    axios
+      .get(
+        process.env.REACT_APP_BACKEND_URL +
+          "/cocktail/profile/edit-cocktail/" +
+          props.match.params.id
+      )
+      .then(res => {
+        console.log("ICI?", res.data);
+        setCocktail(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
   // ADD ingredients & Measures in list
   const addIngredientInput = e => {
     // take the value from ingredients inputs
@@ -38,22 +54,6 @@ const EditCocktail = props => {
     setMeasuresFields(measureArray);
   };
 
-  useEffect(() => {
-    axios
-      .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/cocktail/profile/edit-cocktail/" +
-          props.match.params.id
-      )
-      .then(res => {
-        console.log("ICI?", res.data);
-        setCocktail(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
   const handleChange = e => {
     if (e.target.type === "checkbox") {
       setFormValues({ ...formValues, [e.target.name]: e.target.checked });
@@ -65,6 +65,7 @@ const EditCocktail = props => {
     e.preventDefault();
     formValues.Ingredients = ingredientsFields;
     formValues.Measures = measuresFields;
+
     const formData = new FormData();
     for (let key in formValues) {
       if (Array.isArray(formValues[key])) {

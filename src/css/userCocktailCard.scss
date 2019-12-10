@@ -1,26 +1,13 @@
 .user-cocktail-list {
   display: flex;
   width: 100%;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
   .user-cocktail-container {
     /* border: 1px solid; */
-    width: 33%;
-    img {
-      width: 33%;
-    }
-  }
-
-  .measure-ingredient-user {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-items: center;
-    justify-content: center;
-    li {
-      list-style: none;
-    }
+    width: 25%;
+    font-size: 1.5em;
   }
 }
