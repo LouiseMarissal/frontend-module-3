@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Dropdown, Card } from "react-bootstrap";
 import "./../../css/userCocktailCard.scss";
 import axios from "axios";
@@ -33,7 +32,7 @@ const UserCocktailCard = ({ userCocktails, props }) => {
       });
   };
   return (
-    <Card style={{ width: "8rem" }}>
+    <Card style={{ width: "8rem" }} className="user-cocktail-list">
       <Card.Img variant="top" src={userCocktails.Image} />
       <Card.Body>
         <Card.Title>{userCocktails.Name}</Card.Title>
@@ -49,7 +48,7 @@ const UserCocktailCard = ({ userCocktails, props }) => {
               padding: "none"
             }}
           >
-            Manage
+            more..
           </Dropdown.Toggle>
           <i className="fas fa-trash-alt" onClick={handleDelete}></i>
           <Dropdown.Menu>
