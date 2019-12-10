@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 const UserCocktailCard = ({ userCocktails }) => {
   return (
     <div className="card" style={{ width: "8rem" }}>
@@ -17,29 +18,19 @@ const UserCocktailCard = ({ userCocktails }) => {
         >
           Edit
         </Link> */}
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Dropdown button
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <Link
-              class="dropdown-item"
-              to={`/edit-cocktail/${userCocktails._id}`}
-            >
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Dropdown Button
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item to={`/edit-cocktail/${userCocktails._id}`}>
               Edit
-            </Link>
-            <Link class="dropdown-item" to={`/cocktail/${userCocktails._id}`}>
-              Delete
-            </Link>
-          </div>
-        </div>
+            </Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
     </div>
   );
