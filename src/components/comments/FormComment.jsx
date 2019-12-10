@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-const test = [];
+import "./../../css/FormComment.scss";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
   const [finalMessage, setFinalMessage] = useState([]);
+  const [oldMessages, oldMessage] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,7 +15,7 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
-        dbRes.data.map(res => test.push(res.message));
+        dbRes.data.map(res => oldMessages.push(res.message));
       })
       .catch(err => console.log(err));
   }, []);
@@ -44,48 +44,54 @@ const AddComment = props => {
   };
 
   return (
-    <form
-      className="formComment"
-      onSubmit={handleSubmit}
-      onChange={handleChange}
-    >
-      <div className="row">
-        <input
-          className="input"
-          name="message"
-          id="message"
-          cols="30"
-          rows="10"
-          onChange={() => void 0}
-          placeholder="leave a comment here..."
-        ></input>
-        <button className="btn">send!</button>
-        {!Boolean(finalMessage.length) ? (
-          <p>No message yet</p>
-        ) : (
-          <p>
-            {test.map((ptest, i) => {
-              if (ptest !== "" && ptest !== null) {
-                return (
-                  <li key={i}>
-                    <span className="message">{ptest}</span>
-                  </li>
-                );
-              }
-            })}
-            {finalMessage.map((message, i) => {
-              if (message !== "" && message !== null) {
-                return (
-                  <li key={i}>
-                    <span className="message">{message}</span>
-                  </li>
-                );
-              }
-            })}
-          </p>
-        )}
-      </div>
-    </form>
+    <div className="commentaire">
+      <form
+        className="formComment"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+      >
+        <div className="row">
+          <input
+            className="input"
+            name="message"
+            id="message"
+            cols="30"
+            rows="10"
+            onChange={() => void 0}
+            placeholder="leave a comment here..."
+          ></input>
+          <button className="btn">comment!</button>
+          {!Boolean(oldMessages.length) ? (
+            <p>No message yet</p>
+          ) : (
+            <p>
+              {oldMessages.map((oldMessage, i) => {
+                if (oldMessage !== "" && oldMessage !== undefined) {
+                  return (
+                    <li key={i}>
+                      <span className="message">{oldMessage}</span>
+                    </li>
+                  );
+                }
+              })}
+              {finalMessage.map((message, i) => {
+                if (
+                  message !== "" &&
+                  message !== null &&
+                  message !== undefined
+                ) {
+                  return (
+                    <li key={i}>
+                      <span className="message">{message}</span>
+                    </li>
+                  );
+                }
+              })}
+            </p>
+          )}
+        </div>
+      </form>
+    </div>
   );
 };
 
