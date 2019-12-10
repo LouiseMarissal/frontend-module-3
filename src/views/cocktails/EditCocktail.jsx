@@ -92,7 +92,10 @@ const EditCocktail = props => {
           props.match.params.id,
         formData
       )
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        props.history.push("/profile/5dee1baa0c0f7a1fcdef5f9a");
+      })
       .catch(err => console.log(err));
   };
   console.log(cocktail.Ingredients);

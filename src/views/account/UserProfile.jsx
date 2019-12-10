@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./../../css/AddCocktail.scss";
 import UserCocktailCard from "./../../components/cocktails/UserCocktailCard";
 import axios from "axios";
@@ -9,17 +9,40 @@ import { Link } from "react-router-dom";
 const UserProfile = props => {
   const [userCocktails, setUserCocktails] = useState([]);
   const [user, setUser] = useState({});
-  let userData = {};
+  const [cocktails, setCocktails] = useState([]);
+  const userData = useRef();
+  // const [favorites, setFavorite] = useState([]);
+  // let userData = {};
+
+  useEffect(
+    id => {
+      axios
+        .get(process.env.REACT_APP_BACKEND_URL + "/cocktail")
+        .then(res => {
+          const copy = cocktails.filter(c => c._id !== id);
+          setCocktails(copy);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    [cocktails]
+  );
 
   useEffect(() => {
-    var searchBar = document.getElementById("searchBar");
-    var navBar = document.getElementById("navBar");
-    if (searchBar) {
-      navBar.className = "nav-bar white";
-    } else {
-      navBar.className = "nav-bar regular";
-    }
-  }, []);
+    axios
+      .get(
+        process.env.REACT_APP_BACKEND_URL +
+          "/userProfile/" +
+          props.match.params.id
+      )
+      .then(res => {
+        setUser(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [props.match.params.id]);
 
   useEffect(() => {
     axios
@@ -29,7 +52,6 @@ const UserProfile = props => {
           props.match.params.id
       )
       .then(dbRes => {
-        userData = dbRes.data;
         setUser(userData);
         getUserCocktail(user);
       })
@@ -53,50 +75,64 @@ const UserProfile = props => {
       });
   };
   useEffect(() => {
-    axios
-      .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/userProfile/" +
-          props.match.params.id
-      )
-      .then(res => {
-        setUser(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar regular";
+    }
   }, []);
-  console.log(props.match.params.id);
+
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
-        <div>
-          <img
-            src={user.photo}
-            alt={user.firstName}
-            className="UserPhotoProfile"
-          />
+        <div className="userCardContainer">
+          <div className="userCard">
+            <div className="userImage">
+              <div>
+                <img
+                  ref={userData}
+                  src={user.photo}
+                  alt={user.firstName}
+                  className="UserPhotoProfile"
+                />
+              </div>
+              <div>
+                <h3>Hello {user.firstName}!</h3>
+                <h6>
+                  {user.companyName}: {user.barName}
+                </h6>
+              </div>
+            </div>
+
+            <div>
+              <h5>Add Cocktails</h5>
+              <Link
+                rel="stylesheet"
+                to="/add-cocktail"
+                className="fas fa-plus"
+              ></Link>
+            </div>
+          </div>
         </div>
-        <h3>Hello {user.firstName}!</h3>
-        <h6>
-          {user.companyName}: {user.barName}
-        </h6>
-        <div>
-          <h5>Add Cocktails</h5>
-          <Link
-            rel="stylesheet"
-            to="/add-cocktail"
-            className="fas fa-plus"
-          ></Link>
+      </div>
+      <div ref={userData}>
+        <h5>My Cocktails</h5>
+        <div className="user-cocktail-list">
+          {userCocktails.length === 0 ? (
+            <p>You don't have any cocktails yet!</p>
+          ) : (
+            userCocktails.map((cocktail, i) => (
+              <UserCocktailCard key={i} userCocktails={cocktail} />
+            ))
+          )}
         </div>
       </div>
 
-      <div className="user-cocktail-list">
-        {userCocktails.map((cocktail, i) => (
-          <UserCocktailCard key={i} userCocktails={cocktail} />
-        ))}
+      <div>
+        <h5>Favorites</h5>
       </div>
-      <h4>Favorites</h4>
     </div>
   );
 };
