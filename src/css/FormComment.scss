@@ -1,0 +1,15 @@
+.btn {
+    color: #494949 !important;
+    text-decoration: none;
+    background: #ffffff;
+    border: 2px solid #494949 !important;
+    transition: all 0.4s ease 0s;
+    display: block;
+}
+
+.btn:hover {
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
+}
