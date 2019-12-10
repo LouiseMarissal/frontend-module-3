@@ -18,7 +18,7 @@ export default function NavBar() {
           SignUp
         </NavLink>
         {/* If loggedIn */}
-        <NavLink className="link" to="/profile/{5de90f2e4197e7f60c2eec42}">
+        <NavLink className="link" to="/profile/5dee1baa0c0f7a1fcdef5f9a">
           Profile
         </NavLink>
       </div>

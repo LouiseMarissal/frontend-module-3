@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-const test = [];
+import "./../../css/FormComment.css";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
   const [finalMessage, setFinalMessage] = useState([]);
+  const [oldMessages, oldMessage] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,7 +15,10 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
-        dbRes.data.map(res => test.push(res.message));
+        dbRes.data.map(res => {
+          oldMessages.push(res);
+          console.log(dbRes.data);
+        });
       })
       .catch(err => console.log(err));
   }, []);
@@ -35,8 +38,11 @@ const AddComment = props => {
       })
       .then(res => {
         const arrayMessage = [res.data.message];
+        // const dateMessage = [res.data.created];
         finalMessage.push(arrayMessage);
-        console.log(finalMessage);
+        // const newOldMessage = oldMessages.sort((a, b) => {
+        //   return b.created - a.created;
+        // });
       })
       .catch(err => {
         console.log(err);
@@ -44,48 +50,65 @@ const AddComment = props => {
   };
 
   return (
-    <form
-      className="formComment"
-      onSubmit={handleSubmit}
-      onChange={handleChange}
-    >
-      <div className="row">
-        <input
-          className="input"
-          name="message"
-          id="message"
-          cols="30"
-          rows="10"
-          onChange={() => void 0}
-          placeholder="leave a comment here..."
-        ></input>
-        <button className="btn">send!</button>
-        {!Boolean(finalMessage.length) ? (
-          <p>No message yet</p>
-        ) : (
-          <p>
-            {test.map((ptest, i) => {
-              if (ptest !== "" && ptest !== null) {
-                return (
-                  <li key={i}>
-                    <span className="message">{ptest}</span>
-                  </li>
-                );
-              }
-            })}
-            {finalMessage.map((message, i) => {
-              if (message !== "" && message !== null) {
-                return (
-                  <li key={i}>
-                    <span className="message">{message}</span>
-                  </li>
-                );
-              }
-            })}
-          </p>
-        )}
-      </div>
-    </form>
+    <div className="commentaire">
+      <form
+        className="formComment"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+      >
+        <div className="row">
+          <input
+            className="input"
+            name="message"
+            id="message"
+            cols="30"
+            rows="10"
+            onChange={() => void 0}
+            placeholder="leave a comment here..."
+          ></input>
+          <button className="btn">comment!</button>
+        </div>
+        <br />
+        <div className="commentaires">
+          {!Boolean(oldMessages.length) ? (
+            <p>No message yet</p>
+          ) : (
+            <p>
+              {finalMessage.map((message, i) => {
+                if (
+                  message !== "" &&
+                  message !== null &&
+                  message !== undefined
+                ) {
+                  return (
+                    <li className="listMessage" key={i}>
+                      <span className="message">{message}</span>
+                    </li>
+                  );
+                }
+              })}
+              {oldMessages.map((oldMessage, i) => {
+                if (
+                  oldMessage.message !== "" &&
+                  oldMessage.message !== undefined &&
+                  oldMessage.message !== null
+                ) {
+                  return (
+                    <li className="listMessage" key={i}>
+                      <span className="message">
+                        le {oldMessage.created.substr(0, 10)} à{" "}
+                        {oldMessage.created.substr(11, 5)} <br />
+                        {oldMessage.message}
+                      </span>
+                    </li>
+                  );
+                } else return null;
+              })}
+            </p>
+          )}
+        </div>
+      </form>
+    </div>
   );
 };
 

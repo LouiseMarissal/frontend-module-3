@@ -23,7 +23,7 @@ const EditCocktail = props => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [props.match.params.id]);
 
   useEffect(() => {
     var searchBar = document.getElementById("searchBar");
@@ -88,11 +88,14 @@ const EditCocktail = props => {
     axios
       .patch(
         process.env.REACT_APP_BACKEND_URL +
-          "/auth-routes/profile/edit-cocktail/" +
+          "/cocktail/profile/edit-cocktail/" +
           props.match.params.id,
         formData
       )
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        props.history.push("/profile/5dee1baa0c0f7a1fcdef5f9a");
+      })
       .catch(err => console.log(err));
   };
   console.log(cocktail.Ingredients);

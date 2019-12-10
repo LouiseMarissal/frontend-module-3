@@ -127,7 +127,7 @@ const AddCoktail = props => {
       .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
       .then(res => {
         console.log(res);
-        // props.history.push("/cocktails");
+        props.history.push("/profile/5dee1baa0c0f7a1fcdef5f9a");
       })
       .catch(err => {
         console.log(err);
@@ -275,7 +275,12 @@ const AddCoktail = props => {
               </div>
               <input type="file" name="Image" className="input" />
 
-              <button className="addButton">Add!</button>
+              <button
+                className="addButton"
+                to="/profile/5dee1baa0c0f7a1fcdef5f9a"
+              >
+                Add!
+              </button>
             </form>
           </div>
         </div>
