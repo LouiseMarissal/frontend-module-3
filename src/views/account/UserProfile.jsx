@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./../../css/AddCocktail.scss";
 import UserCocktailCard from "./../../components/cocktails/UserCocktailCard";
 import axios from "axios";
-import "./../../css/userCocktailCard.css";
+import "./../../css/userCocktailCard.scss";
+import "./../../css/UserProfile.scss";
+import { Link } from "react-router-dom";
 
 const UserProfile = props => {
   const [userCocktails, setUserCocktails] = useState([]);
@@ -46,10 +48,20 @@ const UserProfile = props => {
   console.log("usercokctails", userCocktails);
 
   return (
-    <div className="user-cocktail-list">
-      {userCocktails.map((cocktail, i) => (
-        <UserCocktailCard key={i} userCocktails={cocktail} />
-      ))}
+    <div className="user-profile-container">
+      <div>
+        <Link
+          rel="stylesheet"
+          to="/add-cocktail"
+          className="fas fa-plus"
+        ></Link>
+      </div>
+
+      <div className="user-cocktail-list">
+        {userCocktails.map((cocktail, i) => (
+          <UserCocktailCard key={i} userCocktails={cocktail} />
+        ))}
+      </div>
     </div>
   );
 };
