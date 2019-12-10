@@ -1,10 +1,9 @@
 .btn {
     color: #494949 !important;
-    text-decoration: none;
     background: #ffffff;
     border: 2px solid #494949 !important;
     transition: all 0.4s ease 0s;
-    display: block;
+    height: 40px;
 }
 
 .btn:hover {
@@ -12,4 +11,20 @@
     background: #f6b93b;
     border-color: #f6b93b !important;
     transition: all 0.4s ease 0s;
+}
+
+.commentaires {
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(179, 178, 178);
+    border: solid 1px black;
+    padding: 50px 50px 0px 40px;
+}
+
+.listMessage {
+    list-style: none;
+}
+
+.input {
+    margin-right: 30px;
 }

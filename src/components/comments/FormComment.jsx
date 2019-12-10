@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./../../css/FormComment.scss";
+import "./../../css/FormComment.css";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
@@ -15,7 +15,10 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
-        dbRes.data.map(res => oldMessages.push(res.message));
+        dbRes.data.map(res => {
+          oldMessages.push(res);
+          console.log(dbRes.data);
+        });
       })
       .catch(err => console.log(err));
   }, []);
@@ -35,8 +38,11 @@ const AddComment = props => {
       })
       .then(res => {
         const arrayMessage = [res.data.message];
+        // const dateMessage = [res.data.created];
         finalMessage.push(arrayMessage);
-        console.log(finalMessage);
+        // const newOldMessage = oldMessages.sort((a, b) => {
+        //   return b.created - a.created;
+        // });
       })
       .catch(err => {
         console.log(err);
@@ -61,19 +67,13 @@ const AddComment = props => {
             placeholder="leave a comment here..."
           ></input>
           <button className="btn">comment!</button>
+        </div>
+        <br />
+        <div className="commentaires">
           {!Boolean(oldMessages.length) ? (
             <p>No message yet</p>
           ) : (
             <p>
-              {oldMessages.map((oldMessage, i) => {
-                if (oldMessage !== "" && oldMessage !== undefined) {
-                  return (
-                    <li key={i}>
-                      <span className="message">{oldMessage}</span>
-                    </li>
-                  );
-                }
-              })}
               {finalMessage.map((message, i) => {
                 if (
                   message !== "" &&
@@ -81,8 +81,21 @@ const AddComment = props => {
                   message !== undefined
                 ) {
                   return (
-                    <li key={i}>
+                    <li className="listMessage" key={i}>
                       <span className="message">{message}</span>
+                    </li>
+                  );
+                }
+              })}
+              {oldMessages.map((oldMessage, i) => {
+                if (oldMessage !== "" && oldMessage !== undefined) {
+                  return (
+                    <li className="listMessage" key={i}>
+                      <span className="message">
+                        le {oldMessage.created.substr(0, 10)} à{" "}
+                        {oldMessage.created.substr(11, 5)} <br />
+                        {oldMessage.message}
+                      </span>
                     </li>
                   );
                 }
