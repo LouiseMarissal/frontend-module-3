@@ -108,10 +108,9 @@ const AddCoktail = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (formValues.tags) {
-      formValues.tags.map(_id => ({ _id }));
-    }
-
+    // if (formValues.tags) {
+    //   formValues.tags.map(_id => ({ _id }));
+    // }
     formValues.Ingredients = ingredientsFields;
     formValues.Measures = measuresFields;
     console.log(formValues);
@@ -123,9 +122,9 @@ const AddCoktail = props => {
         }
       } else formData.append(key, formValues[key]);
     }
-    setFormValues(formData);
+    // setFormValues(formData);
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formValues)
+      .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
       .then(res => {
         console.log(res);
         // props.history.push("/cocktails");
