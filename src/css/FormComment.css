@@ -1,31 +1,30 @@
-.commentaire {
-  .btn {
-    color: #494949 !important;
-    background: #ffffff;
-    border: 2px solid #494949 !important;
-    transition: all 0.4s ease 0s;
-    height: 40px;
+.btn {
+  color: #494949 !important;
+  background: #ffffff;
+  border: 2px solid #494949 !important;
+  transition: all 0.4s ease 0s;
+  height: 40px;
 }
 
-  .btn:hover {
-    color: #ffffff !important;
-    background: #f6b93b;
-    border-color: #f6b93b !important;
-    transition: all 0.4s ease 0s;
+.btn:hover {
+  color: #ffffff !important;
+  background: #f6b93b;
+  border-color: #f6b93b !important;
+  transition: all 0.4s ease 0s;
 }
 
 .commentaires {
-    margin-left: auto;
-    margin-right: auto;
-    color: rgb(179, 178, 178);
-    border: solid 1px black;
-    padding: 50px 50px 0px 40px;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(179, 178, 178);
+  border: solid 1px black;
+  padding: 50px 50px 0px 40px;
 }
 
 .listMessage {
-    list-style: none;
+  list-style: none;
 }
 
 .input {
-    margin-right: 30px;
+  margin-right: 30px;
 }
