@@ -60,11 +60,19 @@ const AddComment = props => {
           placeholder="leave a comment here..."
         ></input>
         <button className="btn">send!</button>
-        <br />
         {!Boolean(finalMessage.length) ? (
           <p>No message yet</p>
         ) : (
           <p>
+            {test.map((ptest, i) => {
+              if (ptest !== "" && ptest !== null) {
+                return (
+                  <li key={i}>
+                    <span className="message">{ptest}</span>
+                  </li>
+                );
+              }
+            })}
             {finalMessage.map((message, i) => {
               if (message !== "" && message !== null) {
                 return (
