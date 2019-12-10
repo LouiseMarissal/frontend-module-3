@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import CocktailsList from "./../components/cocktails/CocktailsList";
-import useSearch from "../components/Bars/UseSearch";
+// import useSearch from "../components/Bars/UseSearch";
 //import filter from "../components/Bars/Filters";
 import "./../css/Home.scss";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import axios from "axios";
 
 export default function Home() {
   const [query, setQuery] = useState("");
   const [checked, setChecked] = useState(true);
-  const cocktails = useSearch(query);
   const [myOffset, setOffset] = useState(1);
   const [cocktailsDisplayed, setCocktailsDisplayed] = useState([]);
+  const [queryFiltered, setQueryFiltered] = useState([]);
+  const [favCocktails, setFavCocktails] = useState([]);
+
   const handleSearch = e => {
     setQuery(e.target.value);
   };
@@ -26,17 +29,38 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const copy = [...cocktails];
+    const copy = [...queryFiltered];
     const elements = copy.splice(0, 20);
     setCocktailsDisplayed(elements);
-  }, [cocktails]);
+  }, [queryFiltered]);
+
+  useEffect(() => {
+    utilsSearch(query);
+  }, [query]);
+
+  function utilsSearch(query) {
+    let cancel;
+    return axios({
+      method: "GET",
+      url: process.env.REACT_APP_BACKEND_URL + "/cocktail",
+      params: { query },
+      cancelToken: new axios.CancelToken(c => (cancel = c))
+    })
+      .then(res => {
+        setFavCocktails(res.data.cocktailsWithFavorites);
+        setQueryFiltered(res.data.dbRes);
+      })
+      .catch(err => {
+        if (axios.isCancel(err)) return;
+      });
+  }
 
   const handleScroll = e => {
     var offset = window.innerHeight + e.target.scrollTop;
     var height = e.target.scrollHeight;
     handleScrollSearchBar(e);
     if (offset > height - 1) {
-      const copy = [...cocktails];
+      const copy = [...queryFiltered];
       const elements = copy.splice(myOffset * 20, 20);
       setCocktailsDisplayed([...cocktailsDisplayed, ...elements]);
       setOffset(off => off + 1);
@@ -93,7 +117,10 @@ export default function Home() {
         <section id="cocktailContent">
           <h3>Our cocktails</h3>
           <CocktailsList
-            cocktails={cocktails.length < 18 ? cocktails : cocktailsDisplayed}
+            cocktails={
+              queryFiltered.length < 18 ? queryFiltered : cocktailsDisplayed
+            }
+            cocktailsFav={favCocktails}
           />
         </section>
       </div>
