@@ -2,11 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #FAF0E1;
+  background: #faf0e1;
   min-height: 100vh;
 }
-
-
 
 h1 {
   font-family: "Baloo Bhai", cursive;
@@ -51,4 +49,23 @@ h4 {
 
 .home-nav {
   padding-left: 5px;
+}
+.edit-cocktail-container {
+  padding-top: 10%;
+}
+.measure-ingredient-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2%;
+}
+.edit-measures {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+.edit-ingredients {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
 }
