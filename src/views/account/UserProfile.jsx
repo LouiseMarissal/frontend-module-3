@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./../../css/AddCocktail.scss";
 import UserCocktailCard from "./../../components/cocktails/UserCocktailCard";
 import axios from "axios";
-// import "./../../css/userCocktailCard.scss";
 import "./../../css/UserProfile.scss";
 import { Link } from "react-router-dom";
 
@@ -14,10 +13,25 @@ const UserProfile = props => {
   // const [favorites, setFavorite] = useState([]);
   // let userData = {};
 
+  const getUserCocktail = id => {
+    axios
+      .get(
+        process.env.REACT_APP_BACKEND_URL +
+          "/auth-routes/profile/" +
+          props.match.params.id
+      )
+      .then(res => {
+        setUserCocktails(...userCocktails, res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   useEffect(
     id => {
       axios
-        .get(process.env.REACT_APP_BACKEND_URL + "/cocktail")
+        .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/")
         .then(res => {
           const copy = cocktails.filter(c => c._id !== id);
           setCocktails(copy);
@@ -60,20 +74,6 @@ const UserProfile = props => {
       });
   }, []);
 
-  const getUserCocktail = id => {
-    axios
-      .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/auth-routes/profile/" +
-          props.match.params.id
-      )
-      .then(res => {
-        setUserCocktails(...userCocktails, res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
   useEffect(() => {
     var searchBar = document.getElementById("searchBar");
     var navBar = document.getElementById("navBar");
@@ -87,16 +87,26 @@ const UserProfile = props => {
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
+        {/* <i class="fas fa-suser-edit"></i> */}
         <div className="userCardContainer">
           <div className="userCard">
             <div className="userImage">
-              <div>
+              <div className="user">
                 <img
                   ref={userData}
                   src={user.photo}
                   alt={user.firstName}
                   className="UserPhotoProfile"
                 />
+
+                <div>
+                  <h5>Add Cocktails</h5>
+                  <Link
+                    rel="stylesheet"
+                    to="/add-cocktail"
+                    className="fas fa-plus"
+                  ></Link>
+                </div>
               </div>
               <div>
                 <h3>Hello {user.firstName}!</h3>
@@ -104,15 +114,6 @@ const UserProfile = props => {
                   {user.companyName}: {user.barName}
                 </h6>
               </div>
-            </div>
-
-            <div>
-              <h5>Add Cocktails</h5>
-              <Link
-                rel="stylesheet"
-                to="/add-cocktail"
-                className="fas fa-plus"
-              ></Link>
             </div>
           </div>
         </div>

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./../../css/CocktailCard.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
-
 export default function CocktailCard(props) {
   const [favorite, setFavorite] = useState([]);
   const [like, setLike] = useState([]);

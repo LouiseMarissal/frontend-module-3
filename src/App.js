@@ -13,6 +13,7 @@ import Profile from "./views/account/UserProfile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddCoktail from "./views/cocktails/AddCoktail";
 import EditCocktail from "././views/cocktails/EditCocktail";
+import EditProfile from "./views/account/EditProfile";
 
 function App() {
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
         <Route path="/one-cocktail/:id" component={OneCocktail} />
         <Route path="/add-cocktail" component={AddCoktail} />
         <Route path="/edit-cocktail/:id" component={EditCocktail} />
-
+        {/* <Route path={`/edit-profile/${currentUser.id}`} /> */}
         <Route path="*" component={PageFourOhFour} />
       </Switch>
     </div>

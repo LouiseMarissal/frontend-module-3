@@ -23,7 +23,7 @@ const EditCocktail = props => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [props.match.params.id]);
 
   useEffect(() => {
     var searchBar = document.getElementById("searchBar");
@@ -88,7 +88,7 @@ const EditCocktail = props => {
     axios
       .patch(
         process.env.REACT_APP_BACKEND_URL +
-          "/auth-routes/profile/edit-cocktail/" +
+          "/cocktail/profile/edit-cocktail/" +
           props.match.params.id,
         formData
       )
