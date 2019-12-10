@@ -19,10 +19,6 @@ export default function OneCocktail(props) {
     return (
       <>
         <div className="cocktailView">
-          <FormComment
-            CocktailId={props.match.params.id}
-            UserId={cocktail.UserProID}
-          />
           <div className="container">
             <div className="titre">{cocktail.Name}</div>
             <div className="onecocktail">
@@ -48,13 +44,6 @@ export default function OneCocktail(props) {
                       } else return null;
                     })}
                   </ul>
-                  {/* <ul className="Measures">
-                  {cocktail.Measures.map((Measure, i) => {
-                    if (Measure !== "" && Measure !== null) {
-                      return <li key={i} className="measure">({Measure})</li>;
-                    } else return null;
-                  })}
-                </ul> */}
                 </div>
                 <div className="how">How do i make it ?</div> <br />
                 <div className="instructions">{cocktail.Instructions}</div>
@@ -62,6 +51,10 @@ export default function OneCocktail(props) {
             </div>
           </div>
         </div>
+        <FormComment
+          CocktailId={props.match.params.id}
+          UserId={cocktail.UserProID}
+        />
       </>
     );
   } else return null;

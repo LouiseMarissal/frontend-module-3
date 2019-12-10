@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const test = [];
+
 const AddComment = props => {
   const [message, setMessage] = useState({});
   const [finalMessage, setFinalMessage] = useState([]);
-  console.log(props);
 
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/comment")
-      .then(dbRes => console.log(dbRes.data))
+      .get(
+        process.env.REACT_APP_BACKEND_URL +
+          "/comment/cocktail/" +
+          props.CocktailId
+      )
+      .then(dbRes => {
+        dbRes.data.map(res => test.push(res.message));
+      })
       .catch(err => console.log(err));
   }, []);
 
@@ -27,10 +34,9 @@ const AddComment = props => {
         // user: `${req.session.currentUser}`
       })
       .then(res => {
-        console.log(res.data);
-        const arrayMessage = [...finalMessage];
-        setFinalMessage(message.message);
-        arrayMessage.push(finalMessage);
+        const arrayMessage = [res.data.message];
+        finalMessage.push(arrayMessage);
+        console.log(finalMessage);
       })
       .catch(err => {
         console.log(err);
@@ -54,10 +60,21 @@ const AddComment = props => {
           placeholder="leave a comment here..."
         ></input>
         <button className="btn">send!</button>
-        {finalMessage === undefined ? (
+        <br />
+        {!Boolean(finalMessage.length) ? (
           <p>No message yet</p>
         ) : (
-          <p>{finalMessage}</p>
+          <p>
+            {finalMessage.map((message, i) => {
+              if (message !== "" && message !== null) {
+                return (
+                  <li key={i}>
+                    <span className="message">{message}</span>
+                  </li>
+                );
+              }
+            })}
+          </p>
         )}
       </div>
     </form>
