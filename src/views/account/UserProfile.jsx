@@ -12,6 +12,16 @@ const UserProfile = props => {
   let userData = {};
 
   useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar regular";
+    }
+  }, []);
+
+  useEffect(() => {
     axios
       .get(
         process.env.REACT_APP_BACKEND_URL +

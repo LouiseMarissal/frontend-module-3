@@ -21,7 +21,7 @@ function App() {
     if (searchBar) {
       navBar.className = "nav-bar white";
     } else {
-      navBar.classNaem = "nav-bar black";
+      navBar.classNaem = "nav-bar regular";
     }
   }, []);
   return (
