@@ -66,7 +66,7 @@ const UserProfile = props => {
         console.log(err);
       });
   }, []);
-
+  console.log(props.match.params.id);
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
@@ -96,6 +96,7 @@ const UserProfile = props => {
           <UserCocktailCard key={i} userCocktails={cocktail} />
         ))}
       </div>
+      <h4>Favorites</h4>
     </div>
   );
 };

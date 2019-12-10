@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Card } from "react-bootstrap";
 import axios from "axios";
 
 const UserCocktailCard = ({ userCocktails, props }) => {
@@ -9,7 +9,7 @@ const UserCocktailCard = ({ userCocktails, props }) => {
 
     axios
       .delete(
-        process.env.REACT_APP_BACKEND_URL + "/cocktails/" + userCocktails._id
+        process.env.REACT_APP_BACKEND_URL + "/cocktail/" + userCocktails._id
       )
       .then(res => {
         console.log(res);
@@ -17,21 +17,11 @@ const UserCocktailCard = ({ userCocktails, props }) => {
       });
   };
   return (
-    <div className="card" style={{ width: "8rem" }}>
-      <img
-        className="card-img-top"
-        src={userCocktails.Image}
-        alt={userCocktails.Name}
-      />
-      <div className="card-body">
-        <h5 className="card-title">{userCocktails.Name}</h5>
+    <Card style={{ width: "8rem" }}>
+      <Card.Img variant="top" src={userCocktails.Image} />
+      <Card.Body>
+        <Card.Title>{userCocktails.Name}</Card.Title>
 
-        {/* <Link
-          className="cocktailName btn btn-primary"
-          to={`/edit-cocktail/${userCocktails._id}`}
-        >
-          Edit
-        </Link> */}
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Manage
@@ -46,8 +36,8 @@ const UserCocktailCard = ({ userCocktails, props }) => {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 export default UserCocktailCard;
