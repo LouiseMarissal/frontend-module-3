@@ -88,7 +88,11 @@ const AddComment = props => {
                 }
               })}
               {oldMessages.map((oldMessage, i) => {
-                if (oldMessage !== "" && oldMessage !== undefined) {
+                if (
+                  oldMessage.message !== "" &&
+                  oldMessage.message !== undefined &&
+                  oldMessage.message !== null
+                ) {
                   return (
                     <li className="listMessage" key={i}>
                       <span className="message">
@@ -98,7 +102,7 @@ const AddComment = props => {
                       </span>
                     </li>
                   );
-                }
+                } else return null;
               })}
             </p>
           )}
