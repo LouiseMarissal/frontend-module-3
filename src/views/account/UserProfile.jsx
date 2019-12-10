@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./../../css/AddCocktail.css";
+import "./../../css/AddCocktail.scss";
 import UserCocktailCard from "./../../components/cocktails/UserCocktailCard";
 import axios from "axios";
 import "./../../css/userCocktailCard.css";

@@ -7,6 +7,7 @@
   >div {
     width: 65%;
   }
+
   .addCocktailForm {
     width: 100%;
 
@@ -22,6 +23,14 @@
 
     input[type='checkbox'] {
       width: auto;
+    }
+
+    .tagsInfo {
+      display: block;
+      width: 100%;
+      color: #ffb200;
+      font-family: "Niconne", cursive;
+      font-size: 29px;
     }
 
     .measure-ingredient-container {
@@ -63,10 +72,10 @@
 
       .addButton {
         display: inline-block;
-        background:#ffb200;
+        background: #ffb200;
         padding: 5px 20px;
         border-radius: 5px;
-        
+
         i {
           color: #FFF;
         }
@@ -87,6 +96,25 @@
 }
 
 
+.tagsList {
+  margin: 3%;
+  padding: 1%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 4%;
+}
+
+.tagContainer {
+  display: inline-block;
+  background: #ffb200;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: #FFF;
+}
+
+.button:hover {
+  cursor: pointer;
+}
 
 
 .measure-container {

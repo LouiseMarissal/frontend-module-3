@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
 const AddCoktail = props => {
@@ -7,6 +7,63 @@ const AddCoktail = props => {
   const ingredientsRef = useRef();
   const [ingredientsFields, setIngredientsFields] = useState([]);
   const [measuresFields, setMeasuresFields] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [tagsAdded, setTagsAdded] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/tags")
+      .then(dbRes => {
+        setTags(dbRes.data);
+      })
+      .catch(dbErr => console.log(dbErr));
+  }, []);
+
+  const addTag = e => {
+    const tagsToAdd = [...tags];
+    let tagsToDelete = [...tagsAdded];
+    tagsToAdd.forEach((tag, i) => {
+      if (tag._id === e.target.id) {
+        tagsToAdd.splice(i, 1);
+        if (tagsToDelete.length === 0) {
+          tagsToDelete = [tag];
+        } else tagsToDelete.push(tag);
+      }
+    });
+    setTags(tagsToAdd);
+    setTagsAdded(tagsToDelete);
+    const copiedValues = { ...formValues };
+    if (Array.isArray(copiedValues.tags)) {
+      copiedValues.tags.push(e.target.id);
+    } else copiedValues.tags = [e.target.id];
+    setFormValues(copiedValues);
+  };
+
+  const removeTag = e => {
+    let tagsToAdd = [...tags];
+    let tagsToDelete = [...tagsAdded];
+    const copiedValues = { ...formValues };
+    tagsToDelete.forEach((tag, i) => {
+      if (tag._id === e.target.id) {
+        tagsToDelete.splice(i, 1);
+        if (tagsToAdd.length === 0) {
+          tagsToAdd = [tag];
+        } else tagsToAdd.push(tag);
+      }
+    });
+    setTags(tagsToAdd);
+    setTagsAdded(tagsToDelete);
+    if (copiedValues.tags) {
+      if (copiedValues.tags.length > 1) {
+        copiedValues.tags.forEach((id, i) => {
+          if (id === e.target.id) {
+            copiedValues.tags.splice(i, 1);
+          }
+        });
+      } else copiedValues.tags = [];
+      setFormValues(copiedValues);
+    }
+  };
 
   // ADD ingredients & Measures in list
   const addIngredientInput = e => {
@@ -41,8 +98,13 @@ const AddCoktail = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (formValues.tags) {
+      formValues.tags.map(_id => ({ _id }));
+    }
+
     formValues.Ingredients = ingredientsFields;
     formValues.Measures = measuresFields;
+    console.log(formValues);
     const formData = new FormData();
     for (let key in formValues) {
       if (Array.isArray(formValues[key])) {
@@ -51,10 +113,10 @@ const AddCoktail = props => {
         }
       } else formData.append(key, formValues[key]);
     }
+    setFormValues(formData);
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
+      .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formValues)
       .then(res => {
-        console.log(formData);
         console.log(res);
         // props.history.push("/cocktails");
       })
@@ -117,7 +179,7 @@ const AddCoktail = props => {
                           <li key={i} className="ingredients-list">
                             {ingredient} {measuresFields[i]}
                             <i
-                              className="fas fa-minus"
+                              className="fas fa-minus button"
                               onClick={removeIngredients}
                             ></i>
                           </li>
@@ -145,9 +207,53 @@ const AddCoktail = props => {
 
                 <div className="addCocktail">
                   <span className="addButton">
-                    <i className="fas fa-plus" onClick={addIngredientInput}></i>
+                    <i
+                      className="fas fa-plus button"
+                      onClick={addIngredientInput}
+                    ></i>
                   </span>
                 </div>
+                {/* START OF ADD TAG */}
+
+                <h4 className="h4">Add tags</h4>
+                {tagsAdded.length === 0 ? (
+                  <p className="tagsInfo">No tags yet!</p>
+                ) : (
+                  <div className="tagsList">
+                    {tagsAdded.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="tagContainer button"
+                        id={tag._id}
+                        onClick={removeTag}
+                      >
+                        {tag.name}
+                        <i className="fas fa-minus" id={tag._id}></i>
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {tags.length > 0 ? (
+                  <div className="tagsList">
+                    {tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="tagContainer button"
+                        onClick={addTag}
+                        id={tag._id}
+                      >
+                        {tag.name}
+                        <i className="fas fa-plus" id={tag._id}></i>
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="tagsInfo">
+                    Wow ! This cocktail has a lot of tags !
+                  </p>
+                )}
+
+                {/* END OF ADD TAG */}
               </div>
               <div className="is-alcoholic">
                 <label htmlFor="Alcoholic">Contains Alcohol ?</label>
