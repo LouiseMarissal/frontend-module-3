@@ -1,5 +1,6 @@
 .user-profile-container {
   .fa-user-edit {
+    text-align: right;
     // width: 50%;
     // display: flex;
     // align-content: flex-end;
@@ -50,24 +51,5 @@
   flex-wrap: wrap;
   align-content: center;
   align-items: center;
-
   margin: 3% 3% 3% 3%;
-  .user-cocktail-container {
-    width: 33%;
-    img {
-      width: 33%;
-      border-radius: 50%;
-    }
-  }
-
-  .measure-ingredient-user {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-items: center;
-    justify-content: center;
-    li {
-      list-style: none;
-    }
-  }
 }

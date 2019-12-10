@@ -13,36 +13,6 @@ const UserProfile = props => {
   // const [favorites, setFavorite] = useState([]);
   // let userData = {};
 
-  const getUserCocktail = id => {
-    axios
-      .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/auth-routes/profile/" +
-          props.match.params.id
-      )
-      .then(res => {
-        setUserCocktails(...userCocktails, res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  useEffect(
-    id => {
-      axios
-        .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/")
-        .then(res => {
-          const copy = cocktails.filter(c => c._id !== id);
-          setCocktails(copy);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    [cocktails]
-  );
-
   useEffect(() => {
     axios
       .get(
@@ -58,6 +28,33 @@ const UserProfile = props => {
       });
   }, [props.match.params.id]);
 
+  const getUserCocktail = id => {
+    axios
+      .get(
+        process.env.REACT_APP_BACKEND_URL +
+          "/auth-routes/profile/" +
+          props.match.params.id
+      )
+      .then(res => {
+        setUserCocktails(...userCocktails, res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  useEffect(id => {
+    axios
+      .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/")
+      .then(res => {
+        const copy = cocktails.filter(c => c._id !== id);
+        setCocktails(copy);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     axios
       .get(
@@ -66,7 +63,6 @@ const UserProfile = props => {
           props.match.params.id
       )
       .then(dbRes => {
-        setUser(userData);
         getUserCocktail(user);
       })
       .catch(err => {
@@ -74,6 +70,17 @@ const UserProfile = props => {
       });
   }, []);
 
+  const handleDelete = id => {
+    axios
+      .delete(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id)
+      .then(res => {
+        const copy = userCocktails.filter(c => c._id !== id);
+        setUserCocktails(copy);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     var searchBar = document.getElementById("searchBar");
     var navBar = document.getElementById("navBar");
@@ -87,7 +94,6 @@ const UserProfile = props => {
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
-        {/* <i class="fas fa-suser-edit"></i> */}
         <div className="userCardContainer">
           <div className="userCard">
             <div className="userImage">
@@ -125,7 +131,11 @@ const UserProfile = props => {
             <p>You don't have any cocktails yet!</p>
           ) : (
             userCocktails.map((cocktail, i) => (
-              <UserCocktailCard key={i} userCocktails={cocktail} />
+              <UserCocktailCard
+                key={i}
+                userCocktails={cocktail}
+                props={handleDelete}
+              />
             ))
           )}
         </div>

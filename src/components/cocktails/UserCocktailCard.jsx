@@ -17,20 +17,7 @@ const UserCocktailCard = ({ userCocktails, props }) => {
         console.log(err);
       });
   }, []);
-  const handleDelete = (id, event) => {
-    // event.preventDefault();
-    axios
-      .delete(
-        process.env.REACT_APP_BACKEND_URL + "/cocktail/" + userCocktails._id
-      )
-      .then(res => {
-        const copy = userCocktail.filter(c => c._id !== id);
-        setUserCocktails(copy);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+
   return (
     <Card style={{ width: "8rem" }} className="user-cocktail-list">
       <Card.Img variant="top" src={userCocktails.Image} />
@@ -50,7 +37,10 @@ const UserCocktailCard = ({ userCocktails, props }) => {
           >
             more..
           </Dropdown.Toggle>
-          <i className="fas fa-trash-alt" onClick={handleDelete}></i>
+          <i
+            className="fas fa-trash-alt"
+            onClick={() => props(userCocktails._id)}
+          ></i>
           <Dropdown.Menu>
             <Dropdown.Item href={`/edit-cocktail/${userCocktails._id}`}>
               Edit Cocktails
