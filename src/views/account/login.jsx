@@ -10,7 +10,7 @@ export default function Login() {
     if (searchBar) {
       navBar.className = "nav-bar white";
     } else {
-      navBar.className = "nav-bar black";
+      navBar.className = "nav-bar regular";
     }
   }, []);
 

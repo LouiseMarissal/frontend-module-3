@@ -15,6 +15,17 @@ export default function OneCocktail(props) {
       .then(dbRes => setCocktail(dbRes.data))
       .catch(err => console.log(err));
   }, []);
+
+  useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar regular";
+    }
+  }, []);
+
   if (cocktail.Ingredients !== undefined) {
     return (
       <>

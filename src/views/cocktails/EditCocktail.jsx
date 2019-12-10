@@ -24,6 +24,17 @@ const EditCocktail = props => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar regular";
+    }
+  }, []);
+
   // ADD ingredients & Measures in list
   const addIngredientInput = e => {
     // take the value from ingredients inputs

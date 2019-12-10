@@ -21,6 +21,19 @@
   z-index: 6;
 }
 
+.regular {
+  background: black;
+  width: 100vw;
+}
+
+.regular .mixo {
+  color: white;
+}
+
+.regular .link {
+  color: white;
+}
+
 .link:hover {
   color: orange !important;
   text-decoration: none;

@@ -16,6 +16,16 @@ export default function Home() {
   };
 
   useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar regular";
+    }
+  }, []);
+
+  useEffect(() => {
     const copy = [...cocktails];
     const elements = copy.splice(0, 20);
     setCocktailsDisplayed(elements);

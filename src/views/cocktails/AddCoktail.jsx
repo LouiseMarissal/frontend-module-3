@@ -19,6 +19,16 @@ const AddCoktail = props => {
       .catch(dbErr => console.log(dbErr));
   }, []);
 
+  useEffect(() => {
+    var searchBar = document.getElementById("searchBar");
+    var navBar = document.getElementById("navBar");
+    if (searchBar) {
+      navBar.className = "nav-bar white";
+    } else {
+      navBar.className = "nav-bar regular";
+    }
+  }, []);
+
   const addTag = e => {
     const tagsToAdd = [...tags];
     let tagsToDelete = [...tagsAdded];
