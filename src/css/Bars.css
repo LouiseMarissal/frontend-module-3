@@ -14,6 +14,18 @@
   color: black;
 }
 
+.link>i {
+  color: white;
+}
+
+.black .link>i {
+  color: black;
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
 .nav-bar {
   background: none;
   position: fixed;
@@ -44,6 +56,8 @@
 .sideLinkContainer {
   font-size: 1.2em;
   margin-top: -10px;
+  display: flex;
+  align-items: center;
 }
 
 .active {

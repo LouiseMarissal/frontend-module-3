@@ -35,7 +35,7 @@ export default withRouter(function NavBar(props) {
             Profile
           </NavLink>
           <div className="link" to="/logout" onClick={handleSignout}>
-            Logout
+            <i class="fas fa-sign-out-alt"></i>
           </div>
         </div>
       )}
