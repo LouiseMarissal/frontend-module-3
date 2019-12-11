@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
+import UserContext from "./../../auth/UserContext";
 
-export default function NavBar() {
+export default function NavBar(props) {
+  const userContext = useContext(UserContext);
+  const { setCurrentUser } = userContext;
   return (
     <nav className="nav-bar black" id="navBar">
       <NavLink className="link" to="/">
@@ -18,7 +21,8 @@ export default function NavBar() {
           SignUp
         </NavLink>
         {/* If loggedIn */}
-        <NavLink className="link" to="/profile/5dee1baa0c0f7a1fcdef5f9a">
+
+        <NavLink className="link" to={`/profile/` + props.user._id}>
           Profile
         </NavLink>
       </div>

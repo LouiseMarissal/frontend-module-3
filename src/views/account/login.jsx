@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import APIHandler from "../../api/APIHandler";
-
+import React, { useState, useEffect, useContext } from "react";
+import APIHandler from "./../../api/APIHandler";
+import UserContext from "./../../auth/UserContext";
 export default function Login(props) {
   const [formValues, setFormValues] = useState({});
+  const userContext = useContext(UserContext);
+  const { setCurrentUser } = userContext;
 
   useEffect(() => {
     var searchBar = document.getElementById("searchBar");
@@ -16,7 +18,6 @@ export default function Login(props) {
 
   const handleChange = e => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
-    console.log(formValues);
   };
 
   const handleSubmit = e => {
@@ -25,7 +26,7 @@ export default function Login(props) {
       formValues
     })
       .then(dbRes => {
-        console.log(dbRes);
+        setCurrentUser(dbRes.data);
         props.history.push("/profile/" + dbRes.data._id);
       })
       .catch(err => console.log(err));

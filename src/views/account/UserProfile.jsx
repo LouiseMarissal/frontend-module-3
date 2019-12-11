@@ -29,22 +29,6 @@ const UserProfile = props => {
       });
   }, []);
 
-  // get userPro cocktail from db
-  const getUserCocktail = id => {
-    axios
-      .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/auth-routes/profile/" +
-          props.match.params.id
-      )
-      .then(res => {
-        setUserCocktails(...userCocktails, res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   // update state of cocktail
   useEffect(id => {
     axios
@@ -63,12 +47,14 @@ const UserProfile = props => {
     axios
       .get(
         process.env.REACT_APP_BACKEND_URL +
-          "/auth-routes/profile/" +
+          "/cocktail/userpro-cocktail/" +
           props.match.params.id,
-        { withCredentials: true }
+        {
+          withCredentials: true
+        }
       )
       .then(dbRes => {
-        getUserCocktail(user);
+        setUserCocktails(dbRes.data);
       })
       .catch(err => {
         console.log(err);
@@ -97,7 +83,6 @@ const UserProfile = props => {
       navBar.className = "nav-bar regular";
     }
   }, []);
-  console.log(favorites);
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
