@@ -2,12 +2,16 @@ import React, { Suspense, lazy } from "react";
 import {} from "react";
 
 const CocktailCard = React.lazy(() => import("./CocktailCard"));
-const List = ({ cocktails }) => {
+const List = ({ cocktails, cocktailsFav }) => {
   return (
     <div className="fullcocktail">
       {cocktails.map((cocktail, i) => (
         <Suspense key={i} fallback={<div>Loading...</div>}>
-          <CocktailCard key={i} cocktail={cocktail} />
+          <CocktailCard
+            key={i}
+            cocktail={cocktail}
+            cocktailsFav={cocktailsFav}
+          />
         </Suspense>
       ))}
     </div>
