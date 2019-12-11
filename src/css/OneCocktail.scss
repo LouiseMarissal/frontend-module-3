@@ -1,8 +1,9 @@
-.cocktailView {
-  background: #FAF0E1;
+li {
+  list-style-type: none;
 }
 
 .cocktailView {
+  background: #FAF0E1;
   padding-top: 50px;
   display: flex;
 
@@ -18,7 +19,7 @@
     }
 
     .oneCocktail {
-      background: url(../images/test6.jpg);
+      background: black;
       display: flex;
       flex-direction: column;
       align-items: stretch;
@@ -29,17 +30,25 @@
       padding-top: 1%;
 
       .imageAndInfoContainer {
-        display: flex;
-
-        align-items: stretch;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 
         .fullInstructions {
-          width: 50%;
-          color: grey;
+          display: flex;
+          flex-direction: column;
+          align-items: space-evenly;
+          width: 100%;
+          color: white;
           height: auto;
-          border: solid 1px black;
+          border: solid 1px white;
           padding: 0 auto;
           margin: 0;
+          max-width: 400px;
+
+
+          .instructions {
+            padding: 0 20%;
+          }
 
           .whatDoINeed,
           .howDoIMakeIt {
@@ -47,23 +56,22 @@
             color: orange;
             font-family: "Baloo Bhai", cursive;
             text-transform: uppercase;
-            font-size: 20px;
+            font-size: 1.3em;
 
             .fullIngredients {
               display: flex;
 
               .measures,
               .ingredients {
-                float: left;
-                margin-left: 20px;
-                font-size: 13px;
+                font-size: 1em;
               }
             }
           }
         }
 
         .oneCocktailImageContainer {
-          width: 50%;
+          width: 100%;
+          max-width: 400px;
 
 
           .oneCocktailImage {
@@ -76,13 +84,14 @@
   }
 }
 
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width : 1100px) {
   .oneCocktail {
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
     .imageAndInfoContainer {
+      display: flex !important;
       flex-direction: column;
 
       .oneCocktailImageContainer,
@@ -94,6 +103,3 @@
     }
   }
 }
-
-
-@media only screen and (max-width : 600px) {}

@@ -44,7 +44,7 @@ export default function OneCocktail(props) {
                 <div className="fullInstructions">
                   <div className="whatDoINeed">What do i need ?</div> <br />
                   <div className="fullIngredients">
-                    <ul className="ingredients">
+                    <ul className="ingredients" style={{ padding: 0 }}>
                       {cocktail.Ingredients.map((Ingredient, i) => {
                         if (Ingredient !== "" && Ingredient !== null) {
                           return (
@@ -69,10 +69,10 @@ export default function OneCocktail(props) {
               </div>
             </div>
           </div>
-        <FormComment
-          CocktailId={props.match.params.id}
-          UserId={props.match.params.id}
-        />
+          <FormComment
+            CocktailId={props.match.params.id}
+            UserId={props.match.params.id}
+          />
         </div>
       </>
     );
