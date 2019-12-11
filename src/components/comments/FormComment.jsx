@@ -26,6 +26,12 @@ const AddComment = props => {
       .catch(err => console.log(err));
   }, []);
 
+  useEffect(() => {
+    if (currentUser) {
+      Setuser({ photo: currentUser.photo, name: currentUser.name });
+    }
+  }, []);
+
   const handleChange = e => {
     setMessage({ ...message, [e.target.name]: e.target.value });
     Setuser({ photo: currentUser.photo, name: currentUser.name });
@@ -78,7 +84,7 @@ const AddComment = props => {
           {!Boolean(oldMessages.length) ? (
             <p>No message yet</p>
           ) : (
-            <p>
+            <div>
               {oldMessages
                 .sort((a, b) => {
                   if (a.created > b.created) return -1;
@@ -86,20 +92,27 @@ const AddComment = props => {
                 })
                 .map((oldMessage, i) => (
                   <li className="listMessage" key={i}>
-                    <span>{oldMessage.user.name}</span>
-                    <span className="message">
+                    <div className="message">
                       <img
                         className="userPhoto"
                         src={oldMessage.user.photo}
                         alt="inch"
                       />
-                      le {oldMessage.created.substr(0, 10)} à{" "}
-                      {oldMessage.created.substr(11, 5)} <br />
-                      {oldMessage.message}
-                    </span>
+                      <div className="fullUser">
+                        <span>{oldMessage.user.name}</span>
+                      </div>
+                      <span className="dateMessage">
+                        le {oldMessage.created.substr(0, 10)} à{" "}
+                        {oldMessage.created.substr(11, 5)}{" "}
+                      </span>
+
+                      <span className="contentMessage">
+                        {oldMessage.message}
+                      </span>
+                    </div>
                   </li>
                 ))}
-            </p>
+            </div>
           )}
         </div>
       </form>

@@ -17,7 +17,7 @@
   color: rgb(179, 178, 178);
   border: solid 1px black;
   padding: 50px 50px 0px 40px;
-  width: 83%;
+  width: 100%;
   margin-left: 6%;
 }
 
@@ -25,15 +25,21 @@
   list-style: none;
 }
 
+.fullUser {
+  display: flex;
+}
+
 .input {
   margin-right: 30px;
 }
 
 .message {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto
 }
 
 .userPhoto {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%
 }
