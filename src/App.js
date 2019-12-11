@@ -53,6 +53,7 @@ function App() {
               <Route path="/one-cocktail/:id" component={OneCocktail} />
               <ProtectedRoute path="/add-cocktail" component={AddCoktail} />
               <ProtectedRoute path="/edit-cocktail/" component={EditCocktail} />
+              <ProtectedRoute path="/logout" />
               <Route path="*" component={PageFourOhFour} />
             </Switch>
           </div>
