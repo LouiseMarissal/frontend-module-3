@@ -39,23 +39,26 @@ function App() {
   //   }
   // }, []);
   return (
-    <UserContext.Provider value={UserContextValue}>
-      {isLoading ? null : (
-        <div className="App">
-          <NavBar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <ProtectedRoute path="/profile/:id" component={Profile} />
-            <Route path="/one-cocktail/:id" component={OneCocktail} />
-            <Route path="/add-cocktail" component={AddCoktail} />
-            <Route path="/edit-cocktail/:id" component={EditCocktail} />
-            <Route path="*" component={PageFourOhFour} />
-          </Switch>
-        </div>
-      )}
-    </UserContext.Provider>
+    console.log("current user", currentUser),
+    (
+      <UserContext.Provider value={UserContextValue}>
+        {isLoading ? null : (
+          <div className="App">
+            <NavBar user={currentUser} />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <ProtectedRoute path="/profile/:id" component={Profile} />
+              <Route path="/one-cocktail/:id" component={OneCocktail} />
+              <ProtectedRoute path="/add-cocktail" component={AddCoktail} />
+              <ProtectedRoute path="/edit-cocktail/" component={EditCocktail} />
+              <Route path="*" component={PageFourOhFour} />
+            </Switch>
+          </div>
+        )}
+      </UserContext.Provider>
+    )
   );
 }
 
