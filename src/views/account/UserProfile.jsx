@@ -9,8 +9,10 @@ const UserProfile = props => {
   const [userCocktails, setUserCocktails] = useState([]);
   const [user, setUser] = useState({});
   const [cocktails, setCocktails] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const userData = useRef();
 
+  // get UserProfile infos
   useEffect(() => {
     axios
       .get(
@@ -19,6 +21,7 @@ const UserProfile = props => {
           props.match.params.id
       )
       .then(res => {
+        setFavorites(res.data.favorites);
         setUser(res.data);
       })
       .catch(err => {
@@ -26,6 +29,7 @@ const UserProfile = props => {
       });
   }, []);
 
+  // get userPro cocktail from db
   const getUserCocktail = id => {
     axios
       .get(
@@ -41,6 +45,7 @@ const UserProfile = props => {
       });
   };
 
+  // update state of cocktail
   useEffect(id => {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/")
@@ -53,12 +58,14 @@ const UserProfile = props => {
       });
   }, []);
 
+  // get userID to match with cocktails
   useEffect(() => {
     axios
       .get(
         process.env.REACT_APP_BACKEND_URL +
           "/auth-routes/profile/" +
-          props.match.params.id
+          props.match.params.id,
+        { withCredentials: true }
       )
       .then(dbRes => {
         getUserCocktail(user);
@@ -68,6 +75,7 @@ const UserProfile = props => {
       });
   }, []);
 
+  // Delete userPro cocktail
   const handleDelete = id => {
     axios
       .delete(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id)
@@ -79,6 +87,7 @@ const UserProfile = props => {
         console.log(err);
       });
   };
+
   useEffect(() => {
     var searchBar = document.getElementById("searchBar");
     var navBar = document.getElementById("navBar");
@@ -88,7 +97,7 @@ const UserProfile = props => {
       navBar.className = "nav-bar regular";
     }
   }, []);
-
+  console.log(favorites);
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
@@ -141,8 +150,15 @@ const UserProfile = props => {
 
       <div>
         <h5>My Favorites Cocktails</h5>
-        <p>No favorites yet! Let's see what's you'll love</p>
-        <p>{user.favorites}</p>
+        <div className="user-cocktail-list">
+          {favorites.length === 0 ? (
+            <p>You don't have any favorites yet !</p>
+          ) : (
+            favorites.map((f, i) => (
+              <UserCocktailCard key={i} userCocktails={f} />
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

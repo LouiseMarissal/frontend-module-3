@@ -3,8 +3,8 @@ import { Dropdown, Card } from "react-bootstrap";
 import "./../../css/userCocktailCard.scss";
 import axios from "axios";
 
-const UserCocktailCard = ({ userCocktails, props }) => {
-  // const [userCocktail, setUserCocktails] = useState([]);
+const LikeCocktail = ({ likedCocktail, props }) => {
+  //   const [userCocktail, setUserCocktails] = useState([]);
   const [cocktails, setCocktails] = useState([]);
 
   useEffect(() => {
@@ -20,9 +20,9 @@ const UserCocktailCard = ({ userCocktails, props }) => {
 
   return (
     <Card style={{ width: "8rem" }} className="user-cocktail-list">
-      <Card.Img variant="top" src={userCocktails.Image} />
+      <Card.Img variant="top" src={likedCocktail.Image} />
       <Card.Body>
-        <Card.Title>{userCocktails.Name}</Card.Title>
+        <Card.Title>{likedCocktail.Name}</Card.Title>
 
         <Dropdown>
           <Dropdown.Toggle
@@ -38,14 +38,11 @@ const UserCocktailCard = ({ userCocktails, props }) => {
             more..
           </Dropdown.Toggle>
           <i
-            className="fas fa-trash-alt"
-            onClick={() => props(userCocktails._id)}
+            className="fas fa-glass-cheers"
+            onClick={() => props(likedCocktail._id)}
           ></i>
           <Dropdown.Menu>
-            <Dropdown.Item href={`/edit-cocktail/${userCocktails._id}`}>
-              Edit Cocktails
-            </Dropdown.Item>
-            <Dropdown.Item href={`/one-cocktail/${userCocktails._id}`}>
+            <Dropdown.Item href={`/one-cocktail/${likedCocktail._id}`}>
               Show Cart
             </Dropdown.Item>
           </Dropdown.Menu>
@@ -54,4 +51,4 @@ const UserCocktailCard = ({ userCocktails, props }) => {
     </Card>
   );
 };
-export default UserCocktailCard;
+export default LikeCocktail;
