@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import APIHandler from "./../../api/APIHandler";
 import UserContext from "./../../auth/UserContext";
+import { NavLink } from "react-router-dom";
+
 export default function Login(props) {
   const [formValues, setFormValues] = useState({});
   const userContext = useContext(UserContext);
@@ -44,6 +46,9 @@ export default function Login(props) {
           placeholder="*****"
         />
         <button>Submit</button>
+        <NavLink className="link" to="/Signup">
+          No account yet ? Signup !
+        </NavLink>
       </form>
     </div>
   );
