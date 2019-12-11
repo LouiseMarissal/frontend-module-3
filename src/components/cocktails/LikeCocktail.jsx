@@ -3,9 +3,29 @@ import { Dropdown, Card } from "react-bootstrap";
 import "./../../css/userCocktailCard.scss";
 import axios from "axios";
 
-const LikeCocktail = ({ likedCocktail, props }) => {
+const LikeCocktail = ({ likedCocktail, clbk, cocktailsFav }) => {
   //   const [userCocktail, setUserCocktails] = useState([]);
   const [cocktails, setCocktails] = useState([]);
+  const [like, setLike] = useState([]);
+  useEffect(() => {
+    // console.log(cocktailsFav);
+    if (cocktailsFav) {
+      cocktailsFav.map((cocktailFav, i) => {
+        var thisCocktailId = likedCocktail._id;
+        var cocktailId = document.getElementById(thisCocktailId);
+        var cocktailFavId = cocktailFav._id;
+        // console.log(thisCocktailId + "and" + cocktailFavId);
+        if (
+          thisCocktailId === cocktailFavId &&
+          cocktailId.className.includes("fa-glass-cheers")
+        ) {
+          cocktailId.className =
+            "fas fa-glass-cheers is-rotating cheers cheersOrange";
+        }
+      });
+    }
+    setLike(likedCocktail.Like);
+  }, []);
 
   useEffect(() => {
     axios
@@ -39,11 +59,11 @@ const LikeCocktail = ({ likedCocktail, props }) => {
           </Dropdown.Toggle>
           <i
             className="fas fa-glass-cheers"
-            onClick={() => props(likedCocktail._id)}
+            onClick={() => clbk(likedCocktail._id)}
           ></i>
           <Dropdown.Menu>
             <Dropdown.Item href={`/one-cocktail/${likedCocktail._id}`}>
-              Show Cart
+              Show Recipe
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

@@ -18,7 +18,7 @@ import { useAuth } from "./auth/useAuth";
 import UserContext from "./auth/UserContext";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
 
-function App() {
+function App(props) {
   const { isLoading } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -52,7 +52,10 @@ function App() {
               <ProtectedRoute path="/profile/:id" component={Profile} />
               <Route path="/one-cocktail/:id" component={OneCocktail} />
               <ProtectedRoute path="/add-cocktail" component={AddCoktail} />
-              <ProtectedRoute path="/edit-cocktail/" component={EditCocktail} />
+              <ProtectedRoute
+                path="/edit-cocktail/:id"
+                component={EditCocktail}
+              />
               <ProtectedRoute path="/logout" />
               <Route path="*" component={PageFourOhFour} />
             </Switch>

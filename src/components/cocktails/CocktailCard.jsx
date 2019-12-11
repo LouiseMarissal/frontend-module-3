@@ -110,17 +110,17 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
                 )}
               </ul>
               <div className="tagsListContainer">
-                  {cocktail.tags.map((tag, i) =>
-                    tag != "" && tag != null && tag ? (
-                <div key={i} className="tagContainer">
+                {cocktail.tags.map((tag, i) =>
+                  tag != "" && tag != null && tag ? (
+                    <div key={i} className="tagContainer">
                       <span key={i} className="tagDisplay">
                         {tag.name}
                       </span>
-                </div>
-                    ) : (
-                      ""
-                    )
-                  )}
+                    </div>
+                  ) : (
+                    ""
+                  )
+                )}
               </div>
               <div className="likeContainer">
                 {isUser ? (
