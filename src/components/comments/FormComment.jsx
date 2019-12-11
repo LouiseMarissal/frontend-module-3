@@ -7,7 +7,7 @@ const AddComment = props => {
   const [message, setMessage] = useState({});
   const [oldMessages, setOldMessages] = useState([]);
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+  const [user, Setuser] = useState({});
 
   useEffect(() => {
     axios
@@ -18,13 +18,16 @@ const AddComment = props => {
       )
       .then(dbRes => {
         console.log(dbRes);
-        if (dbRes.data.length) setOldMessages(dbRes.data);
+        if (dbRes.data.length) {
+          setOldMessages(dbRes.data);
+        }
       })
       .catch(err => console.log(err));
   }, []);
 
   const handleChange = e => {
     setMessage({ ...message, [e.target.name]: e.target.value });
+    Setuser({ photo: currentUser.photo, name: currentUser.name });
   };
 
   const handleSubmit = e => {
@@ -37,7 +40,8 @@ const AddComment = props => {
       .post(process.env.REACT_APP_BACKEND_URL + "/comment", {
         message: message.message,
         created: new Date(),
-        cocktail: `${props.CocktailId}`
+        cocktail: `${props.CocktailId}`,
+        user: user
       })
       .then(res => {
         setOldMessages([...oldMessages, res.data]);
@@ -74,6 +78,11 @@ const AddComment = props => {
                 .map((oldMessage, i) => (
                   <li className="listMessage" key={i}>
                     <span className="message">
+                      <img
+                        className="userPhoto"
+                        src={oldMessage.user.photo}
+                        alt="inch"
+                      />
                       le {oldMessage.created.substr(0, 10)} à{" "}
                       {oldMessage.created.substr(11, 5)} <br />
                       {oldMessage.message}
