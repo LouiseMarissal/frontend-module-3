@@ -10,8 +10,6 @@ const UserProfile = props => {
   const [user, setUser] = useState({});
   const [cocktails, setCocktails] = useState([]);
   const userData = useRef();
-  // const [favorites, setFavorite] = useState([]);
-  // let userData = {};
 
   useEffect(() => {
     axios
@@ -26,7 +24,7 @@ const UserProfile = props => {
       .catch(err => {
         console.log(err);
       });
-  }, [props.match.params.id]);
+  }, []);
 
   const getUserCocktail = id => {
     axios
@@ -144,6 +142,7 @@ const UserProfile = props => {
       <div>
         <h5>My Favorites Cocktails</h5>
         <p>No favorites yet! Let's see what's you'll love</p>
+        <p>{user.favorites}</p>
       </div>
     </div>
   );
