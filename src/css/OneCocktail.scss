@@ -3,88 +3,95 @@
 }
 
 .cocktailView {
-  padding: 50px 0;
+  padding-top: 50px;
 
-  .titre {
-    display: block;
-    margin: 0 0 50px 0;
-    font-size: 37px;
-    color: rgb(138, 138, 138);
-    font-family: "Baloo Bhai", cursive;
-    color: #000;
-    text-transform: uppercase;
+  .fullCocktailContainer {
+
+    .title {
+      display: block;
+      font-size: 2.5em;
+      color: orange;
+      font-family: "Baloo Bhai", cursive;
+      text-transform: uppercase;
+    }
+
+    .oneCocktail {
+      background: url(../images/test6.jpg);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      box-shadow: 4px 4px 3px 3px grey;
+      margin: 5%;
+      padding: 5%;
+      margin-top: 1%;
+      padding-top: 1%;
+
+      .imageAndInfoContainer {
+        display: flex;
+
+        align-items: stretch;
+
+        .fullInstructions {
+          width: 50%;
+          color: grey;
+          height: auto;
+          border: solid 1px black;
+          padding: 0 auto;
+          margin: 0;
+
+          .whatDoINeed,
+          .howDoIMakeIt {
+            display: block;
+            color: orange;
+            font-family: "Baloo Bhai", cursive;
+            text-transform: uppercase;
+            font-size: 20px;
+
+            .fullIngredients {
+              display: flex;
+
+              .measures,
+              .ingredients {
+                float: left;
+                margin-left: 20px;
+                font-size: 13px;
+              }
+            }
+          }
+        }
+
+        .oneCocktailImageContainer {
+          width: 50%;
+
+
+          .oneCocktailImage {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
   }
+}
 
-  .onecocktail {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+@media only screen and (max-width : 600px) {
+  .oneCocktail {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    >div {
-      flex: 1;
-      width: 50%;
-      padding: 0 20px;
+    .imageAndInfoContainer {
+      flex-direction: column;
 
-      img {
-        max-width: 100%;
+      .oneCocktailImageContainer,
+      .fullInstructions,
+      .oneCocktailImage {
+        width: 100% !important;
         height: auto;
       }
     }
   }
 }
 
-.OneCocktailImage {
-  width: 400px;
-  height: 400px;
-}
 
-
-.FullInstructions {
-  margin-left: auto;
-  margin-right: auto;
-  color: rgb(179, 178, 178);
-
-  .full-ingredients {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
-
-    >ul {
-      width: 50%;
-      text-align: left;
-      font-size: 13px;
-    }
-  }
-
-  .what {
-    padding-top: 30px;
-  }
-
-  .what,
-  .how {
-    display: block;
-    margin: 0 0 10px 0;
-    color: #000;
-    font-family: "Baloo Bhai", cursive;
-    text-transform: uppercase;
-    font-size: 20px;
-  }
-
-  .instructions {
-    font-size: 13px;
-  }
-}
-
-.Measures .Ingredients {
-  float: left;
-  margin-left: 20px;
-  font-size: 13px;
-}
-
-.FullInstructions {
-  margin-left: auto;
-  margin-right: auto;
-  color: rgb(179, 178, 178);
-  border: solid 1px black;
-  padding: 50px 50px 0px 40px;
-}
+@media only screen and (max-width : 600px) {}

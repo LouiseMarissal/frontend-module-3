@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./../../css/FormComment.css";
+import UserContext from "../../auth/UserContext";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
-  const [finalMessage, setFinalMessage] = useState({});
   const [oldMessages, setOldMessages] = useState([]);
+  const { currentUser } = useContext(UserContext);
+  const [user, Setuser] = useState({});
 
   useEffect(() => {
     axios
@@ -15,13 +17,17 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
-        if (dbRes.data.length) setOldMessages(dbRes.data);
+        console.log(dbRes);
+        if (dbRes.data.length) {
+          setOldMessages(dbRes.data);
+        }
       })
       .catch(err => console.log(err));
   }, []);
 
   const handleChange = e => {
     setMessage({ ...message, [e.target.name]: e.target.value });
+    Setuser({ photo: currentUser.photo, name: currentUser.name });
   };
 
   const handleSubmit = e => {
@@ -33,8 +39,9 @@ const AddComment = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/comment", {
         message: message.message,
-        created: Date.now(),
-        cocktail: `${props.CocktailId}`
+        created: new Date(),
+        cocktail: `${props.CocktailId}`,
+        user: user
       })
       .then(res => {
         setOldMessages([...oldMessages, res.data]);
@@ -71,6 +78,11 @@ const AddComment = props => {
                 .map((oldMessage, i) => (
                   <li className="listMessage" key={i}>
                     <span className="message">
+                      <img
+                        className="userPhoto"
+                        src={oldMessage.user.photo}
+                        alt="inch"
+                      />
                       le {oldMessage.created.substr(0, 10)} à{" "}
                       {oldMessage.created.substr(11, 5)} <br />
                       {oldMessage.message}

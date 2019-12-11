@@ -30,41 +30,49 @@ export default function OneCocktail(props) {
     return (
       <>
         <div className="cocktailView">
-          <div className="container">
-            <div className="titre">{cocktail.Name}</div>
-            <div className="onecocktail">
-              <div>
-                <img className="OneCocktailImage" src={cocktail.Image} alt="" />
-              </div>
-              <div className="FullInstructions">
-                <div className="what">What do i need ?</div> <br />
-                <div className="full-ingredients">
-                  <ul className="Ingredients">
-                    {cocktail.Ingredients.map((Ingredient, i) => {
-                      if (Ingredient !== "" && Ingredient !== null) {
-                        return (
-                          <li key={i}>
-                            <span className="ingredient">{Ingredient}</span>
-                            <span>
-                              {cocktail.Measures[i] ? (
-                                <span key={i}>({cocktail.Measures[i++]})</span>
-                              ) : null}
-                            </span>
-                          </li>
-                        );
-                      } else return null;
-                    })}
-                  </ul>
+          <div className="fullCocktailContainer">
+            <div className="oneCocktail">
+              <div className="title">{cocktail.Name}</div>
+              <div className="imageAndInfoContainer">
+                <div className="oneCocktailImageContainer">
+                  <img
+                    className="oneCocktailImage"
+                    src={cocktail.Image}
+                    alt=""
+                  />
                 </div>
-                <div className="how">How do i make it ?</div> <br />
-                <div className="instructions">{cocktail.Instructions}</div>
+                <div className="fullInstructions">
+                  <div className="whatDoINeed">What do i need ?</div> <br />
+                  <div className="fullIngredients">
+                    <ul className="ingredients">
+                      {cocktail.Ingredients.map((Ingredient, i) => {
+                        if (Ingredient !== "" && Ingredient !== null) {
+                          return (
+                            <li key={i}>
+                              <span className="ingredient">{Ingredient} </span>
+                              <span>
+                                {cocktail.Measures[i] ? (
+                                  <span className="measures" key={i}>
+                                    ({cocktail.Measures[i++]})
+                                  </span>
+                                ) : null}
+                              </span>
+                            </li>
+                          );
+                        } else return null;
+                      })}
+                    </ul>
+                  </div>
+                  <div className="howDoIMakeIt">How do i make it ?</div> <br />
+                  <div className="instructions">{cocktail.Instructions}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <FormComment
           CocktailId={props.match.params.id}
-          UserId={cocktail.UserProID}
+          UserId={props.match.params.id}
         />
       </>
     );

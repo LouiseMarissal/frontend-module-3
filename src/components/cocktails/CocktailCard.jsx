@@ -98,7 +98,6 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
               ></div>
             </div>
             <div className="flip-card-back">
-              {/* <i className="fas fa-heart heart" onClick={handleClickFav}></i> */}
               <ul>
                 {cocktail.Ingredients.map((i, index) =>
                   i != "" && i != null && i && "/n" ? (
@@ -110,18 +109,18 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
                   )
                 )}
               </ul>
-              <div className="tagsContainerUno">
-                <div className="tagsContainer">
+              <div className="tagsListContainer">
                   {cocktail.tags.map((tag, i) =>
                     tag != "" && tag != null && tag ? (
+                <div key={i} className="tagContainer">
                       <span key={i} className="tagDisplay">
                         {tag.name}
                       </span>
+                </div>
                     ) : (
                       ""
                     )
                   )}
-                </div>
               </div>
               <div className="likeContainer">
                 {isUser ? (

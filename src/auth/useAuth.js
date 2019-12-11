@@ -9,6 +9,7 @@ export const useAuth = () => {
   const { setCurrentUser } = userContext;
 
   useEffect(() => {
+    console.log("passé par ici");
     APIHandler.get("/auth-routes/is-loggedin")
       .then(res => {
         setIsLoggedIn(true);
