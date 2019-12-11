@@ -14,11 +14,19 @@
 }
 
 .commentaires {
+<<<<<<< HEAD
+  color: rgb(179, 178, 178);
+  border: solid 1px black;
+  padding: 50px 50px 0px 40px;
+  width: 83%;
+  margin-left: 6%;
+=======
   margin-left: auto;
   margin-right: auto;
   color: rgb(179, 178, 178);
   border: solid 1px black;
   padding: 50px 50px 0px 40px;
+>>>>>>> 367c1d025deeb412529f2d9bc81f73eff726d3d8
 }
 
 .listMessage {
@@ -28,3 +36,10 @@
 .input {
   margin-right: 30px;
 }
+<<<<<<< HEAD
+
+.message {
+  display: flex;
+}
+=======
+>>>>>>> 367c1d025deeb412529f2d9bc81f73eff726d3d8

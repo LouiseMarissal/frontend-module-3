@@ -142,7 +142,8 @@ const UserProfile = props => {
       </div>
 
       <div>
-        <h5>Favorites</h5>
+        <h5>My Favorites Cocktails</h5>
+        <p>No favorites yet! Let's see what's you'll love</p>
       </div>
     </div>
   );

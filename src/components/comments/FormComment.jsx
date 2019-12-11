@@ -4,8 +4,8 @@ import "./../../css/FormComment.css";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
-  const [finalMessage, setFinalMessage] = useState([]);
-  const [oldMessages, oldMessage] = useState([]);
+  const [finalMessage, setFinalMessage] = useState({});
+  const [oldMessages, setOldMessages] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,13 +15,10 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
-        dbRes.data.map(res => {
-          oldMessages.push(res);
-          console.log(dbRes.data);
-        });
+        setOldMessages(dbRes.data);
       })
       .catch(err => console.log(err));
-  }, []);
+  });
 
   const handleChange = e => {
     setMessage({ ...message, [e.target.name]: e.target.value });
@@ -29,25 +26,23 @@ const AddComment = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setFinalMessage({
+      message: message.message,
+      created: Date.now(),
+      cocktail: `${props.CocktailId}`
+    });
+  };
+
+  useEffect(() => {
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/comment", {
-        message: message.message,
-        created: Date.now(),
-        cocktail: `${props.CocktailId}`
-        // user: `${req.session.currentUser}`
-      })
+      .post(process.env.REACT_APP_BACKEND_URL + "/comment", finalMessage)
       .then(res => {
-        const arrayMessage = [res.data.message];
-        // const dateMessage = [res.data.created];
-        finalMessage.push(arrayMessage);
-        // const newOldMessage = oldMessages.sort((a, b) => {
-        //   return b.created - a.created;
-        // });
+        setOldMessages([...oldMessages, res.data]);
       })
       .catch(err => {
         console.log(err);
       });
-  };
+  }, [finalMessage]);
 
   return (
     <div className="commentaire">
@@ -61,9 +56,6 @@ const AddComment = props => {
             className="input"
             name="message"
             id="message"
-            cols="30"
-            rows="10"
-            onChange={() => void 0}
             placeholder="leave a comment here..."
           ></input>
           <button className="btn">comment!</button>
@@ -74,19 +66,6 @@ const AddComment = props => {
             <p>No message yet</p>
           ) : (
             <p>
-              {finalMessage.map((message, i) => {
-                if (
-                  message !== "" &&
-                  message !== null &&
-                  message !== undefined
-                ) {
-                  return (
-                    <li className="listMessage" key={i}>
-                      <span className="message">{message}</span>
-                    </li>
-                  );
-                }
-              })}
               {oldMessages.map((oldMessage, i) => {
                 if (
                   oldMessage.message !== "" &&
