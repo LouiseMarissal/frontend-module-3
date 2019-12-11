@@ -4,6 +4,7 @@ import UserCocktailCard from "./../../components/cocktails/UserCocktailCard";
 import axios from "axios";
 import "./../../css/UserProfile.scss";
 import { Link } from "react-router-dom";
+import LikeCocktail from "../../components/cocktails/LikeCocktail";
 
 const UserProfile = props => {
   const [userCocktails, setUserCocktails] = useState([]);
@@ -32,7 +33,9 @@ const UserProfile = props => {
   // update state of cocktail
   useEffect(id => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/")
+      .get(
+        process.env.REACT_APP_BACKEND_URL + "/cocktail/" + props.match.params.id
+      )
       .then(res => {
         const copy = cocktails.filter(c => c._id !== id);
         setCocktails(copy);
@@ -61,6 +64,10 @@ const UserProfile = props => {
       });
   }, []);
 
+  // Unlike the cocktail
+  const handleUnlike = id => {
+    console.log(id);
+  };
   // Delete userPro cocktail
   const handleDelete = id => {
     axios
@@ -83,6 +90,7 @@ const UserProfile = props => {
       navBar.className = "nav-bar regular";
     }
   }, []);
+
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
@@ -140,7 +148,7 @@ const UserProfile = props => {
             <p>You don't have any favorites yet !</p>
           ) : (
             favorites.map((f, i) => (
-              <UserCocktailCard key={i} userCocktails={f} />
+              <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
             ))
           )}
         </div>
