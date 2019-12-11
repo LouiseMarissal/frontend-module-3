@@ -13,6 +13,21 @@ const UserProfile = props => {
   const [favorites, setFavorites] = useState([]);
   const userData = useRef();
 
+  // Unlike the cocktail
+  const handleUnlike = id => {
+    console.log("id cocktail", id);
+    axios
+      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
+        favorites
+      })
+      .then(dbRes => {
+        console.log(dbRes);
+        setFavorites([...favorites], dbRes);
+      })
+      .catch(dbErr => {
+        console.log(dbErr);
+      });
+  };
   // get UserProfile infos
   useEffect(() => {
     axios
@@ -64,10 +79,6 @@ const UserProfile = props => {
       });
   }, []);
 
-  // Unlike the cocktail
-  const handleUnlike = id => {
-    console.log(id);
-  };
   // Delete userPro cocktail
   const handleDelete = id => {
     axios
@@ -90,7 +101,7 @@ const UserProfile = props => {
       navBar.className = "nav-bar regular";
     }
   }, []);
-
+  console.log(favorites);
   return (
     <div className="user-profile-container">
       <div className="UserProfileContainer">

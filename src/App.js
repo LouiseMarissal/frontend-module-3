@@ -52,7 +52,10 @@ function App(props) {
               <ProtectedRoute path="/profile/:id" component={Profile} />
               <Route path="/one-cocktail/:id" component={OneCocktail} />
               <ProtectedRoute path="/add-cocktail" component={AddCoktail} />
-              <ProtectedRoute path="/edit-cocktail/" component={EditCocktail} />
+              <ProtectedRoute
+                path="/edit-cocktail/:id"
+                component={EditCocktail}
+              />
               <ProtectedRoute path="/logout" />
               <Route path="*" component={PageFourOhFour} />
             </Switch>
