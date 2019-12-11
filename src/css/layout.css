@@ -18,6 +18,13 @@ h4 {
   margin: 0 0 20px 0 !important;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #faf0e1 inset !important;
+}
+
 .page-container {
   padding: 60px 0;
 }
@@ -50,20 +57,24 @@ h4 {
 .home-nav {
   padding-left: 5px;
 }
+
 .edit-cocktail-container {
   padding-top: 10%;
 }
+
 .measure-ingredient-container {
   display: flex;
   align-items: center;
   justify-content: center;
   padding-top: 2%;
 }
+
 .edit-measures {
   display: flex;
   flex-direction: column;
   padding: 2%;
 }
+
 .edit-ingredients {
   display: flex;
   flex-direction: column;
