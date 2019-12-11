@@ -18,11 +18,12 @@ const UserProfile = props => {
     console.log("id cocktail", id);
     axios
       .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
-        favorites
+        cocktails
       })
       .then(dbRes => {
-        console.log(dbRes);
-        setFavorites([...favorites], dbRes);
+        const copy = favorites.filter(f => f._id !== id);
+        setFavorites(copy);
+        console.log(copy);
       })
       .catch(dbErr => {
         console.log(dbErr);
