@@ -42,6 +42,7 @@
   width: 25%;
   margin-left: 1%;
   overflow: scroll;
+  overflow-x: hidden;
 }
 
 .comments {

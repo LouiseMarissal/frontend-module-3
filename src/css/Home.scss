@@ -6,6 +6,15 @@
   background: #FAF0E1;
   height: 100vh;
   overflow: scroll;
+  overflow-x: hidden;
+
+  h3 {
+    margin: 0 0 75px 0;
+    font-size: 55px;
+    color: #ffb200;
+    font-family: "Baloo Bhai", cursive;
+    text-transform: uppercase;
+  }
 }
 
 .bannerHome {
@@ -46,14 +55,6 @@
   position: relative;
   padding-top: 40px;
   height: 100vh;
-
-  h3 {
-    margin: 0 0 75px 0;
-    font-size: 55px;
-    color: #ffb200;
-    font-family: "Baloo Bhai", cursive;
-    text-transform: uppercase;
-  }
 }
 
 .fullcocktail {
@@ -69,9 +70,11 @@
   // z-index: 3;
   margin: 0 40vw;
   background: transparent;
-  padding: 7px;
+  padding: 0 7px;
   z-index: 6 !important;
   width: 250px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .fullPageHeader,
@@ -100,8 +103,30 @@
   border: none;
   border-bottom: 1px solid grey;
   background: transparent;
+  margin-top: 7px;
 }
 
 ::placeholder {
   color: black;
+}
+
+.isAlcoholicLogo {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+  font-size: 1.6em;
+}
+
+.fa-cocktail {
+  margin-left: 9px;
+}
+
+.fa-ban {
+  font-size: 1.5em;
+  color: orange;
+}
+
+.isAlcoholicLogo:hover {
+  cursor: pointer;
+  color: orange;
 }

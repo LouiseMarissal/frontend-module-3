@@ -13,6 +13,7 @@ export default function Home() {
   const [queryFiltered, setQueryFiltered] = useState([]);
   const [favCocktails, setFavCocktails] = useState([]);
   const [isUser, setIsUser] = useState(false);
+  const [isAlcoholic, setIsAlcoholic] = useState(true);
 
   const handleSearch = e => {
     setQuery(e.target.value);
@@ -29,10 +30,20 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const copy = [...queryFiltered];
-    const elements = copy.splice(0, 20);
-    setCocktailsDisplayed(elements);
-  }, [queryFiltered]);
+    let copy = [...queryFiltered];
+    if (isAlcoholic) {
+      const elements = copy.splice(0, 20);
+      setCocktailsDisplayed(elements);
+    } else {
+      const nonAlcoholicCopy = copy.filter(cocktail => {
+        if (cocktail.Alcoholic === false) {
+          return cocktail;
+        }
+      });
+      const elements = nonAlcoholicCopy.splice(0, 20);
+      setCocktailsDisplayed(elements);
+    }
+  }, [queryFiltered, isAlcoholic]);
 
   useEffect(() => {
     utilsSearch(query);
@@ -56,15 +67,31 @@ export default function Home() {
       });
   }
 
+  const handleClickIsAlcoholic = e => {
+    if (isAlcoholic) setIsAlcoholic(false);
+    else setIsAlcoholic(true);
+  };
+
   const handleScroll = e => {
     var offset = window.innerHeight + e.target.scrollTop;
     var height = e.target.scrollHeight;
+    const copy = [...queryFiltered];
     handleScrollSearchBar(e);
     if (offset > height - 1) {
-      const copy = [...queryFiltered];
-      const elements = copy.splice(myOffset * 20, 20);
-      setCocktailsDisplayed([...cocktailsDisplayed, ...elements]);
-      setOffset(off => off + 1);
+      if (isAlcoholic === true) {
+        const elements = copy.splice(myOffset * 20, 20);
+        setCocktailsDisplayed([...cocktailsDisplayed, ...elements]);
+        setOffset(off => off + 1);
+      } else {
+        const nonAlcoholicCopy = copy.filter(cocktail => {
+          if (cocktail.Alcoholic === false) {
+            return cocktail;
+          }
+        });
+        const elements = nonAlcoholicCopy.splice(myOffset * 20, 20);
+        setCocktailsDisplayed([...cocktailsDisplayed, ...elements]);
+        setOffset(off => off + 1);
+      }
     }
   };
 
@@ -96,7 +123,7 @@ export default function Home() {
         <div className="bannerHome">
           <div>
             <h1 className="title">HomePage of Mixology Loveeers</h1>
-            <h2>The cocktail interface dedicated to Mixology Lovers..</h2>
+            <h2>The cocktail interface dedicated to Mixology Lovers...</h2>
           </div>
           <span
             className="arrow animated infinite bounce delay-2s slow"
@@ -106,6 +133,7 @@ export default function Home() {
           </span>
         </div>
 
+        <h3>Our cocktails</h3>
         <div className={`fullPageHeader`}>
           <input
             onChange={handleSearch}
@@ -113,17 +141,39 @@ export default function Home() {
             id="searchBar"
             placeholder="Search..."
           ></input>
+
+          {!isAlcoholic ? (
+            <span
+              class="fa-stack fa-2x isAlcoholicLogo"
+              onClick={handleClickIsAlcoholic}
+            >
+              <i class="fas fa-cocktail fa-stack-1x"></i>
+              <i class="fas fa-ban fa-stack-2x"></i>
+            </span>
+          ) : (
+            <span
+              class="fa-stack fa-2x isAlcoholicLogo"
+              onClick={handleClickIsAlcoholic}
+            >
+              <i class="fas fa-cocktail fa-stack-1x"></i>
+            </span>
+          )}
         </div>
         <div className="blurEffect" id="blurEffect"></div>
         <section id="cocktailContent">
-          <h3>Our cocktails</h3>
-          <CocktailsList
-            cocktails={
-              queryFiltered.length < 18 ? queryFiltered : cocktailsDisplayed
-            }
-            cocktailsFav={favCocktails}
-            isUser={isUser}
-          />
+          {queryFiltered || cocktailsDisplayed ? (
+            <CocktailsList
+              cocktails={
+                queryFiltered.length < 18 ? queryFiltered : cocktailsDisplayed
+              }
+              cocktailsFav={favCocktails}
+              isUser={isUser}
+            />
+          ) : (
+            <div className="noResults">
+              "Sorry no results found in the database :/"
+            </div>
+          )}
         </section>
       </div>
     </div>
