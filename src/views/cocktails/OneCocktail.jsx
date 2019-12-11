@@ -30,20 +30,14 @@ export default function OneCocktail(props) {
     return (
       <>
         <div className="cocktailView">
-          <div className="fullCocktailContainer">
+          {/* <div className="fullCocktailContainer">
             <div className="oneCocktail">
               <div className="title">{cocktail.Name}</div>
               <div className="imageAndInfoContainer">
-                <div className="oneCocktailImageContainer">
-                  <img
-                    className="oneCocktailImage"
-                    src={cocktail.Image}
-                    alt=""
-                  />
-                </div>
-                <div className="fullInstructions">
-                  <div className="whatDoINeed">What do i need ?</div> <br />
+                <div className="oneCocktailImageContainer"></div>
+                <div className="fullDetails">
                   <div className="fullIngredients">
+                    <div className="whatDoINeed">What do i need ?</div> <br />
                     <ul className="ingredients" style={{ padding: 0 }}>
                       {cocktail.Ingredients.map((Ingredient, i) => {
                         if (Ingredient !== "" && Ingredient !== null) {
@@ -63,9 +57,57 @@ export default function OneCocktail(props) {
                       })}
                     </ul>
                   </div>
-                  <div className="howDoIMakeIt">How do i make it ?</div> <br />
-                  <div className="instructions">{cocktail.Instructions}</div>
+                  <div className="fullInstructions">
+                    <div className="howDoIMakeIt">How do i make it ?</div>{" "}
+                    <br />
+                    <div className="instructions">{cocktail.Instructions}</div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+        </div> */}
+
+          <div className="cocktailDisplay">
+            <div className="title">{cocktail.Name}</div>
+            <div className="fullDetails">
+              <div className="infosContainer">
+                <div className="imageAndIngredientContainer">
+                  <div className="cocktailImageContainer">
+                    <div
+                      style={{
+                        background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${cocktail.Image})`
+                      }}
+                      className="cocktailImage"
+                    ></div>
+                  </div>
+                  <div className="ingredientAndMeasureContainer">
+                    <div className="whatDoINeed">What do i need ?</div> <br />
+                    <ul className="ingredients" style={{ padding: 0 }}>
+                      {cocktail.Ingredients.map((Ingredient, i) => {
+                        if (Ingredient !== "" && Ingredient !== null) {
+                          return (
+                            <li key={i}>
+                              <span className="ingredient">{Ingredient} </span>
+                              <span>
+                                {cocktail.Measures[i] ? (
+                                  <span className="measures" key={i}>
+                                    ({cocktail.Measures[i++]})
+                                  </span>
+                                ) : null}
+                              </span>
+                            </li>
+                          );
+                        } else return null;
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="instructionContainer">
+                <div className="howDoIMakeIt">How do i make it ?</div>
+                <div className="instructions">{cocktail.Instructions}</div>
               </div>
             </div>
           </div>
