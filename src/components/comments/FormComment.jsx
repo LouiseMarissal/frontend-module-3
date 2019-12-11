@@ -15,10 +15,10 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
-        setOldMessages(dbRes.data);
+        if (dbRes.data.length) setOldMessages(dbRes.data);
       })
       .catch(err => console.log(err));
-  });
+  }, []);
 
   const handleChange = e => {
     setMessage({ ...message, [e.target.name]: e.target.value });
@@ -26,37 +26,34 @@ const AddComment = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setFinalMessage({
-      message: message.message,
-      created: Date.now(),
-      cocktail: `${props.CocktailId}`
-    });
+    createComment();
   };
 
-  useEffect(() => {
+  function createComment() {
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/comment", finalMessage)
+      .post(process.env.REACT_APP_BACKEND_URL + "/comment", {
+        message: message.message,
+        created: Date.now(),
+        cocktail: `${props.CocktailId}`
+      })
       .then(res => {
         setOldMessages([...oldMessages, res.data]);
       })
       .catch(err => {
         console.log(err);
       });
-  }, [finalMessage]);
+  }
 
   return (
     <div className="commentaire">
-      <form
-        className="formComment"
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-      >
+      <form className="formComment" onSubmit={handleSubmit}>
         <div className="row">
           <input
             className="input"
             name="message"
             id="message"
             placeholder="leave a comment here..."
+            onChange={handleChange}
           ></input>
           <button className="btn">comment!</button>
         </div>
@@ -66,23 +63,20 @@ const AddComment = props => {
             <p>No message yet</p>
           ) : (
             <p>
-              {oldMessages.map((oldMessage, i) => {
-                if (
-                  oldMessage.message !== "" &&
-                  oldMessage.message !== undefined &&
-                  oldMessage.message !== null
-                ) {
-                  return (
-                    <li className="listMessage" key={i}>
-                      <span className="message">
-                        le {oldMessage.created.substr(0, 10)} à{" "}
-                        {oldMessage.created.substr(11, 5)} <br />
-                        {oldMessage.message}
-                      </span>
-                    </li>
-                  );
-                } else return null;
-              })}
+              {oldMessages
+                .sort((a, b) => {
+                  if (a.created > b.created) return -1;
+                  else return 1;
+                })
+                .map((oldMessage, i) => (
+                  <li className="listMessage" key={i}>
+                    <span className="message">
+                      le {oldMessage.created.substr(0, 10)} à{" "}
+                      {oldMessage.created.substr(11, 5)} <br />
+                      {oldMessage.message}
+                    </span>
+                  </li>
+                ))}
             </p>
           )}
         </div>
