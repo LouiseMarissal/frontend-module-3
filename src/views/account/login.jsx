@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import APIHandler from "./../../api/APIHandler";
+import APIHandler from "../../api/APIHandler";
 
 export default function Login(props) {
   const [formValues, setFormValues] = useState({});

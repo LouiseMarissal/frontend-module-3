@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./../../css/FormComment.css";
+import UserContext from "../../auth/UserContext";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
-  const [finalMessage, setFinalMessage] = useState({});
   const [oldMessages, setOldMessages] = useState([]);
+  const { currentUser } = useContext(UserContext);
+  console.log(currentUser);
 
   useEffect(() => {
     axios
@@ -15,6 +17,7 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
+        console.log(dbRes);
         if (dbRes.data.length) setOldMessages(dbRes.data);
       })
       .catch(err => console.log(err));
@@ -33,7 +36,7 @@ const AddComment = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/comment", {
         message: message.message,
-        created: Date.now(),
+        created: new Date(),
         cocktail: `${props.CocktailId}`
       })
       .then(res => {

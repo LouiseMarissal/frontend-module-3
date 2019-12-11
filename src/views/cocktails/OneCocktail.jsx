@@ -64,7 +64,7 @@ export default function OneCocktail(props) {
         </div>
         <FormComment
           CocktailId={props.match.params.id}
-          UserId={cocktail.UserProID}
+          UserId={props.match.params.id}
         />
       </>
     );
