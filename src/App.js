@@ -7,13 +7,12 @@ import NavBar from "./components/Bars/NavBar";
 import Home from "./views/Home";
 import PageFourOhFour from "./views/PageFourOhFour";
 import OneCocktail from "./views/cocktails/OneCocktail";
-import Login from "./views/account/Login";
-import Signup from "./views/account/Signup";
+import Login from "./views/account/login";
+import Signup from "./views/account/signup";
 import Profile from "./views/account/UserProfile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddCoktail from "./views/cocktails/AddCoktail";
 import EditCocktail from "././views/cocktails/EditCocktail";
-import EditProfile from "./views/account/EditProfile";
 
 function App() {
   useEffect(() => {
@@ -36,7 +35,6 @@ function App() {
         <Route path="/one-cocktail/:id" component={OneCocktail} />
         <Route path="/add-cocktail" component={AddCoktail} />
         <Route path="/edit-cocktail/:id" component={EditCocktail} />
-        {/* <Route path={`/edit-profile/${currentUser.id}`} /> */}
         <Route path="*" component={PageFourOhFour} />
       </Switch>
     </div>

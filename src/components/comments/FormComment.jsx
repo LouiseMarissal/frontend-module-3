@@ -37,7 +37,6 @@ const AddComment = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/comment", finalMessage)
       .then(res => {
-        console.log(res);
         setOldMessages([...oldMessages, res.data]);
       })
       .catch(err => {
