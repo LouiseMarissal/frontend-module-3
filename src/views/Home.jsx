@@ -8,11 +8,11 @@ import axios from "axios";
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [checked, setChecked] = useState(true);
   const [myOffset, setOffset] = useState(1);
   const [cocktailsDisplayed, setCocktailsDisplayed] = useState([]);
   const [queryFiltered, setQueryFiltered] = useState([]);
   const [favCocktails, setFavCocktails] = useState([]);
+  const [isUser, setIsUser] = useState(false);
 
   const handleSearch = e => {
     setQuery(e.target.value);
@@ -48,7 +48,8 @@ export default function Home() {
     })
       .then(res => {
         setFavCocktails(res.data.cocktailsWithFavorites);
-        setQueryFiltered(res.data.dbRes);
+        setQueryFiltered(res.data.allCocktailsSorted);
+        setIsUser(res.data.isUser);
       })
       .catch(err => {
         if (axios.isCancel(err)) return;
@@ -121,6 +122,7 @@ export default function Home() {
               queryFiltered.length < 18 ? queryFiltered : cocktailsDisplayed
             }
             cocktailsFav={favCocktails}
+            isUser={isUser}
           />
         </section>
       </div>

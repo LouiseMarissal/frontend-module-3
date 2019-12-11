@@ -3,7 +3,7 @@ import "./../../css/CocktailCard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export default function CocktailCard({ cocktail, cocktailsFav }) {
+export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
   const [like, setLike] = useState([]);
 
   // const loadUserFavs = () => {
@@ -24,11 +24,13 @@ export default function CocktailCard({ cocktail, cocktailsFav }) {
   // };
 
   useEffect(() => {
+    // console.log(cocktailsFav);
     if (cocktailsFav) {
       cocktailsFav.map((cocktailFav, i) => {
         var thisCocktailId = cocktail._id;
         var cocktailId = document.getElementById(thisCocktailId);
         var cocktailFavId = cocktailFav._id;
+        // console.log(thisCocktailId + "and" + cocktailFavId);
         if (
           thisCocktailId === cocktailFavId &&
           cocktailId.className.includes("fa-glass-cheers")
@@ -108,23 +110,38 @@ export default function CocktailCard({ cocktail, cocktailsFav }) {
                   )
                 )}
               </ul>
-              <div className="tagsContainer">
-                {cocktail.tags.map((tag, i) =>
-                  tag != "" && tag != null && tag ? (
-                    <span key={i} className="tagDisplay">
-                      {tag.name}
-                    </span>
-                  ) : (
-                    ""
-                  )
-                )}
+              <div className="tagsContainerUno">
+                <div className="tagsContainer">
+                  {cocktail.tags.map((tag, i) =>
+                    tag != "" && tag != null && tag ? (
+                      <span key={i} className="tagDisplay">
+                        {tag.name}
+                      </span>
+                    ) : (
+                      ""
+                    )
+                  )}
+                </div>
               </div>
               <div className="likeContainer">
-                <i
-                  className="fas fa-glass-cheers cheers"
-                  id={cocktail._id}
-                  onClick={handleClickLike}
-                ></i>
+                {isUser ? (
+                  <i
+                    className="fas fa-glass-cheers cheers"
+                    id={cocktail._id}
+                    onClick={handleClickLike}
+                  ></i>
+                ) : (
+                  <Link
+                    style={{ color: "white" }}
+                    className="link"
+                    to="/Signup"
+                  >
+                    <i
+                      className="fas fa-glass-cheers cheers"
+                      id={cocktail._id}
+                    ></i>
+                  </Link>
+                )}
                 <span className="likeCounter">{like}</span>
               </div>
             </div>
