@@ -4,8 +4,10 @@
 
 .cocktailView {
   padding-top: 50px;
+  display: flex;
 
   .fullCocktailContainer {
+    width: 75%;
 
     .title {
       display: block;

@@ -69,11 +69,11 @@ export default function OneCocktail(props) {
               </div>
             </div>
           </div>
-        </div>
         <FormComment
           CocktailId={props.match.params.id}
           UserId={props.match.params.id}
         />
+        </div>
       </>
     );
   } else return null;

@@ -55,6 +55,8 @@ const AddComment = props => {
     <div className="commentaire">
       <form className="formComment" onSubmit={handleSubmit}>
         <div className="row">
+          {console.log(currentUser.photo)}
+          <img className="userPhoto" src={user.photo} alt="inch" />
           <input
             className="input"
             name="message"
@@ -77,6 +79,7 @@ const AddComment = props => {
                 })
                 .map((oldMessage, i) => (
                   <li className="listMessage" key={i}>
+                    <span>{oldMessage.user.name}</span>
                     <span className="message">
                       <img
                         className="userPhoto"
