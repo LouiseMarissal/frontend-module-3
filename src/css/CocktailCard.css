@@ -76,8 +76,8 @@ ul {
 /* Style the back side */
 .flip-card-back {
   padding: 2%;
-  background-image: url(./../images/test4.jpg);
-  color: black(102, 102, 102);
+  background: black;
+  color: white;
   transform: rotateY(180deg);
   display: flex;
   align-items: center;
@@ -141,4 +141,12 @@ ul {
 
 .likeCounter {
   padding-left: 10px;
+}
+
+.tagContainer {
+  width: 100%;
+}
+
+.tagDisplay {
+  background-color: orange;
 }
