@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import APIHandler from "./../../api/APIHandler";
 
-export default function Login() {
+export default function Login(props) {
   const [formValues, setFormValues] = useState({});
 
   useEffect(() => {
@@ -21,11 +21,13 @@ export default function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/auth-routes/signin", {
-        formValues
+    APIHandler.post(process.env.REACT_APP_BACKEND_URL + "/auth-routes/signin", {
+      formValues
+    })
+      .then(dbRes => {
+        console.log(dbRes);
+        props.history.push("/profile/" + dbRes.data._id);
       })
-      .then(dbRes => console.log("login succesfull"))
       .catch(err => console.log(err));
   };
 

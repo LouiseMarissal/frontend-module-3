@@ -14,11 +14,11 @@
 }
 
 .commentaires {
-  margin-left: auto;
-  margin-right: auto;
   color: rgb(179, 178, 178);
   border: solid 1px black;
   padding: 50px 50px 0px 40px;
+  width: 83%;
+  margin-left: 6%;
 }
 
 .listMessage {
@@ -27,4 +27,8 @@
 
 .input {
   margin-right: 30px;
+}
+
+.message {
+  display: flex;
 }
