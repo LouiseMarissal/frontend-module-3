@@ -1,4 +1,5 @@
-.btn {
+.btnSubmitMessage {
+  margin-top: 15px;
   color: #494949 !important;
   background: #ffffff;
   border: 2px solid #494949 !important;
@@ -6,36 +7,90 @@
   height: 40px;
 }
 
-.btn:hover {
+.btnSubmitMessage:hover {
   color: #ffffff !important;
   background: #f6b93b;
   border-color: #f6b93b !important;
   transition: all 0.4s ease 0s;
 }
 
-.commentaires {
-  color: rgb(179, 178, 178);
-  border: solid 1px black;
-  padding: 50px 50px 0px 40px;
+.noMessageYet {
+  color: black;
+}
+
+.imageAndInputContainer {
+  background: orange;
+  padding: 1em;
+  border-radius: 20px;
   width: 100%;
-  margin-left: 6%;
-}
-
-.listMessage {
-  list-style: none;
-}
-
-.fullUser {
   display: flex;
 }
 
-.input {
-  margin-right: 30px;
+.inputComment {
+  width: 100%;
+  border: none;
+  height: 100px;
+  resize: none;
+  box-sizing: border-box;
+  resize: none;
+  font-size: 1.2em;
+  background: orange;
+  color: white;
+}
+
+.newComment {
+  width: 25%;
+  margin-left: 1%;
+  overflow: scroll;
+}
+
+.comments {
+  color: white;
+  /* border: solid 1px black; */
+  /* padding: 50px 50px 0px 40px; */
+  width: 100% !important;
+  /* margin-left: 6%; */
+  display: flex !important;
+}
+
+.oneComment {
+  width: 100%;
+}
+
+.formComment {
+  width: 100% !important;
+}
+
+.listMessage {
+  width: 100% !important;
+  list-style: none;
+  background: black;
+  padding: 30px;
+  padding-top: 10px;
+  border-radius: 20px;
+  margin-top: 5%;
+}
+
+.nameAndPictureContainer {
+  display: flex;
+  align-items: flex-end;
+}
+
+.fullUser {
+  color: white;
+  font-size: 1.5em;
+  font-family: "Baloo Bhai", cursive !important;
 }
 
 .message {
   display: grid;
-  grid-template-columns: auto
+  grid-template-columns: auto;
+  width: 100%;
+}
+
+.contentMessage {
+  text-align: start;
+  font-size: 1.2em;
 }
 
 .userPhoto {

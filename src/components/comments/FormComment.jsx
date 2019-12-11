@@ -59,32 +59,37 @@ const AddComment = props => {
   }
 
   return (
-    <div className="commentaire">
+    <div className="newComment">
       {console.log(currentUser)}
       <form className="formComment" onSubmit={handleSubmit}>
         {currentUser ? (
-          <div className="row">
-            <img className="userPhoto" src={user.photo} alt="inch" />
-            <input
-              className="input"
-              name="message"
-              id="message"
-              placeholder="leave a comment here..."
-              onChange={handleChange}
-            ></input>
-            <button className="btn">comment!</button>
-          </div>
+          <>
+            <div className="imageAndInputContainer">
+              <img className="userPhoto" src={user.photo} alt="inch" />
+              <textarea
+                className="inputComment"
+                name="message"
+                id="message"
+                placeholder="leave a comment here..."
+                maxLength="300"
+                size="10"
+                required
+                onChange={handleChange}
+              ></textarea>
+            </div>
+            <button className="btnSubmitMessage">comment!</button>
+          </>
         ) : (
           <NavLink className="link" to="/Signup">
             SignUp to comment !
           </NavLink>
         )}
         <br />
-        <div className="commentaires">
+        <div className="comments">
           {!Boolean(oldMessages.length) ? (
-            <p>No message yet</p>
+            <p className="noMessageYet">No message yet</p>
           ) : (
-            <div>
+            <div className="oneComment">
               {oldMessages
                 .sort((a, b) => {
                   if (a.created > b.created) return -1;
@@ -93,13 +98,15 @@ const AddComment = props => {
                 .map((oldMessage, i) => (
                   <li className="listMessage" key={i}>
                     <div className="message">
-                      <img
-                        className="userPhoto"
-                        src={oldMessage.user.photo}
-                        alt="inch"
-                      />
-                      <div className="fullUser">
-                        <span>{oldMessage.user.name}</span>
+                      <div className="nameAndPictureContainer">
+                        <img
+                          className="userPhoto"
+                          src={oldMessage.user.photo}
+                          alt="inch"
+                        />
+                        <div className="fullUser">
+                          <span>{oldMessage.user.name}</span>
+                        </div>
                       </div>
                       <span className="dateMessage">
                         le {oldMessage.created.substr(0, 10)} à{" "}
