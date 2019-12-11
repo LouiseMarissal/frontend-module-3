@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./../../css/FormComment.css";
 import UserContext from "../../auth/UserContext";
+import { link } from "fs";
+import { NavLink } from "react-router-dom";
 
 const AddComment = props => {
   const [message, setMessage] = useState({});
@@ -17,7 +19,6 @@ const AddComment = props => {
           props.CocktailId
       )
       .then(dbRes => {
-        console.log(dbRes);
         if (dbRes.data.length) {
           setOldMessages(dbRes.data);
         }
@@ -53,19 +54,25 @@ const AddComment = props => {
 
   return (
     <div className="commentaire">
+      {console.log(currentUser)}
       <form className="formComment" onSubmit={handleSubmit}>
-        <div className="row">
-          {console.log(currentUser.photo)}
-          <img className="userPhoto" src={user.photo} alt="inch" />
-          <input
-            className="input"
-            name="message"
-            id="message"
-            placeholder="leave a comment here..."
-            onChange={handleChange}
-          ></input>
-          <button className="btn">comment!</button>
-        </div>
+        {currentUser ? (
+          <div className="row">
+            <img className="userPhoto" src={user.photo} alt="inch" />
+            <input
+              className="input"
+              name="message"
+              id="message"
+              placeholder="leave a comment here..."
+              onChange={handleChange}
+            ></input>
+            <button className="btn">comment!</button>
+          </div>
+        ) : (
+          <NavLink className="link" to="/Signup">
+            SignUp to comment !
+          </NavLink>
+        )}
         <br />
         <div className="commentaires">
           {!Boolean(oldMessages.length) ? (

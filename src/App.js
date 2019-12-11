@@ -20,7 +20,7 @@ import { ProtectedRoute } from "./auth/ProtectedRoute";
 
 function App(props) {
   const { isLoading } = useAuth();
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
 
   // MANDATORY TO GET/SET currentUser according to server response
   // check src/auth/UserContext
