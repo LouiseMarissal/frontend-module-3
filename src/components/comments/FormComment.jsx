@@ -21,10 +21,15 @@ const AddComment = props => {
       .then(dbRes => {
         if (dbRes.data.length) {
           setOldMessages(dbRes.data);
-          Setuser({ photo: currentUser.photo, name: currentUser.name });
         }
       })
       .catch(err => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      Setuser({ photo: currentUser.photo, name: currentUser.name });
+    }
   }, []);
 
   const handleChange = e => {

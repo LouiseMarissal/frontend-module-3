@@ -60,7 +60,8 @@ const LikeCocktail = ({ likedCocktail, clbk, cocktailsFav }) => {
           <i
             className="fas fa-glass-cheers"
             onClick={() => clbk(likedCocktail._id)}
-          ></i>
+          ></i>{" "}
+          <span>{likedCocktail.Like}</span>
           <Dropdown.Menu>
             <Dropdown.Item href={`/one-cocktail/${likedCocktail._id}`}>
               Show Recipe
