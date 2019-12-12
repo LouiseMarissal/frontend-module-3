@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./../../css/FormComment.css";
-import UserContext from "../../auth/UserContext";
 import { link } from "fs";
 import { NavLink } from "react-router-dom";
-
+import { useAuth } from "../../auth/useAuth";
 const AddComment = props => {
+  const { isLoading, currentUser } = useAuth();
   const [message, setMessage] = useState({});
   const [oldMessages, setOldMessages] = useState([]);
-  const { currentUser } = useContext(UserContext);
+
   const [user, Setuser] = useState({});
 
   useEffect(() => {
