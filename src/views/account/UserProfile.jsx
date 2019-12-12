@@ -1,29 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./../../css/AddCocktail.scss";
 import UserCocktailCard from "./../../components/cocktails/UserCocktailCard";
 import axios from "axios";
 import "./../../css/UserProfile.scss";
 import { Link } from "react-router-dom";
 import LikeCocktail from "../../components/cocktails/LikeCocktail";
-
+import UserContext from "../../auth/UserContext";
 const UserProfile = props => {
+  const { currentUser } = useContext(UserContext);
   const [userCocktails, setUserCocktails] = useState([]);
   const [user, setUser] = useState({});
   const [cocktails, setCocktails] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const userData = useRef();
 
+  console.log("User Profile", currentUser);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
+    const copy = favorites.filter(f => f._id !== id);
+    setFavorites(copy);
+    console.log(copy);
     axios
       .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
         cocktails
       })
       .then(dbRes => {
-        const copy = favorites.filter(f => f._id !== id);
-        setFavorites(copy);
-        console.log(copy);
+        console.log(dbRes);
       })
       .catch(dbErr => {
         console.log(dbErr);

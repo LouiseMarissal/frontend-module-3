@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./../../css/CocktailCard.css";
+import UserContext from "./../../auth/UserContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
   const [like, setLike] = useState([]);
-
+  const { currentUser } = useContext(UserContext);
   // const loadUserFavs = () => {
   //   console.log(process.env.REACT_APP_BACKEND_URL + "/cocktail/userFav");
   //   axios
@@ -123,7 +124,7 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
                 )}
               </div>
               <div className="likeContainer">
-                {isUser ? (
+                {currentUser ? (
                   <i
                     className="fas fa-glass-cheers cheers"
                     id={cocktail._id}

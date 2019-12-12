@@ -94,7 +94,7 @@ const EditCocktail = props => {
       )
       .then(res => {
         console.log(res);
-        props.history.push("/profile/5dee1baa0c0f7a1fcdef5f9a");
+        props.history.push("/profile/" + props.match.params.id);
       })
       .catch(err => console.log(err));
   };
