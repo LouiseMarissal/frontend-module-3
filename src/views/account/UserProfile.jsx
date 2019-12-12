@@ -10,12 +10,12 @@ import { useAuth } from "../../auth/useAuth";
 const UserProfile = props => {
   const { isLoading, currentUser } = useAuth();
   const [userCocktails, setUserCocktails] = useState([]);
-  console.log("user", currentUser);
   const [favorites, setFavorites] = useState([]);
+
+  console.log("current user -----", currentUser);
 
   // Unlike the cocktail
   const handleUnlike = id => {
-    console.log("id cocktail", id);
     const copy = favorites.filter(f => f._id !== id);
     setFavorites(copy);
     console.log(copy);
@@ -24,6 +24,7 @@ const UserProfile = props => {
         withCredentials: true
       })
       .then(dbRes => {
+        setFavorites(dbRes);
         console.log(dbRes);
       })
       .catch(dbErr => {
@@ -65,9 +66,6 @@ const UserProfile = props => {
         console.log(err);
       });
   };
-
-  console.log("userFavorites", favorites);
-  console.log("currentUser", currentUser);
 
   if (isLoading || !currentUser) return null;
 
@@ -122,10 +120,10 @@ const UserProfile = props => {
       <div>
         <h5>My Favorites Cocktails</h5>
         <div className="user-cocktail-list">
-          {favorites.length === 0 ? (
+          {currentUser.favorites.length === 0 ? (
             <p>You don't have any favorites yet !</p>
           ) : (
-            favorites.map((f, i) => (
+            currentUser.favorites.map((f, i) => (
               <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
             ))
           )}

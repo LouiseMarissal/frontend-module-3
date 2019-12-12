@@ -7,6 +7,7 @@ const LikeCocktail = ({ likedCocktail, clbk, cocktailsFav }) => {
   //   const [userCocktail, setUserCocktails] = useState([]);
   const [cocktails, setCocktails] = useState([]);
   const [like, setLike] = useState([]);
+
   useEffect(() => {
     // console.log(cocktailsFav);
     if (cocktailsFav) {
