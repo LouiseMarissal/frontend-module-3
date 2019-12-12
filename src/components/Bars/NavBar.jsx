@@ -25,14 +25,14 @@ export default withRouter(function NavBar(props) {
           <NavLink className="link" to="/Login">
             Login
           </NavLink>
-          <NavLink className="link" to="/Signup">
+          {/* <NavLink className="link" to="/Signup">
             SignUp
-          </NavLink>
+          </NavLink> */}
         </div>
       ) : (
         <div className="sideLinkContainer">
           <NavLink className="link" to={`/profile/` + props.user._id}>
-            Profile
+            <img className="userProfilePicture" src={props.user.photo} />
           </NavLink>
           <div className="link" to="/logout" onClick={handleSignout}>
             <i className="fas fa-sign-out-alt"></i>
