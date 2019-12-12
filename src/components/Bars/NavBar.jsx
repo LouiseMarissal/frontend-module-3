@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import UserContext from "./../../auth/UserContext";
@@ -6,14 +6,18 @@ import APIHandler from "./../../api/APIHandler";
 
 export default withRouter(function NavBar(props) {
   let { currentUser, setCurrentUser } = useContext(UserContext);
+
   const handleSignout = () =>
     APIHandler.post("auth-routes/logout").finally(() => {
       setCurrentUser(null);
       props.history.push("/");
     });
 
+  const cssStatus =
+    props.location.pathname === "/" ? "nav-bar white" : "nav-bar regular";
+
   return (
-    <nav className="nav-bar black" id="navBar">
+    <nav className={`nav-bar ${cssStatus}`} id="navBar">
       <NavLink className="link" to="/">
         <div className="home-nav">
           <span className="mixo">MIXO</span>
@@ -32,7 +36,11 @@ export default withRouter(function NavBar(props) {
       ) : (
         <div className="sideLinkContainer">
           <NavLink className="link" to={`/profile/` + props.user._id}>
-            <img className="userProfilePicture" src={props.user.photo} />
+            <img
+              className="userProfilePicture"
+              src={props.user.photo}
+              alt="your profile avatar"
+            />
           </NavLink>
           <div className="link" to="/logout" onClick={handleSignout}>
             <i className="fas fa-sign-out-alt"></i>
