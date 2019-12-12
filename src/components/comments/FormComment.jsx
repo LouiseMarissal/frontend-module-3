@@ -81,18 +81,20 @@ const AddComment = props => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <button className="btnSubmitMessage">comment!</button>
+            <button className="btnSubmitMessage">comment !</button>
           </>
         ) : (
-          <NavLink
-            className="link-formComment"
-            style={{
-              textDecoration: "none"
-            }}
-            to="/Signup"
-          >
-            SignUp to comment !
-          </NavLink>
+          <button className="btn-formComment">
+            <NavLink
+              className="link-formComment"
+              style={{
+                textDecoration: "none"
+              }}
+              to="/Signup"
+            >
+              SignUp to comment !
+            </NavLink>
+          </button>
         )}
         <br />
         <div className="comments">

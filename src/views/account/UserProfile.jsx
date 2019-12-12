@@ -10,20 +10,39 @@ import { useAuth } from "../../auth/useAuth";
 const UserProfile = props => {
   const { isLoading, currentUser } = useAuth();
   const [userCocktails, setUserCocktails] = useState([]);
-  console.log("user", currentUser);
   const [favorites, setFavorites] = useState([]);
+
+  // call user cokctail favorites
+  useEffect(id => {
+    axios
+      .get(
+        process.env.REACT_APP_BACKEND_URL +
+          "/userProfile/" +
+          props.match.params.id,
+        {
+          withCredentials: true
+        }
+      )
+      .then(dbRes => {
+        setFavorites(dbRes.data.favorites);
+        // console.log(dbRes.data.favorites);
+      })
+      .catch(dbErr => {
+        console.log(dbErr);
+      });
+  }, []);
 
   // Unlike the cocktail
   const handleUnlike = id => {
-    console.log("id cocktail", id);
     const copy = favorites.filter(f => f._id !== id);
     setFavorites(copy);
-    console.log(copy);
+    // console.log(copy);
     axios
       .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
         withCredentials: true
       })
       .then(dbRes => {
+        setFavorites(dbRes);
         console.log(dbRes);
       })
       .catch(dbErr => {
@@ -66,8 +85,7 @@ const UserProfile = props => {
       });
   };
 
-  console.log("userFavorites", favorites);
-  console.log("currentUser", currentUser);
+  console.log(favorites);
 
   if (isLoading || !currentUser) return null;
 
@@ -167,7 +185,7 @@ const UserProfile = props => {
       <div>
         <h5>My Favorites Cocktails</h5>
         <div className="user-cocktail-list">
-          {favorites.length === 0 ? (
+          {currentUser.favorites.length === 0 ? (
             <p>You don't have any favorites yet !</p>
           ) : (
             favorites.map((f, i) => (

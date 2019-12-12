@@ -1,4 +1,4 @@
-.btnSubmitMessage {
+/* .btnSubmitMessage {
   margin-top: 15px;
   color: #494949 !important;
   background: #ffffff;
@@ -12,15 +12,12 @@
   background: #f6b93b;
   border-color: #f6b93b !important;
   transition: all 0.4s ease 0s;
-}
+} */
 
-.noMessageYet {
-  color: black;
-}
 
 .imageAndInputContainer {
   background: white;
-  padding: 1em;
+  padding: 1em 1em 1em 0;
   border-radius: 20px;
   width: 100%;
   display: flex;
@@ -104,7 +101,7 @@
 }
 
 .link-formComment {
-  color: black;
+  color: white;
   cursor: pointer;
 }
 
@@ -116,4 +113,36 @@
 .userName {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+}
+
+.noMessageYet {
+  margin: auto;
+  margin-top: 30px;
+}
+
+.btn-formComment {
+  display: block;
+  background: #ffb200;
+  padding: 9px 40px;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  margin: auto;
+  margin-top: 12%;
+}
+
+.btnSubmitMessage {
+  display: block;
+  background: #ffb200;
+  padding: 9px 40px;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.btnSubmitMessage:hover {
+  color: black;
 }
