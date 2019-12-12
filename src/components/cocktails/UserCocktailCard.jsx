@@ -9,7 +9,9 @@ const UserCocktailCard = ({ userCocktails, props }) => {
 
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + "/cocktail")
+      .get(process.env.REACT_APP_BACKEND_URL + "/cocktail", {
+        withCredentials: true
+      })
       .then(res => {
         setCocktails(res.data);
       })
