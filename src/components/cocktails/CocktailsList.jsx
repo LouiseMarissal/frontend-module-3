@@ -1,7 +1,7 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense } from "react";
 import {} from "react";
 
-const CocktailCard = React.lazy(() => import("./CocktailCard"));
+import CocktailCard from "./CocktailCard";
 const List = ({ cocktails, cocktailsFav }) => {
   return (
     <div className="fullcocktail">
