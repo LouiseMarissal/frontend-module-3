@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
+import { useAuth } from "../../auth/useAuth";
 const EditCocktail = props => {
+  const { isLoading, currentUser } = useAuth();
   const [formValues, setFormValues] = useState({});
   const [cocktail, setCocktail] = useState({});
   const [ingredientsFields, setIngredientsFields] = useState([]);
@@ -24,16 +25,6 @@ const EditCocktail = props => {
         console.log(err);
       });
   }, [props.match.params.id]);
-
-  useEffect(() => {
-    var searchBar = document.getElementById("searchBar");
-    var navBar = document.getElementById("navBar");
-    if (searchBar) {
-      navBar.className = "nav-bar white";
-    } else {
-      navBar.className = "nav-bar regular";
-    }
-  }, []);
 
   // ADD ingredients & Measures in list
   const addIngredientInput = e => {
@@ -90,11 +81,12 @@ const EditCocktail = props => {
         process.env.REACT_APP_BACKEND_URL +
           "/cocktail/profile/edit-cocktail/" +
           props.match.params.id,
-        formData
+        formData,
+        { withCredentials: true }
       )
       .then(res => {
-        console.log(res);
-        props.history.push("/profile/" + props.match.params.id);
+        console.log(currentUser, "currentuser-------");
+        props.history.push("/profile/" + currentUser._id);
       })
       .catch(err => console.log(err));
   };

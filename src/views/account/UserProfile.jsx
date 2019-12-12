@@ -10,7 +10,7 @@ import { useAuth } from "../../auth/useAuth";
 const UserProfile = props => {
   const { isLoading, currentUser } = useAuth();
   const [userCocktails, setUserCocktails] = useState([]);
-
+  console.log("user", currentUser);
   const [favorites, setFavorites] = useState([]);
 
   // console.log("User Profile id", currentUser._id);
@@ -21,7 +21,9 @@ const UserProfile = props => {
     setFavorites(copy);
     console.log(copy);
     axios
-      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id)
+      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
+        withCredentials: true
+      })
       .then(dbRes => {
         console.log(dbRes);
       })
@@ -42,6 +44,7 @@ const UserProfile = props => {
         }
       )
       .then(dbRes => {
+        console.log(dbRes.data);
         setUserCocktails(dbRes.data);
       })
       .catch(err => {
@@ -52,7 +55,9 @@ const UserProfile = props => {
   // Delete userPro cocktail
   const handleDelete = id => {
     axios
-      .delete(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id)
+      .delete(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id, {
+        withCredentials: true
+      })
       .then(res => {
         const copy = userCocktails.filter(c => c._id !== id);
         setUserCocktails(copy);
