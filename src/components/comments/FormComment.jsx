@@ -81,7 +81,7 @@ const AddComment = props => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <button className="btnSubmitMessage">comment!</button>
+            <button className="btnSubmitMessage">comment !</button>
           </>
         ) : (
           <button className="btn-formComment">
