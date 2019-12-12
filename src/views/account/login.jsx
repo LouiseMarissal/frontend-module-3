@@ -35,9 +35,9 @@ export default function Login(props) {
   };
 
   return (
-    <div>
+    <div className="signin-form-container">
       <form className="form" onChange={handleChange} onSubmit={handleSubmit}>
-        <h1>Nice to see you back !</h1>
+        <h1 className="login-title">Nice to see you back !</h1>
         <input className="input" name="email" placeholder="example@email.fr" />
         <input
           className="input"
@@ -45,8 +45,14 @@ export default function Login(props) {
           type="password"
           placeholder="*****"
         />
-        <button>Submit</button>
-        <NavLink className="link" to="/Signup">
+        <button className="login-btn">Submit</button>
+        <NavLink
+          className="link-login"
+          style={{
+            textDecoration: "none"
+          }}
+          to="/Signup"
+        >
           No account yet ? Signup !
         </NavLink>
       </form>
