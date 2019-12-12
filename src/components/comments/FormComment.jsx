@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import "./../../css/FormComment.css";
 import UserContext from "../../auth/UserContext";
-import { link } from "fs";
 import { NavLink } from "react-router-dom";
 
 const AddComment = props => {
@@ -10,6 +9,7 @@ const AddComment = props => {
   const [oldMessages, setOldMessages] = useState([]);
   const { currentUser } = useContext(UserContext);
   const [user, Setuser] = useState({});
+  const inputComment = useRef();
 
   useEffect(() => {
     axios
@@ -35,6 +35,7 @@ const AddComment = props => {
   const handleChange = e => {
     setMessage({ ...message, [e.target.name]: e.target.value });
     Setuser({ photo: currentUser.photo, name: currentUser.name });
+    console.log(message);
   };
 
   const handleSubmit = e => {
@@ -52,6 +53,7 @@ const AddComment = props => {
       })
       .then(res => {
         setOldMessages([...oldMessages, res.data]);
+        inputComment.current.value = "";
       })
       .catch(err => {
         console.log(err);
@@ -60,7 +62,7 @@ const AddComment = props => {
 
   return (
     <div className="newComment">
-      {console.log(currentUser)}
+      {console.log(message)}
       <form className="formComment" onSubmit={handleSubmit}>
         {currentUser ? (
           <>
@@ -69,6 +71,7 @@ const AddComment = props => {
               <textarea
                 className="inputComment"
                 name="message"
+                ref={inputComment}
                 id="message"
                 placeholder="leave a comment here..."
                 maxLength="300"
@@ -111,7 +114,9 @@ const AddComment = props => {
                           alt="inch"
                         />
                         <div className="fullUser">
-                          <span>{oldMessage.user.name}</span>
+                          <span className="userName">
+                            {oldMessage.user.name}
+                          </span>
                         </div>
                       </div>
                       <span className="dateMessage">
