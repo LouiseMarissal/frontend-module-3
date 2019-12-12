@@ -14,7 +14,7 @@ const UserProfile = props => {
   const [favorites, setFavorites] = useState([]);
   const userData = useRef();
 
-  console.log("User Profile id", currentUser._id);
+  // console.log("User Profile id", currentUser._id);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
@@ -36,9 +36,7 @@ const UserProfile = props => {
   useEffect(() => {
     axios
       .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/userProfile/" +
-          props.match.params.id
+        process.env.REACT_APP_BACKEND_URL + "/userProfile/" + currentUser._id
       )
       .then(res => {
         setFavorites(res.data.favorites);
