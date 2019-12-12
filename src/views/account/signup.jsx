@@ -60,9 +60,13 @@ const Signup = props => {
     console.log(formValues);
   };
   return (
-    <div>
-      <form className="form" onSubmit={handleSubmit} onChange={handleChange}>
-        <h1>Register</h1>
+    <div className="signup-form-container">
+      <form
+        className="Signup-form"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+      >
+        <h1 className="registertitle">Register</h1>
         <input
           className="input"
           name="firstName"
@@ -84,10 +88,15 @@ const Signup = props => {
           placeholder="******"
           required
         />
-        <input name="photo" id="photo" type="file" />
+        <input className="input" name="photo" id="photo" type="file" />
         {/* mettre un ternary ici pour afficher le reste du forme au click du "isPro" */}
-        <label htmlFor="isPro">I am a real pro fullStack bartender</label>
-        <input type="checkbox" id="isPro" onClick={handleClick} />
+        <label htmlFor="isPro">I am a professional</label>
+        <input
+          className="input-isPro"
+          type="checkbox"
+          id="isPro"
+          onClick={handleClick}
+        />
         {formProDisplay ? (
           <>
             <input
@@ -105,7 +114,7 @@ const Signup = props => {
         ) : (
           ""
         )}
-        <button className="btn">Submit</button>
+        <button className="btn-register">Submit</button>
       </form>
     </div>
   );
