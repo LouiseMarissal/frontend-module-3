@@ -79,7 +79,6 @@ export default function Home() {
     var offset = window.innerHeight + e.target.scrollTop;
     var height = e.target.scrollHeight;
     const copy = [...queryFiltered];
-    console.log("coucou", currentUser);
     handleScrollSearchBar(e);
     if (offset > height - 1) {
       if (isAlcoholic === true) {
