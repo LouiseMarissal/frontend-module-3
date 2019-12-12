@@ -131,11 +131,7 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
                     onClick={handleClickLike}
                   ></i>
                 ) : (
-                  <Link
-                    style={{ color: "white" }}
-                    className="link"
-                    to="/Signup"
-                  >
+                  <Link style={{ color: "white" }} className="link" to="/login">
                     <i
                       className="fas fa-glass-cheers cheers"
                       id={cocktail._id}

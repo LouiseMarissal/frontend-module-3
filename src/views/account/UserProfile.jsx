@@ -14,7 +14,7 @@ const UserProfile = props => {
   const [favorites, setFavorites] = useState([]);
   const userData = useRef();
 
-  console.log("User Profile", currentUser);
+  console.log("User Profile id", currentUser._id);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
@@ -106,7 +106,7 @@ const UserProfile = props => {
     }
   }, []);
   console.log(favorites);
-  return (
+  return currentUser.isPro ? (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
         <div className="userCardContainer">
@@ -166,6 +166,37 @@ const UserProfile = props => {
               <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
             ))
           )}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div>
+      <div className="user">
+        <img
+          ref={userData}
+          src={user.photo}
+          alt={user.firstName}
+          className="UserPhotoProfile"
+        />
+
+        <div>
+          <div>
+            <h3>Hello {user.firstName}!</h3>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h5>My Favorites Cocktails</h5>
+          <div className="user-cocktail-list">
+            {favorites.length === 0 ? (
+              <p>You don't have any favorites yet !</p>
+            ) : (
+              favorites.map((f, i) => (
+                <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>

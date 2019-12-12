@@ -128,7 +128,7 @@ const AddCoktail = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
       .then(res => {
-        console.log(props.match.params.id);
+        console.log("POST COCKTAIL", currentUser._id);
         props.history.push("/profile/" + currentUser._id);
       })
       .catch(err => {
