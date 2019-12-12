@@ -14,7 +14,6 @@ const UserProfile = props => {
   const [favorites, setFavorites] = useState([]);
   const userData = useRef();
 
-  console.log("User Profile id", currentUser._id);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
