@@ -70,7 +70,9 @@ export default function OneCocktail(props) {
         </div> */}
 
           <div className="cocktailDisplay">
-            <div className="title">{cocktail.Name}</div>
+            <div className="titleContainer">
+              <div className="title">{cocktail.Name}</div>
+            </div>
             <div className="fullDetails">
               <div className="infosContainer">
                 <div className="imageAndIngredientContainer">

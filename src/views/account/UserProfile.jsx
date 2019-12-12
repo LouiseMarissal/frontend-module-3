@@ -35,9 +35,7 @@ const UserProfile = props => {
   useEffect(() => {
     axios
       .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/userProfile/" +
-          props.match.params.id
+        process.env.REACT_APP_BACKEND_URL + "/userProfile/" + currentUser._id
       )
       .then(res => {
         setFavorites(res.data.favorites);
@@ -130,6 +128,9 @@ const UserProfile = props => {
               </div>
               <div>
                 <h3>Hello {user.firstName}!</h3>
+                <h6>
+                  {user.companyName}: {user.barName}
+                </h6>
               </div>
             </div>
           </div>
@@ -178,9 +179,6 @@ const UserProfile = props => {
         <div>
           <div>
             <h3>Hello {user.firstName}!</h3>
-            <h6>
-              {user.companyName}: {user.barName}
-            </h6>
           </div>
         </div>
       </div>

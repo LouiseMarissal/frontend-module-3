@@ -25,8 +25,8 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
   // };
 
   useEffect(() => {
-    // console.log(cocktailsFav);
-    if (cocktailsFav) {
+    console.log(cocktailsFav);
+    if (cocktailsFav.length > 0) {
       cocktailsFav.map((cocktailFav, i) => {
         var thisCocktailId = cocktail._id;
         var cocktailId = document.getElementById(thisCocktailId);

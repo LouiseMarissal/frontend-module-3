@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #faf0e1;
+  background:white;
   min-height: 100vh;
 }
 
@@ -39,7 +39,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #faf0e1 inset !important;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 .page-container {

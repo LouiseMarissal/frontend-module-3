@@ -3,7 +3,7 @@ li {
 }
 
 .cocktailView {
-  background: #FAF0E1;
+  background: white;
   padding-top: 50px;
   display: flex;
   height: 100vh;
@@ -25,7 +25,9 @@ li {
     }
 
     .fullDetails {
-      background: url("../images/test4.jpg");
+      background: #39393B;
+      // background: url("../images/test7.jpg");
+      // background-size: cover;
       // box-shadow: 5px 5px 3px 0px grey;
       margin: 5%;
       padding: 5%;
@@ -63,7 +65,6 @@ li {
               background-size: cover !important;
               background-position: center !important;
               width: 23vw !important;
-              // box-shadow: 5px 5px 3px 0px grey;
             }
           }
 
