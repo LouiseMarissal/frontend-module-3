@@ -3,14 +3,18 @@ import "./../../css/CocktailCard.css";
 import UserContext from "./../../auth/UserContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../auth/useAuth";
 
-export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
+export default function CocktailCard({ cocktail, cocktailsFav }) {
   const [like, setLike] = useState([]);
   const { currentUser } = useContext(UserContext);
+
   // const loadUserFavs = () => {
-  //   console.log(process.env.REACT_APP_BACKEND_URL + "/cocktail/userFav");
+  //   // console.log(process.env.REACT_APP_BACKEND_URL + "/cocktail/userFav");
   //   axios
-  //     .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/userFav")
+  //     .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/userFav", {
+  //       withCredentials: true
+  //     })
   //     .then(dbRes => {
   //       const fav = dbRes;
   //       fav.map((id, i) => {
@@ -25,12 +29,15 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
   // };
 
   useEffect(() => {
-    console.log(cocktailsFav);
     if (cocktailsFav.length > 0) {
       cocktailsFav.map((cocktailFav, i) => {
+        console.log("cocktailFav", cocktailsFav);
         var thisCocktailId = cocktail._id;
+        console.log("thiscocktailID", thisCocktailId);
         var cocktailId = document.getElementById(thisCocktailId);
+        console.log("cocktailId", cocktailId);
         var cocktailFavId = cocktailFav._id;
+        console.log("cocktailFavId", cocktailFavId);
         // console.log(thisCocktailId + "and" + cocktailFavId);
         if (
           thisCocktailId === cocktailFavId &&
@@ -59,9 +66,15 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
   const addLike = id => {
     let newValue = 0;
     axios
-      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/addLike/" + id, {
-        cocktail
-      })
+      .patch(
+        process.env.REACT_APP_BACKEND_URL + "/cocktail/addLike/" + id,
+        {
+          cocktail
+        },
+        {
+          withCredentials: true
+        }
+      )
       .then(dbRes => {
         newValue = dbRes.data.Like;
         setLike(newValue);
@@ -72,9 +85,15 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
   const removeLike = id => {
     let newValue = 0;
     axios
-      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
-        cocktail
-      })
+      .patch(
+        process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id,
+        {
+          cocktail
+        },
+        {
+          withCredentials: true
+        }
+      )
       .then(dbRes => {
         newValue = dbRes.data.Like;
         setLike(newValue);
