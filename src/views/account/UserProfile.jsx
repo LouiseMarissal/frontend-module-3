@@ -12,13 +12,31 @@ const UserProfile = props => {
   const [userCocktails, setUserCocktails] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
-  console.log("current user -----", currentUser);
+  // call user cokctail favorites
+  useEffect(id => {
+    axios
+      .get(
+        process.env.REACT_APP_BACKEND_URL +
+          "/userProfile/" +
+          props.match.params.id,
+        {
+          withCredentials: true
+        }
+      )
+      .then(dbRes => {
+        setFavorites(dbRes.data.favorites);
+        // console.log(dbRes.data.favorites);
+      })
+      .catch(dbErr => {
+        console.log(dbErr);
+      });
+  }, []);
 
   // Unlike the cocktail
   const handleUnlike = id => {
     const copy = favorites.filter(f => f._id !== id);
     setFavorites(copy);
-    console.log(copy);
+    // console.log(copy);
     axios
       .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
         withCredentials: true
@@ -55,7 +73,7 @@ const UserProfile = props => {
   // Delete userPro cocktail
   const handleDelete = id => {
     axios
-      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id, {
+      .delete(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id, {
         withCredentials: true
       })
       .then(res => {
@@ -66,6 +84,8 @@ const UserProfile = props => {
         console.log(err);
       });
   };
+
+  console.log(favorites);
 
   if (isLoading || !currentUser) return null;
 
@@ -120,10 +140,10 @@ const UserProfile = props => {
       <div>
         <h5>My Favorites Cocktails</h5>
         <div className="user-cocktail-list">
-          {currentUser.favorites.length === 0 ? (
+          {favorites.length === 0 ? (
             <p>You don't have any favorites yet !</p>
           ) : (
-            currentUser.favorites.map((f, i) => (
+            favorites.map((f, i) => (
               <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
             ))
           )}
@@ -165,7 +185,7 @@ const UserProfile = props => {
       <div>
         <h5>My Favorites Cocktails</h5>
         <div className="user-cocktail-list">
-          {favorites.length === 0 ? (
+          {currentUser.favorites.length === 0 ? (
             <p>You don't have any favorites yet !</p>
           ) : (
             favorites.map((f, i) => (
