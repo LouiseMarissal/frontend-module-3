@@ -5,64 +5,31 @@ import axios from "axios";
 import "./../../css/UserProfile.scss";
 import { Link } from "react-router-dom";
 import LikeCocktail from "../../components/cocktails/LikeCocktail";
-import UserContext from "../../auth/UserContext";
-const UserProfile = props => {
-  const { currentUser } = useContext(UserContext);
-  const [userCocktails, setUserCocktails] = useState([]);
-  const [user, setUser] = useState({});
-  const [cocktails, setCocktails] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const userData = useRef();
+import { useAuth } from "../../auth/useAuth";
 
-  console.log("User Profile id", currentUser._id);
+const UserProfile = props => {
+  const { isLoading, currentUser } = useAuth();
+  const [userCocktails, setUserCocktails] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  // console.log("User Profile id", currentUser._id);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
-    const copy = favorites.filter(f => f._id !== id);
-    setFavorites(copy);
-    console.log(copy);
-    axios
-      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
-        cocktails
-      })
-      .then(dbRes => {
-        console.log(dbRes);
-      })
-      .catch(dbErr => {
-        console.log(dbErr);
-      });
+    // const copy = favorites.filter(f => f._id !== id);
+    // setFavorites(copy);
+    // console.log(copy);
+    // axios
+    //   .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
+    //     cocktails
+    //   })
+    //   .then(dbRes => {
+    //     console.log(dbRes);
+    //   })
+    //   .catch(dbErr => {
+    //     console.log(dbErr);
+    //   });
   };
-  // get UserProfile infos
-  useEffect(() => {
-    axios
-      .get(
-        process.env.REACT_APP_BACKEND_URL +
-          "/userProfile/" +
-          props.match.params.id
-      )
-      .then(res => {
-        setFavorites(res.data.favorites);
-        setUser(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
-  // update state of cocktail
-  useEffect(id => {
-    axios
-      .get(
-        process.env.REACT_APP_BACKEND_URL + "/cocktail/" + props.match.params.id
-      )
-      .then(res => {
-        const copy = cocktails.filter(c => c._id !== id);
-        setCocktails(copy);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
 
   // get userID to match with cocktails
   useEffect(() => {
@@ -96,16 +63,11 @@ const UserProfile = props => {
       });
   };
 
-  useEffect(() => {
-    var searchBar = document.getElementById("searchBar");
-    var navBar = document.getElementById("navBar");
-    if (searchBar) {
-      navBar.className = "nav-bar white";
-    } else {
-      navBar.className = "nav-bar regular";
-    }
-  }, []);
-  console.log(favorites);
+  console.log("userFavorites", favorites);
+  console.log("currentUser", currentUser);
+
+  if (isLoading || !currentUser) return null;
+
   return currentUser.isPro ? (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
@@ -114,9 +76,8 @@ const UserProfile = props => {
             <div className="userImage">
               <div className="user">
                 <img
-                  ref={userData}
-                  src={user.photo}
-                  alt={user.firstName}
+                  src={currentUser.photo}
+                  alt={currentUser.firstName}
                   className="UserPhotoProfile"
                 />
 
@@ -130,16 +91,15 @@ const UserProfile = props => {
                 </div>
               </div>
               <div>
-                <h3>Hello {user.firstName}!</h3>
-                <h6>
-                  {user.companyName}: {user.barName}
-                </h6>
+                <h3>Hello {currentUser.firstName}!</h3>
+                <h5>{currentUser.companyName}</h5>
+                <h6>{currentUser.barName}</h6>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div ref={userData}>
+      <div>
         <h5>My Cocktails</h5>
         <div className="user-cocktail-list">
           {userCocktails.length === 0 ? (
@@ -173,15 +133,14 @@ const UserProfile = props => {
     <div>
       <div className="user">
         <img
-          ref={userData}
-          src={user.photo}
-          alt={user.firstName}
+          src={currentUser.photo}
+          alt={currentUser.firstName}
           className="UserPhotoProfile"
         />
 
         <div>
           <div>
-            <h3>Hello {user.firstName}!</h3>
+            <h3>Hello {currentUser.firstName}!</h3>
           </div>
         </div>
       </div>
@@ -203,3 +162,19 @@ const UserProfile = props => {
   );
 };
 export default UserProfile;
+
+// update state of cocktail
+// useEffect(id => {
+//   console.log("icicicicici", id);
+//   axios
+//     .get(
+//       process.env.REACT_APP_BACKEND_URL + "/cocktail/" + props.match.params.id
+//     )
+//     .then(res => {
+//       const copy = cocktails.filter(c => c._id !== id);
+//       setCocktails(copy);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// }, []);
