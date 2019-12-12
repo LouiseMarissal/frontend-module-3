@@ -131,6 +131,9 @@ const UserProfile = props => {
               </div>
               <div>
                 <h3>Hello {user.firstName}!</h3>
+                <h6>
+                  {user.companyName}: {user.barName}
+                </h6>
               </div>
             </div>
           </div>
@@ -179,9 +182,6 @@ const UserProfile = props => {
         <div>
           <div>
             <h3>Hello {user.firstName}!</h3>
-            <h6>
-              {user.companyName}: {user.barName}
-            </h6>
           </div>
         </div>
       </div>

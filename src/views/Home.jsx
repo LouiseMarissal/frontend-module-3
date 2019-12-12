@@ -122,7 +122,7 @@ export default function Home() {
       >
         <div className="bannerHome">
           <div>
-            <h1 className="title">HomePage of Mixology Loveeers</h1>
+            <h1 className="title">Mixology Lovers</h1>
             <h2>The cocktail interface dedicated to Mixology Lovers...</h2>
           </div>
           <span
