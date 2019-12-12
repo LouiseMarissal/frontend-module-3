@@ -8,8 +8,8 @@ export default withRouter(function NavBar(props) {
   let { currentUser, setCurrentUser } = useContext(UserContext);
   const handleSignout = () =>
     APIHandler.post("auth-routes/logout").finally(() => {
-      setCurrentUser(null);
       props.history.push("/");
+      setCurrentUser(null);
     });
 
   return (
@@ -22,7 +22,7 @@ export default withRouter(function NavBar(props) {
       </NavLink>
       {!currentUser ? (
         <div className="sideLinkContainer">
-          <NavLink className="link" to="/Login">
+          <NavLink className="link login" to="/Login">
             Login
           </NavLink>
           {/* <NavLink className="link" to="/Signup">

@@ -85,9 +85,11 @@ export default function CocktailCard({ cocktail, cocktailsFav, isUser }) {
   return (
     <>
       <div className="CocktailCard">
-        <Link className="cocktailName" to={`/one-cocktail/${cocktail._id}`}>
-          {cocktail.Name}
-        </Link>
+        <div className="cocktailCardNameContainer">
+          <Link className="cocktailName" to={`/one-cocktail/${cocktail._id}`}>
+            {cocktail.Name}
+          </Link>
+        </div>
         <div className="flip-card">
           <div className="flip-card-inner">
             <div className="flip-card-front">
