@@ -144,18 +144,18 @@ export default function Home() {
 
           {!isAlcoholic ? (
             <span
-              class="fa-stack fa-2x isAlcoholicLogo"
+              className="fa-stack fa-2x isAlcoholicLogo"
               onClick={handleClickIsAlcoholic}
             >
-              <i class="fas fa-cocktail fa-stack-1x"></i>
-              <i class="fas fa-ban fa-stack-2x"></i>
+              <i className="fas fa-cocktail fa-stack-1x"></i>
+              <i className="fas fa-ban fa-stack-2x"></i>
             </span>
           ) : (
             <span
-              class="fa-stack fa-2x isAlcoholicLogo"
+              className="fa-stack fa-2x isAlcoholicLogo"
               onClick={handleClickIsAlcoholic}
             >
-              <i class="fas fa-cocktail fa-stack-1x"></i>
+              <i className="fas fa-cocktail fa-stack-1x"></i>
             </span>
           )}
         </div>

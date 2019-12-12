@@ -26,6 +26,7 @@ const Signup = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/auth-routes/signup", formData)
       .then(res => {
+        props.history.push("/login");
         console.log("user successfully added to database");
       })
       .catch(err => {

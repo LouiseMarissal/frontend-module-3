@@ -1,29 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "./../../css/AddCocktail.scss";
 import UserCocktailCard from "./../../components/cocktails/UserCocktailCard";
 import axios from "axios";
 import "./../../css/UserProfile.scss";
 import { Link } from "react-router-dom";
 import LikeCocktail from "../../components/cocktails/LikeCocktail";
-
+import UserContext from "../../auth/UserContext";
 const UserProfile = props => {
+  const { currentUser } = useContext(UserContext);
   const [userCocktails, setUserCocktails] = useState([]);
   const [user, setUser] = useState({});
   const [cocktails, setCocktails] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const userData = useRef();
 
+  console.log("User Profile id", currentUser._id);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
+    const copy = favorites.filter(f => f._id !== id);
+    setFavorites(copy);
+    console.log(copy);
     axios
       .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
         cocktails
       })
       .then(dbRes => {
-        const copy = favorites.filter(f => f._id !== id);
-        setFavorites(copy);
-        console.log(copy);
+        console.log(dbRes);
       })
       .catch(dbErr => {
         console.log(dbErr);
@@ -103,7 +106,7 @@ const UserProfile = props => {
     }
   }, []);
   console.log(favorites);
-  return (
+  return currentUser.isPro ? (
     <div className="user-profile-container">
       <div className="UserProfileContainer">
         <div className="userCardContainer">
@@ -128,9 +131,6 @@ const UserProfile = props => {
               </div>
               <div>
                 <h3>Hello {user.firstName}!</h3>
-                <h6>
-                  {user.companyName}: {user.barName}
-                </h6>
               </div>
             </div>
           </div>
@@ -163,6 +163,40 @@ const UserProfile = props => {
               <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
             ))
           )}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div>
+      <div className="user">
+        <img
+          ref={userData}
+          src={user.photo}
+          alt={user.firstName}
+          className="UserPhotoProfile"
+        />
+
+        <div>
+          <div>
+            <h3>Hello {user.firstName}!</h3>
+            <h6>
+              {user.companyName}: {user.barName}
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h5>My Favorites Cocktails</h5>
+          <div className="user-cocktail-list">
+            {favorites.length === 0 ? (
+              <p>You don't have any favorites yet !</p>
+            ) : (
+              favorites.map((f, i) => (
+                <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>

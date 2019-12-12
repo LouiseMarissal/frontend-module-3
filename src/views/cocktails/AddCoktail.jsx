@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
-
+import UserContext from "../../auth/UserContext";
 const AddCoktail = props => {
+  const { currentUser } = useContext(UserContext);
   const [formValues, setFormValues] = useState({});
   const measuresRef = useRef();
   const ingredientsRef = useRef();
@@ -10,6 +11,7 @@ const AddCoktail = props => {
   const [tags, setTags] = useState([]);
   const [tagsAdded, setTagsAdded] = useState([]);
 
+  console.log("AddCocktail", currentUser._id);
   useEffect(() => {
     axios
       .get(process.env.REACT_APP_BACKEND_URL + "/tags")
@@ -126,8 +128,8 @@ const AddCoktail = props => {
     axios
       .post(process.env.REACT_APP_BACKEND_URL + "/cocktail", formData)
       .then(res => {
-        console.log(res);
-        props.history.push("/profile/" + props.match.params.id);
+        console.log(props.match.params.id);
+        props.history.push("/profile/" + currentUser._id);
       })
       .catch(err => {
         console.log(err);
