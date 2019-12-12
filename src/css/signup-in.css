@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     padding: 1em;
-    background: #FAF0E1;
+    background: white;
 }
 
 .form {
@@ -19,7 +19,7 @@
     border: none;
     border-bottom: 1px solid gray;
     padding: 1em;
-    background: #FAF0E1;
+    background: white;
 }
 
 .btn {
