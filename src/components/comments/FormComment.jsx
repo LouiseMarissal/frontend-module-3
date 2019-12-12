@@ -81,7 +81,7 @@ const AddComment = props => {
           </>
         ) : (
           <NavLink
-            className="link"
+            className="link-formComment"
             style={{
               textDecoration: "none"
             }}

@@ -99,3 +99,13 @@
   width: 40px;
   border-radius: 50%
 }
+
+.link-formComment {
+  color: black;
+  cursor: pointer;
+}
+
+.link-formComment:hover {
+  color: black;
+  text-decoration: underline #ffb200 !important;
+}

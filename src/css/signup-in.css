@@ -64,5 +64,11 @@
 }
 
 .link-login {
-    margin-top: 1000px;
+    color: black;
+    cursor: pointer;
+}
+
+.link-login:hover {
+    color: black;
+    text-decoration: underline #ffb200 !important;
 }
