@@ -84,15 +84,17 @@ const AddComment = props => {
             <button className="btnSubmitMessage">comment!</button>
           </>
         ) : (
-          <NavLink
-            className="link-formComment"
-            style={{
-              textDecoration: "none"
-            }}
-            to="/Signup"
-          >
-            SignUp to comment !
-          </NavLink>
+          <button className="btn-formComment">
+            <NavLink
+              className="link-formComment"
+              style={{
+                textDecoration: "none"
+              }}
+              to="/Signup"
+            >
+              SignUp to comment !
+            </NavLink>
+          </button>
         )}
         <br />
         <div className="comments">
