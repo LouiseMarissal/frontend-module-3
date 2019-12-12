@@ -162,15 +162,6 @@ const UserProfile = props => {
                   alt={currentUser.firstName}
                   className="UserPhotoProfile"
                 />
-
-                <div>
-                  <h5>Add Cocktails</h5>
-                  <Link
-                    rel="stylesheet"
-                    to="/add-cocktail"
-                    className="fas fa-plus"
-                  ></Link>
-                </div>
               </div>
               <div>
                 <h3>Hello {currentUser.firstName}!</h3>
@@ -185,7 +176,7 @@ const UserProfile = props => {
       <div>
         <h5>My Favorites Cocktails</h5>
         <div className="user-cocktail-list">
-          {currentUser.favorites.length === 0 ? (
+          {favorites.length === 0 ? (
             <p>You don't have any favorites yet !</p>
           ) : (
             favorites.map((f, i) => (
