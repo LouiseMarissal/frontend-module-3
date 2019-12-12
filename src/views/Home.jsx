@@ -4,6 +4,7 @@ import CocktailsList from "./../components/cocktails/CocktailsList";
 //import filter from "../components/Bars/Filters";
 import "./../css/Home.scss";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { useAuth } from "../auth/useAuth";
 import axios from "axios";
 import { useAuth } from "./../auth/useAuth";
 
@@ -57,12 +58,13 @@ export default function Home() {
       method: "GET",
       url: process.env.REACT_APP_BACKEND_URL + "/cocktail",
       params: { query },
-      cancelToken: new axios.CancelToken(c => (cancel = c))
+      cancelToken: new axios.CancelToken(c => (cancel = c)),
+      withCredentials: true
     })
       .then(res => {
         setFavCocktails(res.data.cocktailsWithFavorites);
         setQueryFiltered(res.data.allCocktailsSorted);
-        setIsUser(res.data.isUser);
+        // setIsUser(res.data.useAuth);
       })
       .catch(err => {
         if (axios.isCancel(err)) return;
@@ -78,6 +80,7 @@ export default function Home() {
     var offset = window.innerHeight + e.target.scrollTop;
     var height = e.target.scrollHeight;
     const copy = [...queryFiltered];
+    console.log("coucou", currentUser);
     handleScrollSearchBar(e);
     if (offset > height - 1) {
       if (isAlcoholic === true) {
@@ -169,7 +172,6 @@ export default function Home() {
                 queryFiltered.length < 18 ? queryFiltered : cocktailsDisplayed
               }
               cocktailsFav={favCocktails}
-              isUser={isUser}
             />
           ) : (
             <div className="noResults">

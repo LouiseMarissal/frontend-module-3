@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 import {} from "react";
 
 const CocktailCard = React.lazy(() => import("./CocktailCard"));
-const List = ({ cocktails, cocktailsFav, isUser }) => {
+const List = ({ cocktails, cocktailsFav }) => {
   return (
     <div className="fullcocktail">
       {cocktails.map((cocktail, i) => (
@@ -11,7 +11,6 @@ const List = ({ cocktails, cocktailsFav, isUser }) => {
             key={i}
             cocktail={cocktail}
             cocktailsFav={cocktailsFav}
-            isUser={isUser}
           />
         </Suspense>
       ))}

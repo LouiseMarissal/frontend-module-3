@@ -13,7 +13,6 @@ const UserProfile = props => {
   console.log("user", currentUser);
   const [favorites, setFavorites] = useState([]);
 
-  // console.log("User Profile id", currentUser._id);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
