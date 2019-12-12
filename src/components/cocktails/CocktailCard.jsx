@@ -1,40 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./../../css/CocktailCard.css";
-import UserContext from "./../../auth/UserContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../auth/useAuth";
 
 export default function CocktailCard({ cocktail, cocktailsFav }) {
   const [like, setLike] = useState([]);
-  const { currentUser } = useContext(UserContext);
-
-  // const loadUserFavs = () => {
-  //   // console.log(process.env.REACT_APP_BACKEND_URL + "/cocktail/userFav");
-  //   axios
-  //     .get(process.env.REACT_APP_BACKEND_URL + "/cocktail/userFav", {
-  //       withCredentials: true
-  //     })
-  //     .then(dbRes => {
-  //       const fav = dbRes;
-  //       fav.map((id, i) => {
-  //         let likeId = document.getElementById(id);
-  //         if (likeId) {
-  //           likeId.className = "fas fa-glass-cheers cheersOrange";
-  //           console.log(likeId);
-  //         }
-  //       });
-  //     })
-  //     .catch(dbErr => console.log(dbErr));
-  // };
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     if (cocktailsFav.length > 0) {
-      cocktailsFav.map((cocktailFav, i) => {
+      cocktailsFav.map(cocktailFav => {
         var thisCocktailId = cocktail._id;
         var cocktailId = document.getElementById(thisCocktailId);
         var cocktailFavId = cocktailFav._id;
-        // console.log(thisCocktailId + "and" + cocktailFavId);
         if (
           thisCocktailId === cocktailFavId &&
           cocktailId.className.includes("fa-glass-cheers")
@@ -118,7 +97,7 @@ export default function CocktailCard({ cocktail, cocktailsFav }) {
             <div className="flip-card-back">
               <ul>
                 {cocktail.Ingredients.map((i, index) =>
-                  i != "" && i != null && i && "/n" ? (
+                  i !== "" && i !== null && i && "/n" ? (
                     <li key={index} className="ingredient">
                       {i}
                     </li>
@@ -129,7 +108,7 @@ export default function CocktailCard({ cocktail, cocktailsFav }) {
               </ul>
               <div className="tagsListContainer">
                 {cocktail.tags.map((tag, i) =>
-                  tag != "" && tag != null && tag ? (
+                  tag !== "" && tag !== null && tag ? (
                     <div key={i} className="tagContainer">
                       <span key={i} className="tagDisplay">
                         {tag.name}
