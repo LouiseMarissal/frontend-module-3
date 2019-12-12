@@ -6,7 +6,6 @@ import "./../css/Home.scss";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { useAuth } from "../auth/useAuth";
 import axios from "axios";
-import { useAuth } from "./../auth/useAuth";
 
 export default function Home() {
   const { isLoading, currentUser } = useAuth();
