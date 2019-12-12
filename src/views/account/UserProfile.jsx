@@ -10,25 +10,23 @@ import { useAuth } from "../../auth/useAuth";
 const UserProfile = props => {
   const { isLoading, currentUser } = useAuth();
   const [userCocktails, setUserCocktails] = useState([]);
+
   const [favorites, setFavorites] = useState([]);
 
-  // console.log("User Profile id", currentUser._id);
   // Unlike the cocktail
   const handleUnlike = id => {
     console.log("id cocktail", id);
-    // const copy = favorites.filter(f => f._id !== id);
-    // setFavorites(copy);
-    // console.log(copy);
-    // axios
-    //   .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id, {
-    //     cocktails
-    //   })
-    //   .then(dbRes => {
-    //     console.log(dbRes);
-    //   })
-    //   .catch(dbErr => {
-    //     console.log(dbErr);
-    //   });
+    const copy = favorites.filter(f => f._id !== id);
+    setFavorites(copy);
+    console.log(copy);
+    axios
+      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/removeLike/" + id)
+      .then(dbRes => {
+        console.log(dbRes);
+      })
+      .catch(dbErr => {
+        console.log(dbErr);
+      });
   };
 
   // get userID to match with cocktails
@@ -130,32 +128,47 @@ const UserProfile = props => {
       </div>
     </div>
   ) : (
-    <div>
-      <div className="user">
-        <img
-          src={currentUser.photo}
-          alt={currentUser.firstName}
-          className="UserPhotoProfile"
-        />
+    <div className="user-profile-container">
+      <div className="UserProfileContainer">
+        <div className="userCardContainer">
+          <div className="userCard">
+            <div className="userImage">
+              <div className="user">
+                <img
+                  src={currentUser.photo}
+                  alt={currentUser.firstName}
+                  className="UserPhotoProfile"
+                />
 
-        <div>
-          <div>
-            <h3>Hello {currentUser.firstName}!</h3>
+                <div>
+                  <h5>Add Cocktails</h5>
+                  <Link
+                    rel="stylesheet"
+                    to="/add-cocktail"
+                    className="fas fa-plus"
+                  ></Link>
+                </div>
+              </div>
+              <div>
+                <h3>Hello {currentUser.firstName}!</h3>
+                <h5>{currentUser.companyName}</h5>
+                <h6>{currentUser.barName}</h6>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <div>
-        <div>
-          <h5>My Favorites Cocktails</h5>
-          <div className="user-cocktail-list">
-            {favorites.length === 0 ? (
-              <p>You don't have any favorites yet !</p>
-            ) : (
-              favorites.map((f, i) => (
-                <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
-              ))
-            )}
-          </div>
+        <h5>My Favorites Cocktails</h5>
+        <div className="user-cocktail-list">
+          {favorites.length === 0 ? (
+            <p>You don't have any favorites yet !</p>
+          ) : (
+            favorites.map((f, i) => (
+              <LikeCocktail key={i} likedCocktail={f} clbk={handleUnlike} />
+            ))
+          )}
         </div>
       </div>
     </div>

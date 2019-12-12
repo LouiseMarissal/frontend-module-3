@@ -10,7 +10,7 @@
 
   h3 {
     margin: 0 0 75px 0;
-    font-size: 55px;
+    font-size: 3em;
     color: #ffb200;
     font-family: "Baloo Bhai", cursive;
     text-transform: uppercase;
@@ -34,13 +34,18 @@
   }
 
   h1 {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
     color: #fff;
-    font-size: 3em;
+    font-size: 4em;
   }
 
   h2 {
+    font-size: 1.2em;
     color: #fff;
-    font-family: "Niconne", cursive;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    // font-family: "Niconne", cursive;
   }
 
   .arrow {

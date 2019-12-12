@@ -19,16 +19,20 @@ ul {
   margin: 0 0 10px 0;
   text-align: center;
   color: black;
+  font-weight: 600;
   text-decoration-color: orange;
-  font-family: "Baloo Bhai", cursive !important;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  text-transform: uppercase;
   font-size: 1.5em;
+  text-decoration: none;
 }
 
 .cocktailName:hover {
-  color: black;
-  text-decoration-color: orange;
+  color: orange;
+  /* text-decoration-color: orange; */
+  text-decoration: none;
 }
-
 
 .photo {
   /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .2)); */
