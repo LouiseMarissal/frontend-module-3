@@ -12,7 +12,7 @@ import Signup from "./views/account/signup";
 import Profile from "./views/account/UserProfile";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddCoktail from "./views/cocktails/AddCoktail";
-import EditCocktail from "././views/cocktails/EditCocktail";
+import EditCocktail from "./views/cocktails/EditCocktail";
 //auth
 import { useAuth } from "./auth/useAuth";
 import UserContext from "./auth/UserContext";

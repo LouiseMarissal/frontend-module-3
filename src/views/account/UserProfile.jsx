@@ -55,7 +55,7 @@ const UserProfile = props => {
   // Delete userPro cocktail
   const handleDelete = id => {
     axios
-      .delete(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id, {
+      .patch(process.env.REACT_APP_BACKEND_URL + "/cocktail/" + id, {
         withCredentials: true
       })
       .then(res => {
