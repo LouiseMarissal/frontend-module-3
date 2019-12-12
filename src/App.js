@@ -39,30 +39,27 @@ function App(props) {
   //   }
   // }, []);
   return (
-    console.log("current user", currentUser),
-    (
-      <UserContext.Provider value={UserContextValue}>
-        {isLoading ? null : (
-          <div className="App">
-            <NavBar user={currentUser} />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-              <ProtectedRoute path="/profile/:id" component={Profile} />
-              <Route path="/one-cocktail/:id" component={OneCocktail} />
-              <ProtectedRoute path="/add-cocktail" component={AddCoktail} />
-              <ProtectedRoute
-                path="/edit-cocktail/:id"
-                component={EditCocktail}
-              />
-              <ProtectedRoute path="/logout" />
-              <Route path="*" component={PageFourOhFour} />
-            </Switch>
-          </div>
-        )}
-      </UserContext.Provider>
-    )
+    <UserContext.Provider value={UserContextValue}>
+      {isLoading ? null : (
+        <div className="App">
+          <NavBar user={currentUser} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <ProtectedRoute path="/profile/:id" component={Profile} />
+            <Route path="/one-cocktail/:id" component={OneCocktail} />
+            <ProtectedRoute path="/add-cocktail" component={AddCoktail} />
+            <ProtectedRoute
+              path="/edit-cocktail/:id"
+              component={EditCocktail}
+            />
+            <ProtectedRoute path="/logout" />
+            <Route path="*" component={PageFourOhFour} />
+          </Switch>
+        </div>
+      )}
+    </UserContext.Provider>
   );
 }
 
