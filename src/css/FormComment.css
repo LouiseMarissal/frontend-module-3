@@ -34,7 +34,7 @@
   box-sizing: border-box;
   resize: none;
   font-size: 1.2em;
-  background: orange;
+  background: white;
   color: white;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .comments {
-  color: white;
+  color: black;
   /* border: solid 1px black; */
   /* padding: 50px 50px 0px 40px; */
   width: 100% !important;
@@ -65,7 +65,7 @@
 .listMessage {
   width: 100% !important;
   list-style: none;
-  background: black;
+  background: white;
   padding: 30px;
   padding-top: 10px;
   border-radius: 20px;
@@ -78,7 +78,7 @@
 }
 
 .fullUser {
-  color: white;
+  color: orange;
   font-size: 1.5em;
   font-family: "Baloo Bhai", cursive !important;
 }

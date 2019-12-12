@@ -25,8 +25,8 @@ li {
     }
 
     .fullDetails {
-      background: black;
-      box-shadow: 5px 5px 3px 0px grey;
+      background: url("../images/test4.jpg");
+      // box-shadow: 5px 5px 3px 0px grey;
       margin: 5%;
       padding: 5%;
       margin-top: 1%;
@@ -63,13 +63,13 @@ li {
               background-size: cover !important;
               background-position: center !important;
               width: 23vw !important;
-              box-shadow: 5px 5px 3px 0px grey;
+              // box-shadow: 5px 5px 3px 0px grey;
             }
           }
 
           .ingredientAndMeasureContainer {
             width: 100%;
-            color: white;
+            color: black;
             font-size: 1.2em;
           }
         }
@@ -94,7 +94,7 @@ li {
 
         .instructions {
           padding: 0 10%;
-          color: white;
+          color: black;
           font-size: 1.2em;
         }
       }
