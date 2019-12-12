@@ -6,7 +6,7 @@ export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const userContext = useContext(UserContext);
-  const { setCurrentUser } = userContext;
+  const { setCurrentUser, currentUser } = userContext;
 
   useEffect(() => {
     APIHandler.get("/auth-routes/is-loggedin")
@@ -14,7 +14,6 @@ export const useAuth = () => {
         setIsLoggedIn(true);
         setIsLoading(false);
         setCurrentUser(res.data.currentUser);
-        console.log(setCurrentUser);
       })
       .catch(err => {
         setCurrentUser(null);
@@ -23,5 +22,5 @@ export const useAuth = () => {
       });
   }, [setCurrentUser]);
 
-  return { isLoggedIn, isLoading };
+  return { isLoggedIn, isLoading, currentUser };
 };

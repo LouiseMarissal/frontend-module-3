@@ -54,7 +54,7 @@ function App(props) {
               path="/edit-cocktail/:id"
               component={EditCocktail}
             />
-            <ProtectedRoute path="/logout" />
+            {/* <ProtectedRoute path="/logout" /> */}
             <Route path="*" component={PageFourOhFour} />
           </Switch>
         </div>
